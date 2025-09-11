@@ -9,14 +9,15 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Ceylon Wild Clicks color palette
+  // Earthy green color palette
   const colors = {
-    background: "#000000", // Pure black
-    accent: "#22c55e", // Emerald green
-    textPrimary: "#ffffff", // White
+    primary: "#4a7c59",       // Forest green
+    light: "#8a9b68",         // Olive green
+    accent: "#6b8e23",        // Olive drab green
+    background: "#000000",    // Black
+    textPrimary: "#ffffff",   // White
     textSecondary: "#d1d5db", // Light gray
-    border: "#1f2937", // Dark gray border
-    hoverBg: "#111827" // Dark hover background
+    border: "#1f2937",        // Dark gray
   };
 
   useEffect(() => {
@@ -33,14 +34,9 @@ const Navbar = () => {
     { name: "Tours", path: "/tours" },
     { name: "Portraits", path: "/portraits" },
     { name: "Blog", path: "/blog" },
-    {
-      name: "About",
-      path: "#",
-      subItems: [
-        { name: "Our Story", path: "/about" },
-        { name: "Contact Us", path: "/contact" },
-      ],
-    },
+    { name: "About", path: "/about" },
+    { name: "Contact", path: "/contact" },
+    
   ];
 
   return (
@@ -51,7 +47,7 @@ const Navbar = () => {
       className={`fixed w-full z-50 ${
         scrolled ? "bg-black/95 backdrop-blur-md shadow-lg" : "bg-transparent"
       } transition-all duration-300 border-b ${
-        scrolled ? "border-emerald-500/10" : "border-transparent"
+        scrolled ? "border-gray-800" : "border-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6">
@@ -64,7 +60,7 @@ const Navbar = () => {
               animate={{ opacity: 1 }}
             >
               <span className="text-gray-200">CEYLON</span>
-              <span className="text-emerald-400"> WILD</span>
+              <span style={{ color: colors.primary }}> WILD</span>
               <span className="text-gray-200"> CLICKS</span>
             </motion.span>
           </Link>
@@ -72,10 +68,7 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-1">
             {navItems.map((item) => (
-              <div
-                key={item.name}
-                className="relative h-full flex items-center"
-              >
+              <div key={item.name} className="relative h-full flex items-center">
                 {item.subItems ? (
                   <div
                     className="px-4 py-2 cursor-pointer relative group h-full flex items-center"
@@ -83,9 +76,13 @@ const Navbar = () => {
                     onMouseLeave={() => setActiveTab("")}
                   >
                     <span
-                      className={`flex items-center text-gray-300 hover:text-emerald-400 transition-colors text-sm tracking-wide ${
-                        activeTab === item.name ? "text-emerald-400" : ""
+                      className={`flex items-center text-gray-300 transition-colors text-sm tracking-wide ${
+                        activeTab === item.name ? "font-semibold" : ""
                       }`}
+                      style={{
+                        color:
+                          activeTab === item.name ? colors.primary : "#d1d5db",
+                      }}
                     >
                       {item.name}
                       <motion.span
@@ -113,9 +110,15 @@ const Navbar = () => {
                             <Link
                               key={subItem.name}
                               href={subItem.path}
-                              className="block px-4 py-3 text-gray-300 hover:bg-gray-800 hover:text-emerald-400 transition-colors text-sm border-b border-gray-800 last:border-0 flex items-center group"
+                              className="block px-4 py-3 text-gray-300 hover:text-white transition-colors text-sm border-b border-gray-800 last:border-0 flex items-center group"
+                              style={{
+                                color: "#d1d5db",
+                              }}
                             >
-                              <span className="w-2 h-2 rounded-full bg-emerald-400 mr-3 group-hover:scale-110 transition-transform"></span>
+                              <span
+                                className="w-2 h-2 rounded-full mr-3 group-hover:scale-110 transition-transform"
+                                style={{ backgroundColor: colors.primary }}
+                              ></span>
                               {subItem.name}
                             </Link>
                           ))}
@@ -129,14 +132,16 @@ const Navbar = () => {
                     className="px-4 py-2 relative h-full flex items-center"
                   >
                     <motion.span
-                      className="text-gray-300 hover:text-emerald-400 transition-colors text-sm tracking-wide relative"
-                      whileHover={{ color: "#22c55e" }}
+                      className="text-sm tracking-wide relative"
+                      style={{ color: "#d1d5db" }}
+                      whileHover={{ color: colors.primary }}
                     >
                       {item.name}
                       <motion.span
                         initial={{ scaleX: 0 }}
                         whileHover={{ scaleX: 1 }}
-                        className="absolute bottom-0 left-0 w-full h-px bg-emerald-400 origin-left"
+                        className="absolute bottom-0 left-0 w-full h-px origin-left"
+                        style={{ backgroundColor: colors.primary }}
                         transition={{ duration: 0.3 }}
                       />
                     </motion.span>
@@ -154,7 +159,10 @@ const Navbar = () => {
           >
             <Link
               href="/booking"
-              className="flex items-center space-x-2 bg-gradient-to-r from-emerald-700 to-emerald-500 text-white px-5 py-2.5 rounded-sm shadow-lg hover:shadow-emerald-500/20 transition-all text-sm tracking-wide"
+              className="flex items-center space-x-2 text-white px-5 py-2.5 rounded-sm shadow-lg transition-all text-sm tracking-wide"
+              style={{
+                background: `linear-gradient(to right, ${colors.primary}, ${colors.light})`,
+              }}
             >
               <FaSafari className="text-xs" />
               <span>BOOK TOUR</span>
@@ -170,23 +178,19 @@ const Navbar = () => {
               <motion.span
                 animate={
                   mobileMenuOpen
-                    ? { rotate: 45, y: 6, backgroundColor: "#22c55e" }
+                    ? { rotate: 45, y: 6, backgroundColor: colors.primary }
                     : { rotate: 0, backgroundColor: "#f0fdf4" }
                 }
                 className="block h-0.5 w-full rounded-full"
               ></motion.span>
               <motion.span
                 animate={mobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-                className="block h-0.5 w-full rounded-full"
+                className="block h-0.5 w-full rounded-full bg-gray-100"
               ></motion.span>
               <motion.span
                 animate={
                   mobileMenuOpen
-                    ? {
-                        rotate: -45,
-                        y: -6,
-                        backgroundColor: "#22c55e",
-                      }
+                    ? { rotate: -45, y: -6, backgroundColor: colors.primary }
                     : { rotate: 0, backgroundColor: "#f0fdf4" }
                 }
                 className="block h-0.5 w-full rounded-full"
@@ -208,17 +212,15 @@ const Navbar = () => {
           >
             <div className="flex flex-col space-y-6">
               {navItems.map((item) => (
-                <div
-                  key={item.name}
-                  className="border-b border-gray-800 pb-4"
-                >
+                <div key={item.name} className="border-b border-gray-800 pb-4">
                   {item.subItems ? (
                     <div>
                       <button
                         onClick={() =>
                           setActiveTab(activeTab === item.name ? "" : item.name)
                         }
-                        className="flex items-center justify-between w-full text-gray-300 hover:text-emerald-400 text-lg"
+                        className="flex items-center justify-between w-full text-lg"
+                        style={{ color: "#d1d5db" }}
                       >
                         {item.name}
                         <span
@@ -241,10 +243,14 @@ const Navbar = () => {
                             <Link
                               key={subItem.name}
                               href={subItem.path}
-                              className="block text-gray-400 hover:text-emerald-400 py-1.5 text-sm flex items-center"
+                              className="block py-1.5 text-sm flex items-center"
+                              style={{ color: "#9ca3af" }}
                               onClick={() => setMobileMenuOpen(false)}
                             >
-                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-3"></span>
+                              <span
+                                className="w-1.5 h-1.5 rounded-full mr-3"
+                                style={{ backgroundColor: colors.primary }}
+                              ></span>
                               {subItem.name}
                             </Link>
                           ))}
@@ -254,7 +260,8 @@ const Navbar = () => {
                   ) : (
                     <Link
                       href={item.path}
-                      className="block text-gray-300 hover:text-emerald-400 text-lg"
+                      className="block text-lg"
+                      style={{ color: "#d1d5db" }}
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {item.name}
@@ -266,7 +273,10 @@ const Navbar = () => {
               <motion.div whileHover={{ scale: 1.02 }} className="mt-8">
                 <Link
                   href="/booking"
-                  className="flex items-center justify-center space-x-2 bg-gradient-to-r from-emerald-700 to-emerald-500 text-white px-6 py-3 rounded-sm text-sm tracking-wide"
+                  className="flex items-center justify-center space-x-2 text-white px-6 py-3 rounded-sm text-sm tracking-wide"
+                  style={{
+                    background: `linear-gradient(to right, ${colors.primary}, ${colors.light})`,
+                  }}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <FaSafari />

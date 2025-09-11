@@ -4,7 +4,16 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FaSafari, FaCamera, FaPaw, FaExpand, FaChevronLeft, FaChevronRight, FaStar, FaQuoteLeft } from "react-icons/fa";
+import {
+  FaSafari,
+  FaCamera,
+  FaPaw,
+  FaExpand,
+  FaChevronLeft,
+  FaChevronRight,
+  FaStar,
+  FaQuoteLeft,
+} from "react-icons/fa";
 import { Bebas_Neue, Lora, Montserrat } from "next/font/google";
 
 const bebas = Bebas_Neue({
@@ -33,7 +42,7 @@ const Home = () => {
   const [isSubscribed, setIsSubscribed] = useState(false);
 
   const slides = [
-    { id: 1, src: "/images/hero1.jpg", alt: "Sri Lankan leopard in the wild" },
+    { id: 1, src: "/images/ice.jpg", alt: "Sri Lankan leopard in the wild" },
   ];
 
   const cards = [
@@ -45,7 +54,8 @@ const Home = () => {
       image: "/images/safari.jpg",
       link: "/tours",
       stats: "98% Success Rate",
-      description: "Our expert trackers ensure you witness Sri Lanka's most spectacular wildlife moments"
+      description:
+        "Our expert trackers ensure you witness Sri Lanka's most spectacular wildlife moments",
     },
     {
       id: 2,
@@ -55,18 +65,20 @@ const Home = () => {
       image: "/images/gallery.jpg",
       link: "/gallery",
       stats: "10,000+ Images",
-      description: "Award-winning photography from our team of professional wildlife photographers"
+      description:
+        "Award-winning photography from our team of professional wildlife photographers",
     },
     {
       id: 3,
-      title: "Conservation",
-      subtitle: "Protecting Sri Lanka's wildlife",
+      title: "Potraits",
+      subtitle: "Intimate close-ups of nature's wonders",
       icon: <FaPaw className="text-xl" />,
       image: "/images/portrait.jpg",
       link: "/conservation",
       stats: "15+ Projects",
-      description: "Directly supporting wildlife conservation efforts across the island"
-    }
+      description:
+        "Discover powerful portraits of wildlife,Support our work by owning a piece of high-quality prints.",
+    },
   ];
 
   const destinations = [
@@ -76,22 +88,22 @@ const Home = () => {
         name: "Wilpattu National Park",
         image: "/images/wilpattu.jpg",
         description: "Sri Lanka's largest national park with natural lakes",
-        link: "/destinations/wilpattu"
+        link: "/destinations/wilpattu",
       },
       {
         id: 2,
         name: "Horton Plains",
         image: "/images/hp.jpg",
         description: "Famous for World's End and rich biodiversity",
-        link: "/destinations/horton-plains"
+        link: "/destinations/horton-plains",
       },
       {
         id: 3,
         name: "Sinharaja Rain Forest",
         image: "/images/sinharaja.webp",
         description: "UNESCO World Heritage Site with endemic species",
-        link: "/destinations/sinharaja"
-      }
+        link: "/destinations/sinharaja",
+      },
     ],
     [
       {
@@ -99,23 +111,23 @@ const Home = () => {
         name: "Kumana National Park",
         image: "/images/kumana.jpg",
         description: "Known for birdwatching and diverse wildlife",
-        link: "/destinations/kumana"
+        link: "/destinations/kumana",
       },
       {
         id: 5,
         name: "Yala National Park",
         image: "/images/yala.jpg",
         description: "Home to the highest density of leopards in the world",
-        link: "/destinations/yala"
+        link: "/destinations/yala",
       },
       {
         id: 6,
         name: "Minneriya National Park",
         image: "/images/minneriya.jpg",
         description: "Famous for the elephant gathering during dry season",
-        link: "/destinations/minneriya"
-      }
-    ]
+        link: "/destinations/minneriya",
+      },
+    ],
   ];
 
   const testimonials = [
@@ -124,25 +136,28 @@ const Home = () => {
       name: "Sarah Johnson",
       role: "Wildlife Photographer",
       rating: 5,
-      comment: "The leopard sightings were beyond anything I could have imagined. The guides' knowledge was exceptional.",
-      image: "/images/review1.jpg"
+      comment:
+        "The leopard sightings were beyond anything I could have imagined. The guides' knowledge was exceptional.",
+      image: "/images/review1.jpg",
     },
     {
       id: 2,
       name: "Michael Chen",
       role: "Nature Journalist",
       rating: 5,
-      comment: "Ceylon Wild Clicks delivered the most authentic wildlife experience I've had in 15 years of travel.",
-      image: "/images/review2.jpg"
+      comment:
+        "Ceylon Wild Clicks delivered the most authentic wildlife experience I've had in 15 years of travel.",
+      image: "/images/review2.jpg",
     },
     {
       id: 3,
       name: "Dr. Priya Fernando",
       role: "Conservation Biologist",
       rating: 5,
-      comment: "Their ethical approach to wildlife tourism sets a new standard for the industry. Highly recommended.",
-      image: "/images/review3.jpg"
-    }
+      comment:
+        "Their ethical approach to wildlife tourism sets a new standard for the industry. Highly recommended.",
+      image: "/images/review3.jpg",
+    },
   ];
 
   useEffect(() => {
@@ -155,20 +170,24 @@ const Home = () => {
   const openViewer = (src) => {
     setViewerImage(src);
     setIsViewerOpen(true);
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
   };
 
   const closeViewer = () => {
     setIsViewerOpen(false);
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = "auto";
   };
 
   const nextDestinationSlide = () => {
-    setCurrentDestinationSlide((prev) => (prev === destinations.length - 1 ? 0 : prev + 1));
+    setCurrentDestinationSlide((prev) =>
+      prev === destinations.length - 1 ? 0 : prev + 1
+    );
   };
 
   const prevDestinationSlide = () => {
-    setCurrentDestinationSlide((prev) => (prev === 0 ? destinations.length - 1 : prev - 1));
+    setCurrentDestinationSlide((prev) =>
+      prev === 0 ? destinations.length - 1 : prev - 1
+    );
   };
 
   const handleSubscribe = (e) => {
@@ -180,9 +199,50 @@ const Home = () => {
   };
 
   return (
-    <div className={`${bebas.variable} ${lora.variable} ${montserrat.variable}`}>
+    <div
+      className={`${bebas.variable} ${lora.variable} ${montserrat.variable}`}
+    >
+      {/* Custom CSS for the earthy green colors */}
+      <style jsx>{`
+        .text-earth-green {
+          color: #4a7c59;
+        }
+        .text-earth-green-light {
+          color: #8a9b68;
+        }
+        .text-earth-green-accent {
+          color: #6b8e23;
+        }
+        .bg-earth-green {
+          background-color: #4a7c59;
+        }
+        .bg-earth-green-light {
+          background-color: #8a9b68;
+        }
+        .bg-earth-green-accent {
+          background-color: #6b8e23;
+        }
+        .hover\:bg-earth-green:hover {
+          background-color: #4a7c59;
+        }
+        .hover\:text-earth-green:hover {
+          color: #4a7c59;
+        }
+        .border-earth-green {
+          border-color: #4a7c59;
+        }
+        .from-earth-green {
+          --tw-gradient-from: #4a7c59;
+          --tw-gradient-to: rgba(74, 124, 89, 0);
+          --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+        }
+        .to-earth-green-light {
+          --tw-gradient-to: #8a9b68;
+        }
+      `}</style>
+
       {/* Hero Carousel Section */}
-      <div className="relative h-screen max-h-[900px] w-full overflow-hidden bg-black">
+      <div className="relative h-screen  w-full overflow-hidden bg-black">
         {/* Slides */}
         <div className="relative h-full w-full">
           {slides.map((slide, index) => (
@@ -213,12 +273,12 @@ const Home = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="mb-6">
-              <span className="font-montserrat text-xs uppercase tracking-[0.3em] text-emerald-400">
+              <span className="font-montserrat text-xs uppercase tracking-[0.3em] text-earth-green">
                 Wildlife Photography & Tours
               </span>
             </div>
             <h1 className="font-bebas text-5xl md:text-6xl lg:text-7xl text-white tracking-tight leading-tight mb-4">
-              CEYLON <span className="text-emerald-400">WILD CLICKS</span>
+              CEYLON <span className="text-earth-green">WILD CLICKS</span>
             </h1>
             <motion.p
               className="font-lora text-lg md:text-xl text-gray-300 mt-6 max-w-2xl mx-auto leading-relaxed"
@@ -226,7 +286,8 @@ const Home = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
             >
-              Immersive wildlife experiences in Sri Lanka's most breathtaking natural habitats
+              Immersive wildlife experiences in Sri Lanka's most breathtaking
+              natural habitats
             </motion.p>
           </motion.div>
 
@@ -238,13 +299,17 @@ const Home = () => {
           >
             <Link
               href="/tours"
-              className="bg-gradient-to-r from-emerald-700 to-emerald-500 hover:from-emerald-600 hover:to-emerald-400 text-white font-medium py-3 px-8 rounded-sm shadow-lg hover:shadow-emerald-500/20 transition-all text-sm tracking-wide uppercase"
+              className="text-white font-medium py-3 px-8 rounded-sm shadow-lg transition-all text-sm tracking-wide uppercase"
+              style={{
+                background: "linear-gradient(to right, #4a7c59, #8a9b68)",
+              }}
             >
               Explore Tours
             </Link>
+
             <Link
               href="/gallery"
-              className="border border-white/30 hover:border-emerald-400 text-white hover:text-emerald-400 py-3 px-8 rounded-sm transition-all text-sm tracking-wide uppercase"
+              className="border border-white/30 hover:border-earth-green text-white hover:text-earth-green py-3 px-8 rounded-sm transition-all text-sm tracking-wide uppercase"
             >
               View Gallery
             </Link>
@@ -259,7 +324,7 @@ const Home = () => {
               onClick={() => setCurrentSlide(index)}
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
                 index === currentSlide
-                  ? "bg-emerald-400 w-6"
+                  ? "bg-earth-green w-6"
                   : "bg-white/30 w-2"
               }`}
             />
@@ -271,14 +336,14 @@ const Home = () => {
       <div className="relative bg-black py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
-            <motion.div 
+            <motion.div
               className="mb-6"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <span className="font-montserrat text-xs uppercase tracking-[0.3em] text-emerald-400">
+              <span className="font-montserrat text-xs uppercase tracking-[0.3em] text-earth-green">
                 Our Expertise
               </span>
             </motion.div>
@@ -289,7 +354,8 @@ const Home = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              PREMIUM <span className="text-emerald-400">WILDLIFE EXPERIENCES</span>
+              PREMIUM{" "}
+              <span className="text-earth-green">WILDLIFE EXPERIENCES</span>
             </motion.h2>
             <motion.p
               className="font-lora text-gray-400 max-w-2xl mx-auto text-sm"
@@ -298,7 +364,8 @@ const Home = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              Carefully curated encounters with Sri Lanka's magnificent wildlife, designed for discerning travelers
+              Carefully curated encounters with Sri Lanka's magnificent
+              wildlife, designed for discerning travelers
             </motion.p>
           </div>
 
@@ -321,39 +388,39 @@ const Home = () => {
                   fill
                   className="object-cover transition-all duration-700 group-hover:scale-105"
                 />
-                
+
                 <div className="absolute inset-0 flex flex-col justify-end p-8 z-20">
                   <div className="absolute top-6 right-6">
-                    <button 
+                    <button
                       onClick={() => openViewer(card.image)}
-                      className="p-2 rounded-sm bg-black/50 hover:bg-emerald-500 transition-colors text-white"
+                      className="p-2 rounded-sm bg-black/50 hover:bg-earth-green transition-colors text-white"
                     >
                       <FaExpand className="text-xs" />
                     </button>
                   </div>
-                  
+
                   <div className="mb-4 flex items-center gap-3">
-                    <div className="text-emerald-400">{card.icon}</div>
-                    <span className="font-montserrat text-xs uppercase tracking-widest text-emerald-400">
+                    <div className="text-earth-green">{card.icon}</div>
+                    <span className="font-montserrat text-xs uppercase tracking-widest text-earth-green">
                       {card.stats}
                     </span>
                   </div>
-                  
-                  <h3 className="font-bebas text-2xl text-white mb-1 group-hover:text-emerald-400 transition-colors">
+
+                  <h3 className="font-bebas text-2xl text-white mb-1 group-hover:text-earth-green transition-colors">
                     {card.title}
                   </h3>
-                  
+
                   <p className="font-lora text-sm text-gray-300 mb-4">
                     {card.subtitle}
                   </p>
-                  
+
                   <p className="font-lora text-xs text-gray-300 mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     {card.description}
                   </p>
-                  
+
                   <Link
                     href={card.link}
-                    className="font-montserrat text-white hover:text-emerald-400 transition-colors text-xs uppercase tracking-wider flex items-center gap-2 group"
+                    className="font-montserrat text-white hover:text-earth-green transition-colors text-xs uppercase tracking-wider flex items-center gap-2 group"
                   >
                     <span>Discover More</span>
                     <span className="inline-block group-hover:translate-x-1 transition-transform">
@@ -380,7 +447,7 @@ const Home = () => {
         </div>
 
         {/* Decorative elements */}
-        <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-emerald-500/5 blur-3xl"></div>
+        <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-earth-green/5 blur-3xl"></div>
         <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-amber-500/5 blur-3xl"></div>
       </div>
 
@@ -388,14 +455,14 @@ const Home = () => {
       <div className="relative bg-black py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
-            <motion.div 
+            <motion.div
               className="mb-6"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <span className="font-montserrat text-xs uppercase tracking-[0.3em] text-emerald-400">
+              <span className="font-montserrat text-xs uppercase tracking-[0.3em] text-earth-green">
                 Explore Sri Lanka
               </span>
             </motion.div>
@@ -406,7 +473,8 @@ const Home = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              ICONIC <span className="text-emerald-400">WILDLIFE SANCTUARIES</span>
+              ICONIC{" "}
+              <span className="text-earth-green">WILDLIFE SANCTUARIES</span>
             </motion.h2>
             <motion.p
               className="font-lora text-gray-400 max-w-2xl mx-auto text-sm"
@@ -415,20 +483,25 @@ const Home = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              Discover Sri Lanka's most spectacular national parks and conservation areas
+              Discover Sri Lanka's most spectacular national parks and
+              conservation areas
             </motion.p>
           </div>
 
           <div className="relative overflow-hidden">
-            <div className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${currentDestinationSlide * 100}%)` }}>
+            <div
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{
+                transform: `translateX(-${currentDestinationSlide * 100}%)`,
+              }}
+            >
               {destinations.map((slide, index) => (
                 <div key={index} className="w-full flex-shrink-0">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-2">
                     {slide.map((destination) => (
                       <motion.div
                         key={destination.id}
-                        className="bg-gray-900 rounded-sm overflow-hidden border border-gray-800 hover:border-emerald-400/30 transition-all duration-300"
+                        className="bg-gray-900 rounded-sm overflow-hidden border border-gray-800 hover:border-earth-green/30 transition-all duration-300"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
@@ -452,7 +525,7 @@ const Home = () => {
                           </p>
                           <Link
                             href={destination.link}
-                            className="font-montserrat text-emerald-400 hover:text-emerald-300 transition-colors text-xs uppercase tracking-wider flex items-center gap-2"
+                            className="font-montserrat text-earth-green hover:text-earth-green-light transition-colors text-xs uppercase tracking-wider flex items-center gap-2"
                           >
                             Explore Destination
                             <svg
@@ -478,15 +551,15 @@ const Home = () => {
               ))}
             </div>
 
-            <button 
+            <button
               onClick={prevDestinationSlide}
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-emerald-500 text-white p-2 rounded-sm z-10 transition-colors"
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-earth-green text-white p-2 rounded-sm z-10 transition-colors"
             >
               <FaChevronLeft className="text-xs" />
             </button>
-            <button 
+            <button
               onClick={nextDestinationSlide}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-emerald-500 text-white p-2 rounded-sm z-10 transition-colors"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-earth-green text-white p-2 rounded-sm z-10 transition-colors"
             >
               <FaChevronRight className="text-xs" />
             </button>
@@ -495,7 +568,16 @@ const Home = () => {
           <div className="flex justify-center mt-12">
             <Link
               href="/destinations"
-              className="font-montserrat text-sm text-white bg-emerald-600 hover:bg-emerald-500 px-8 py-3 rounded-sm transition-colors uppercase tracking-wider"
+              className="font-montserrat text-sm text-white px-8 py-3 rounded-sm transition-colors uppercase tracking-wider"
+              style={{
+                backgroundColor: "#4a7c59", // earthy green base
+              }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.backgroundColor = "#6b8e23")
+              } // accent on hover
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.backgroundColor = "#4a7c59")
+              }
             >
               View All Destinations
             </Link>
@@ -503,7 +585,7 @@ const Home = () => {
         </div>
 
         {/* Decorative elements */}
-        <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-emerald-500/5 blur-3xl"></div>
+        <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-earth-green/5 blur-3xl"></div>
         <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-amber-500/5 blur-3xl"></div>
       </div>
 
@@ -511,14 +593,14 @@ const Home = () => {
       <div className="relative bg-black py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
-            <motion.div 
+            <motion.div
               className="mb-6"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <span className="font-montserrat text-xs uppercase tracking-[0.3em] text-emerald-400">
+              <span className="font-montserrat text-xs uppercase tracking-[0.3em] text-earth-green">
                 Client Experiences
               </span>
             </motion.div>
@@ -529,7 +611,7 @@ const Home = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              TRAVELER <span className="text-emerald-400">TESTIMONIALS</span>
+              TRAVELER <span className="text-earth-green">TESTIMONIALS</span>
             </motion.h2>
             <motion.p
               className="font-lora text-gray-400 max-w-2xl mx-auto text-sm"
@@ -538,7 +620,8 @@ const Home = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              Hear from those who've experienced our wildlife adventures firsthand
+              Hear from those who've experienced our wildlife adventures
+              firsthand
             </motion.p>
           </div>
 
@@ -546,7 +629,7 @@ const Home = () => {
             {testimonials.map((testimonial) => (
               <motion.div
                 key={testimonial.id}
-                className="bg-gray-900/80 backdrop-blur-sm rounded-sm p-6 border border-gray-800 hover:border-emerald-400/30 transition-colors"
+                className="bg-gray-900/80 backdrop-blur-sm rounded-sm p-6 border border-gray-800 hover:border-earth-green/30 transition-colors"
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -554,22 +637,28 @@ const Home = () => {
               >
                 <div className="flex items-start mb-5">
                   <div className="ml-3">
-                    <h4 className="font-bebas text-lg text-white">{testimonial.name}</h4>
-                    <p className="font-montserrat text-[0.65rem] text-emerald-400 uppercase tracking-wider">
+                    <h4 className="font-bebas text-lg text-white">
+                      {testimonial.name}
+                    </h4>
+                    <p className="font-montserrat text-[0.65rem] text-earth-green uppercase tracking-wider">
                       {testimonial.role}
                     </p>
                   </div>
                 </div>
                 <div className="flex gap-1 mb-4">
                   {[...Array(5)].map((_, i) => (
-                    <FaStar 
-                      key={i} 
-                      className={`w-3 h-3 ${i < testimonial.rating ? 'text-amber-400' : 'text-gray-600'}`} 
+                    <FaStar
+                      key={i}
+                      className={`w-3 h-3 ${
+                        i < testimonial.rating
+                          ? "text-amber-400"
+                          : "text-gray-600"
+                      }`}
                     />
                   ))}
                 </div>
                 <div className="relative">
-                  <FaQuoteLeft className="absolute -top-1 -left-1 text-emerald-500/10 text-2xl" />
+                  <FaQuoteLeft className="absolute -top-1 -left-1 text-earth-green/10 text-2xl" />
                   <p className="font-lora text-xs text-gray-300 relative z-10 pl-4">
                     "{testimonial.comment}"
                   </p>
@@ -581,7 +670,7 @@ const Home = () => {
 
         {/* Decorative elements */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-          <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-emerald-500/5 blur-3xl"></div>
+          <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-earth-green/5 blur-3xl"></div>
           <div className="absolute bottom-1/4 right-1/3 w-80 h-80 rounded-full bg-amber-500/5 blur-3xl"></div>
         </div>
       </div>
@@ -589,7 +678,7 @@ const Home = () => {
       {/* Newsletter Section */}
       <div className="relative bg-black py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-4xl mx-auto relative z-10 text-center">
-          <motion.div 
+          <motion.div
             className="text-center mb-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -597,26 +686,29 @@ const Home = () => {
             viewport={{ once: true }}
           >
             <div className="mb-6">
-              <span className="font-montserrat text-xs uppercase tracking-[0.3em] text-emerald-400">
+              <span className="font-montserrat text-xs uppercase tracking-[0.3em] text-earth-green">
                 Stay Connected
               </span>
             </div>
             <h2 className="font-bebas text-4xl sm:text-5xl text-white mb-4">
-              JOIN OUR <span className="text-emerald-400">NEWSLETTER</span>
+              JOIN OUR <span className="text-earth-green">NEWSLETTER</span>
             </h2>
             <p className="font-lora text-gray-400 max-w-2xl mx-auto text-sm">
-              Receive exclusive wildlife updates, photography tips, and special offers
+              Receive exclusive wildlife updates, photography tips, and special
+              offers
             </p>
           </motion.div>
 
           {isSubscribed ? (
             <motion.div
-              className="bg-emerald-500/10 border border-emerald-500/30 rounded-sm p-6 max-w-md mx-auto"
+              className="bg-earth-green/10 border border-earth-green/30 rounded-sm p-6 max-w-md mx-auto"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <h3 className="font-bebas text-xl text-emerald-400 mb-2">Thank You!</h3>
+              <h3 className="font-bebas text-xl text-earth-green mb-2">
+                Thank You!
+              </h3>
               <p className="font-lora text-xs text-gray-300">
                 You've been successfully subscribed to our newsletter.
               </p>
@@ -635,12 +727,12 @@ const Home = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Your email address"
-                className="flex-grow px-5 py-3 rounded-sm bg-gray-900 border border-gray-800 focus:border-emerald-500 focus:outline-none text-white font-lora text-sm"
+                className="flex-grow px-5 py-3 rounded-sm bg-gray-900 border border-gray-800 focus:border-earth-green focus:outline-none text-white font-lora text-sm"
                 required
               />
               <button
                 type="submit"
-                className="font-montserrat text-sm text-white bg-emerald-600 hover:bg-emerald-500 px-8 py-3 rounded-sm transition-colors uppercase tracking-wider"
+                className="font-montserrat text-sm text-white bg-earth-green hover:bg-earth-green-accent px-8 py-3 rounded-sm transition-colors uppercase tracking-wider"
               >
                 Subscribe
               </button>
@@ -649,20 +741,26 @@ const Home = () => {
         </div>
 
         {/* Decorative elements */}
-        <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-emerald-500/5 blur-3xl"></div>
+        <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-earth-green/5 blur-3xl"></div>
         <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-amber-500/5 blur-3xl"></div>
       </div>
 
       {/* Image Viewer Modal */}
       {isViewerOpen && (
-        <div className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4" onClick={closeViewer}>
-          <button 
-            className="absolute top-6 right-6 text-white text-xl z-50 hover:text-emerald-400 transition-colors"
+        <div
+          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
+          onClick={closeViewer}
+        >
+          <button
+            className="absolute top-6 right-6 text-white text-xl z-50 hover:text-earth-green transition-colors"
             onClick={closeViewer}
           >
             &times;
           </button>
-          <div className="relative max-w-6xl w-full h-full max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="relative max-w-6xl w-full h-full max-h-[90vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
             <Image
               src={viewerImage}
               alt="Expanded view"
