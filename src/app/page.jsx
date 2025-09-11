@@ -296,7 +296,7 @@ const Home = () => {
               </span>
             </div>
             <h1 className="font-bebas text-5xl md:text-6xl lg:text-7xl text-white tracking-tight leading-tight mb-4">
-              CEYLON <span className="text-earth-green">WILD CLICKS</span>
+              CEYLON <span className="font-extrabold text-earth-green">WILD CLICKS</span>
             </h1>
             <motion.p
               className="font-lora text-lg md:text-xl text-gray-300 mt-6 max-w-2xl mx-auto leading-relaxed"
