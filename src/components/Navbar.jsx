@@ -3,6 +3,8 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { FaCamera, FaSafari } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import logo from "/public/images/logocwc.png";
 
 const Navbar = () => {
   const [activeTab, setActiveTab] = useState("");
@@ -11,13 +13,13 @@ const Navbar = () => {
 
   // Earthy green color palette
   const colors = {
-    primary: "#4a7c59",       // Forest green
-    light: "#8a9b68",         // Olive green
-    accent: "#6b8e23",        // Olive drab green
-    background: "#000000",    // Black
-    textPrimary: "#ffffff",   // White
+    primary: "#4a7c59", // Forest green
+    light: "#8a9b68", // Olive green
+    accent: "#6b8e23", // Olive drab green
+    background: "#000000", // Black
+    textPrimary: "#ffffff", // White
     textSecondary: "#d1d5db", // Light gray
-    border: "#1f2937",        // Dark gray
+    border: "#1f2937", // Dark gray
   };
 
   useEffect(() => {
@@ -36,7 +38,6 @@ const Navbar = () => {
     { name: "Blog", path: "/blog" },
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
-    
   ];
 
   return (
@@ -54,21 +55,29 @@ const Navbar = () => {
         <div className="flex justify-between h-20 items-center">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group">
-            <motion.span
-              className="font-medium text-xl tracking-wider"
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}
+              className="flex items-center"
             >
-              <span className="text-gray-200">CEYLON</span>
-              <span style={{ color: colors.primary }}> WILD</span>
-              <span className="text-gray-200"> CLICKS</span>
-            </motion.span>
+              <Image
+                src={logo}
+                alt="Ceylon Wild Clicks Logo"
+                width={280}
+                priority
+                className="object-contain"
+              />
+            </motion.div>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-1">
             {navItems.map((item) => (
-              <div key={item.name} className="relative h-full flex items-center">
+              <div
+                key={item.name}
+                className="relative h-full flex items-center"
+              >
                 {item.subItems ? (
                   <div
                     className="px-4 py-2 cursor-pointer relative group h-full flex items-center"

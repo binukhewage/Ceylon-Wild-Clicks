@@ -247,6 +247,138 @@ const About = () => {
         </div>
       </div>
 
+      {/* Meet the Team Section */}
+      <div className="relative bg-black py-24 px-6 lg:px-8 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-20">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <span className="font-montserrat text-xs uppercase tracking-[0.3em] text-earth-green">
+                The Visionary Behind the Lens
+              </span>
+            </motion.div>
+            <motion.h2
+              className="font-bebas text-4xl sm:text-5xl text-white mt-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              MEET OUR <span className="text-earth-green">FOUNDER</span>
+            </motion.h2>
+            <motion.p
+              className="font-lora text-gray-400 max-w-xl mx-auto mt-4 text-sm leading-relaxed"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              A passionate wildlife photographer dedicated to capturing Sri
+              Lanka's natural beauty
+            </motion.p>
+          </div>
+
+          {/* Founder Card */}
+          <div className="grid lg:grid-cols-2 gap-8 items-center bg-gradient-to-br from-gray-900/70 to-black/80 rounded-xl  border-earth-green/20 shadow-lg shadow-earth-green/10 overflow-hidden">
+            {/* Image Side */}
+            <div className="relative h-96 lg:h-[550px]">
+              <Image
+                src={teamMembers[0].image}
+                alt={teamMembers[0].name}
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/70"></div>
+              <div className="absolute inset-0 bg-[url('/images/noise-texture.png')] mix-blend-soft-light opacity-15"></div>
+            </div>
+
+            {/* Details Side */}
+            <div className="relative p-10 md:p-14 flex flex-col justify-center">
+              <h3 className="font-bebas text-3xl md:text-5xl text-white mb-2">
+                {teamMembers[0].name}
+              </h3>
+              <p className="font-montserrat text-sm uppercase tracking-widest text-earth-green mb-6">
+                {teamMembers[0].role}
+              </p>
+
+              <p className="font-lora text-gray-300 mb-8 leading-relaxed text-sm">
+                {teamMembers[0].bio}
+              </p>
+
+              {/* Achievements */}
+              <div className="grid grid-cols-2 gap-6 mb-10">
+                <div className="flex flex-col items-start p-4 rounded-lg bg-black/40 border border-earth-green/10 hover:border-earth-green/30 transition">
+                  <span className="text-earth-green font-bebas text-3xl">
+                    6+
+                  </span>
+                  <span className="font-montserrat text-xs text-gray-400 uppercase tracking-wide">
+                    Years Experience
+                  </span>
+                </div>
+                <div className="flex flex-col items-start p-4 rounded-lg bg-black/40 border border-earth-green/10 hover:border-earth-green/30 transition">
+                  <span className="text-earth-green font-bebas text-3xl">
+                    10+
+                  </span>
+                  <span className="font-montserrat text-xs text-gray-400 uppercase tracking-wide">
+                    Coutries covered
+                  </span>
+                </div>
+              </div>
+
+              {/* Social Links (Animated) */}
+              <motion.div
+                className="flex space-x-4"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { staggerChildren: 0.15 },
+                  },
+                }}
+              >
+                {["instagram", "facebook", "twitter"].map((platform, i) => (
+                  <motion.a
+                    key={i}
+                    href={teamMembers[0].social[platform]}
+                    className="w-12 h-12 rounded-full bg-earth-green/10 hover:bg-earth-green/20 border border-earth-green/20 flex items-center justify-center transition-all duration-300 group"
+                    variants={{
+                      hidden: { opacity: 0, scale: 0.8 },
+                      visible: { opacity: 1, scale: 1 },
+                    }}
+                  >
+                    {platform === "instagram" && (
+                      <FaInstagram className="text-earth-green group-hover:scale-125 transition-transform" />
+                    )}
+                    {platform === "facebook" && (
+                      <FaFacebook className="text-earth-green group-hover:scale-125 transition-transform" />
+                    )}
+                    {platform === "twitter" && (
+                      <FaTwitter className="text-earth-green group-hover:scale-125 transition-transform" />
+                    )}
+                  </motion.a>
+                ))}
+              </motion.div>
+
+              {/* Signature */}
+              <div className="mt-10 border-t border-earth-green/20 pt-6">
+                <p className="font-lora italic text-earth-green/70 text-base">
+                  "Capturing the wild soul of Sri Lanka"
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Why Choose Us Section */}
       <div className="relative bg-black py-15 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
@@ -409,161 +541,6 @@ const About = () => {
           </div>
         </div>
       </section>
-
-      {/* Meet the Team Section */}
-      <div className="relative bg-black py-24 px-6 lg:px-8 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-20">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <span className="font-montserrat text-xs uppercase tracking-[0.3em] text-earth-green">
-                The Visionary Behind the Lens
-              </span>
-            </motion.div>
-            <motion.h2
-              className="font-bebas text-4xl sm:text-5xl text-white mt-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              MEET OUR <span className="text-earth-green">FOUNDER</span>
-            </motion.h2>
-            <motion.p
-              className="font-lora text-gray-400 max-w-xl mx-auto mt-4 text-sm leading-relaxed"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-            >
-              A passionate wildlife photographer dedicated to capturing Sri
-              Lanka's natural beauty
-            </motion.p>
-          </div>
-
-          {/* Founder Card */}
-          <div className="grid lg:grid-cols-2 gap-8 items-center bg-gradient-to-br from-gray-900/70 to-black/80 rounded-xl  border-earth-green/20 shadow-lg shadow-earth-green/10 overflow-hidden">
-            {/* Image Side */}
-            <div className="relative h-96 lg:h-[550px]">
-              <Image
-                src={teamMembers[0].image}
-                alt={teamMembers[0].name}
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/70"></div>
-              <div className="absolute inset-0 bg-[url('/images/noise-texture.png')] mix-blend-soft-light opacity-15"></div>
-            </div>
-
-            {/* Details Side */}
-            <div className="relative p-10 md:p-14 flex flex-col justify-center">
-              <h3 className="font-bebas text-3xl md:text-5xl text-white mb-2">
-                {teamMembers[0].name}
-              </h3>
-              <p className="font-montserrat text-sm uppercase tracking-widest text-earth-green mb-6">
-                {teamMembers[0].role}
-              </p>
-
-              <p className="font-lora text-gray-300 mb-8 leading-relaxed text-sm">
-                {teamMembers[0].bio}
-              </p>
-
-              {/* Achievements */}
-              <div className="grid grid-cols-2 gap-6 mb-10">
-                <div className="flex flex-col items-start p-4 rounded-lg bg-black/40 border border-earth-green/10 hover:border-earth-green/30 transition">
-                  <span className="text-earth-green font-bebas text-3xl">
-                    6+
-                  </span>
-                  <span className="font-montserrat text-xs text-gray-400 uppercase tracking-wide">
-                    Years Experience
-                  </span>
-                </div>
-                <div className="flex flex-col items-start p-4 rounded-lg bg-black/40 border border-earth-green/10 hover:border-earth-green/30 transition">
-                  <span className="text-earth-green font-bebas text-3xl">
-                    10+
-                  </span>
-                  <span className="font-montserrat text-xs text-gray-400 uppercase tracking-wide">
-                    Coutries covered
-                  </span>
-                </div>
-              </div>
-
-              {/* Social Links (Animated) */}
-              <motion.div
-                className="flex space-x-4"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: {
-                    opacity: 1,
-                    y: 0,
-                    transition: { staggerChildren: 0.15 },
-                  },
-                }}
-              >
-                {["instagram", "facebook", "twitter"].map((platform, i) => (
-                  <motion.a
-                    key={i}
-                    href={teamMembers[0].social[platform]}
-                    className="w-12 h-12 rounded-full bg-earth-green/10 hover:bg-earth-green/20 border border-earth-green/20 flex items-center justify-center transition-all duration-300 group"
-                    variants={{
-                      hidden: { opacity: 0, scale: 0.8 },
-                      visible: { opacity: 1, scale: 1 },
-                    }}
-                  >
-                    {platform === "instagram" && (
-                      <FaInstagram className="text-earth-green group-hover:scale-125 transition-transform" />
-                    )}
-                    {platform === "facebook" && (
-                      <FaFacebook className="text-earth-green group-hover:scale-125 transition-transform" />
-                    )}
-                    {platform === "twitter" && (
-                      <FaTwitter className="text-earth-green group-hover:scale-125 transition-transform" />
-                    )}
-                  </motion.a>
-                ))}
-              </motion.div>
-
-              {/* Signature */}
-              <div className="mt-10 border-t border-earth-green/20 pt-6">
-                <p className="font-lora italic text-earth-green/70 text-base">
-                  "Capturing the wild soul of Sri Lanka"
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Call to Action */}
-          <div className="relative bg-black pt-16 px-4 sm:px-6 lg:px-8 overflow-hidden wildlife-texture">
-                  <div className="max-w-7xl mx-auto text-center">
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8 }}
-                    >
-                      <h3 className="font-bebas text-3xl text-white mb-4">
-                        READY FOR YOUR <span className="text-earth-green">WILDLIFE ADVENTURE?</span>
-                      </h3>
-                      <p className="font-lora text-gray-300 max-w-2xl mx-auto mb-6">
-                        Get in touch today and let’s plan an unforgettable journey into the wilds of Sri Lanka.
-                      </p>
-                      <a href="#"
-                         className="inline-block bg-earth-green hover:bg-earth-green-accent text-white px-8 py-3 rounded-sm uppercase font-montserrat tracking-wider transition-colors"
-                      >
-                        BOOK NOW
-                      </a>
-                    </motion.div>
-                  </div>
-                </div>
-        </div>
-      </div>
     </div>
   );
 };

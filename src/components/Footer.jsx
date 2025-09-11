@@ -20,8 +20,15 @@ const montserrat = Montserrat({
 
 const Footer = () => {
   return (
-    <footer className={`${bebas.variable} ${lora.variable} ${montserrat.variable} bg-black text-gray-300 pt-20 pb-10 px-4 sm:px-6 lg:px-8 border-t border-gray-900`}>
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+    <footer 
+      className={`${bebas.variable} ${lora.variable} ${montserrat.variable} 
+      relative pt-20 pb-10 px-4 sm:px-6 lg:px-8 border-t border-gray-900`}
+    >
+      {/* Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#0a0a0a] to-black"></div>
+
+      {/* Content */}
+      <div className="relative max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 text-gray-300">
         
         {/* Column 1: Brand Info & Socials */}
         <div className="space-y-5">
@@ -48,36 +55,14 @@ const Footer = () => {
         <div className="space-y-5">
           <h3 className="text-white font-bebas text-2xl tracking-tight">Quick Links</h3>
           <ul className="space-y-3 font-lora">
-            <li>
-              <a href="#" className="text-gray-400 hover:text-emerald-400 transition-colors duration-300 text-sm flex items-center gap-2 group">
-                <span className="w-1 h-1 bg-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#" className="text-gray-400 hover:text-emerald-400 transition-colors duration-300 text-sm flex items-center gap-2 group">
-                <span className="w-1 h-1 bg-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                Gallery
-              </a>
-            </li>
-            <li>
-              <a href="#" className="text-gray-400 hover:text-emerald-400 transition-colors duration-300 text-sm flex items-center gap-2 group">
-                <span className="w-1 h-1 bg-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                Tours
-              </a>
-            </li>
-            <li>
-              <a href="#" className="text-gray-400 hover:text-emerald-400 transition-colors duration-300 text-sm flex items-center gap-2 group">
-                <span className="w-1 h-1 bg-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                Conservation
-              </a>
-            </li>
-            <li>
-              <a href="#" className="text-gray-400 hover:text-emerald-400 transition-colors duration-300 text-sm flex items-center gap-2 group">
-                <span className="w-1 h-1 bg-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                Blog
-              </a>
-            </li>
+            {["Home", "Gallery", "Tours", "Conservation", "Blog"].map((link) => (
+              <li key={link}>
+                <a href="#" className="text-gray-400 hover:text-emerald-400 transition-colors duration-300 text-sm flex items-center gap-2 group">
+                  <span className="w-1 h-1 bg-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  {link}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -85,36 +70,14 @@ const Footer = () => {
         <div className="space-y-5">
           <h3 className="text-white font-bebas text-2xl tracking-tight">Our Tours</h3>
           <ul className="space-y-3 font-lora">
-            <li>
-              <a href="#" className="text-gray-400 hover:text-emerald-400 transition-colors duration-300 text-sm flex items-center gap-2 group">
-                <span className="w-1 h-1 bg-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                Leopard Safaris
-              </a>
-            </li>
-            <li>
-              <a href="#" className="text-gray-400 hover:text-emerald-400 transition-colors duration-300 text-sm flex items-center gap-2 group">
-                <span className="w-1 h-1 bg-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                Birdwatching Expeditions
-              </a>
-            </li>
-            <li>
-              <a href="#" className="text-gray-400 hover:text-emerald-400 transition-colors duration-300 text-sm flex items-center gap-2 group">
-                <span className="w-1 h-1 bg-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                Photography Workshops
-              </a>
-            </li>
-            <li>
-              <a href="#" className="text-gray-400 hover:text-emerald-400 transition-colors duration-300 text-sm flex items-center gap-2 group">
-                <span className="w-1 h-1 bg-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                Custom Tours
-              </a>
-            </li>
-            <li>
-              <a href="#" className="text-gray-400 hover:text-emerald-400 transition-colors duration-300 text-sm flex items-center gap-2 group">
-                <span className="w-1 h-1 bg-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                Conservation Safaris
-              </a>
-            </li>
+            {["Leopard Safaris", "Birdwatching Expeditions", "Photography Workshops", "Custom Tours", "Conservation Safaris"].map((tour) => (
+              <li key={tour}>
+                <a href="#" className="text-gray-400 hover:text-emerald-400 transition-colors duration-300 text-sm flex items-center gap-2 group">
+                  <span className="w-1 h-1 bg-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  {tour}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -142,7 +105,7 @@ const Footer = () => {
       </div>
 
       {/* Copyright */}
-      <div className="border-t border-gray-800 mt-14 pt-8 text-center">
+      <div className="relative border-t border-gray-800 mt-14 pt-8 text-center">
         <p className="font-montserrat text-xs text-gray-500 uppercase tracking-wider">
           © {new Date().getFullYear()} CEYLON WILD CLICKS. ALL RIGHTS RESERVED.
         </p>
