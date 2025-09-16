@@ -66,7 +66,7 @@ const Navbar = () => {
                 alt="Ceylon Wild Clicks Logo"
                 width={280}
                 priority
-                className="object-contain"
+                className="object-contain w-[140px] sm:w-[180px] lg:w-[280px]"
               />
             </motion.div>
           </Link>

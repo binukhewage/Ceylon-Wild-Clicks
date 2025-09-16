@@ -15,7 +15,7 @@ const lora = Lora({
 
 const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-montserrat",
+  variable: "--font-montserrat"
 });
 
 const Footer = () => {
@@ -70,7 +70,7 @@ const Footer = () => {
         <div className="space-y-5">
           <h3 className="text-white font-bebas text-2xl tracking-tight">Our Tours</h3>
           <ul className="space-y-3 font-lora">
-            {["Leopard Safaris", "Birdwatching Expeditions", "Photography Workshops", "Custom Tours", "Conservation Safaris"].map((tour) => (
+            {["Nothern Trial", "Southern Trial", "Custom Tours"].map((tour) => (
               <li key={tour}>
                 <a href="#" className="text-gray-400 hover:text-emerald-400 transition-colors duration-300 text-sm flex items-center gap-2 group">
                   <span className="w-1 h-1 bg-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity"></span>
@@ -86,15 +86,15 @@ const Footer = () => {
           <h3 className="text-white font-bebas text-2xl tracking-tight">Contact Us</h3>
           <ul className="space-y-4 font-lora">
             <li className="flex items-start space-x-3">
-              <FaPhone className="text-emerald-400 mt-1 flex-shrink-0 text-sm" />
+              <FaPhone className="text-green-700 mt-1 flex-shrink-0 text-sm" />
               <span className="text-gray-400 text-sm">+94 76 123 4567</span>
             </li>
             <li className="flex items-start space-x-3">
-              <FaEnvelope className="text-emerald-400 mt-1 flex-shrink-0 text-sm" />
-              <span className="text-gray-400 text-sm">contact@ceylonwildclicks.com</span>
+              <FaEnvelope className="text-green-700 mt-1 flex-shrink-0 text-sm" />
+              <span className="text-gray-400 text-sm">info@ceylonwildclicks.com</span>
             </li>
             <li className="flex items-start space-x-3">
-              <FaMapMarkerAlt className="text-emerald-400 mt-1 flex-shrink-0 text-sm" />
+              <FaMapMarkerAlt className="text-green-700 mt-1 flex-shrink-0 text-sm" />
               <span className="text-gray-400 text-sm">
                 123 Wildlife Lane<br />
                 Colombo 05, Sri Lanka
