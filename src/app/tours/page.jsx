@@ -1,13 +1,32 @@
 "use client";
 import React, { useState } from "react";
-import { FaMapMarkerAlt, FaCamera, FaUsers, FaLeaf, FaChevronRight, FaStar, FaClock, FaHotel, FaChevronLeft, FaSafari } from "react-icons/fa";
+import {
+  FaMapMarkerAlt,
+  FaCamera,
+  FaUsers,
+  FaLeaf,
+  FaChevronRight,
+  FaStar,
+  FaClock,
+  FaHotel,
+  FaChevronLeft,
+  FaSafari,
+} from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bebas_Neue, Lora, Montserrat } from "next/font/google";
 import Image from "next/image";
+import Link from "next/link";
 
-const bebas = Bebas_Neue({ subsets: ["latin"], weight: "400", variable: "--font-bebas" });
+const bebas = Bebas_Neue({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-bebas",
+});
 const lora = Lora({ subsets: ["latin"], variable: "--font-lora" });
-const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat" });
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+});
 
 const tours = [
   {
@@ -19,22 +38,54 @@ const tours = [
     groupSize: "Max 6 Photographers",
     price: "$5,999",
     itinerary: [
-      { day: "1st Day (01 night)", details: "Arrival to Sri Lanka - Negambo, 5* Hotel (BB)" },
-      { day: "2nd - 5th Day (4 nights)", details: "Wilpattu National Park, Luxury Glamping (FB)" },
-      { day: "6th - 7th Day (2 nights)", details: "Minneriya National Park, 5* Hotel (FB)" },
-      { day: "8th - 10th Day (3 nights)", details: "Horton Plains National Park, Holiday Bungalow (FB)" },
-      { day: "11th Day (01 night)", details: "Rest Day in Pelmadulla, 3* Hotel (FB)" },
-      { day: "12th - 13th Day (02 nights)", details: "Sinharaja Rain Forest, 3* Hotel (FB)" },
-      { day: "14th Day - Dinner", details: "Departure from Sri Lanka, 4* Hotel" },
+      {
+        day: "1st Day (01 night)",
+        details: "Arrival to Sri Lanka - Negambo, 5* Hotel (BB)",
+      },
+      {
+        day: "2nd - 5th Day (4 nights)",
+        details: "Wilpattu National Park, Luxury Glamping (FB)",
+      },
+      {
+        day: "6th - 7th Day (2 nights)",
+        details: "Minneriya National Park, 5* Hotel (FB)",
+      },
+      {
+        day: "8th - 10th Day (3 nights)",
+        details: "Horton Plains National Park, Holiday Bungalow (FB)",
+      },
+      {
+        day: "11th Day (01 night)",
+        details: "Rest Day in Pelmadulla, 3* Hotel (FB)",
+      },
+      {
+        day: "12th - 13th Day (02 nights)",
+        details: "Sinharaja Rain Forest, 3* Hotel (FB)",
+      },
+      {
+        day: "14th Day - Dinner",
+        details: "Departure from Sri Lanka, 4* Hotel",
+      },
     ],
     images: [
       "/images/minneriya.jpg",
       "/images/minneriya1.jpg",
-      "/images/horton1.jpg"
+      "/images/horton1.jpg",
     ],
-    highlights: ["Wilpattu Leopards", "Minneriya Elephants", "Horton Plains Biodiversity", "Sinharaja Endemics"],
-    included: ["Professional Guide", "Luxury Accommodation", "All Meals", "Park Fees", "Transportation"],
-    parks: ["Wilpattu", "Minneriya", "Horton Plains", "Sinharaja"]
+    highlights: [
+      "Wilpattu Leopards",
+      "Minneriya Elephants",
+      "Horton Plains Biodiversity",
+      "Sinharaja Endemics",
+    ],
+    included: [
+      "Professional Guide",
+      "Luxury Accommodation",
+      "All Meals",
+      "Park Fees",
+      "Transportation",
+    ],
+    parks: ["Wilpattu", "Minneriya", "Horton Plains", "Sinharaja"],
   },
   {
     id: 2,
@@ -45,22 +96,47 @@ const tours = [
     groupSize: "Max 6 Photographers",
     price: "$5,999",
     itinerary: [
-      { day: "1st Day (01 night)", details: "Arrival to Sri Lanka - Negambo, 5* Hotel (BB)" },
-      { day: "2nd - 4th Day (3 nights)", details: "Horton Plains National Park, Holiday Bungalow (FB)" },
+      {
+        day: "1st Day (01 night)",
+        details: "Arrival to Sri Lanka - Negambo, 5* Hotel (BB)",
+      },
+      {
+        day: "2nd - 4th Day (3 nights)",
+        details: "Horton Plains National Park, Holiday Bungalow (FB)",
+      },
       { day: "5th Day (1 night)", details: "Arugambay, 5* Hotel (HB)" },
-      { day: "6th - 8th Day (3 nights)", details: "Kumana National Park, Luxury Tented Camp (FB)" },
-      { day: "9th - 11th Day (3 nights)", details: "Yala National Park, Luxury Chalets (FB)" },
-      { day: "12th - 13th Day (02 nights)", details: "Sinharaja Rain Forest, 3* Hotel (FB)" },
-      { day: "14th Day - Dinner", details: "Departure from Sri Lanka, 4* Hotel" },
+      {
+        day: "6th - 8th Day (3 nights)",
+        details: "Kumana National Park, Luxury Tented Camp (FB)",
+      },
+      {
+        day: "9th - 11th Day (3 nights)",
+        details: "Yala National Park, Luxury Chalets (FB)",
+      },
+      {
+        day: "12th - 13th Day (02 nights)",
+        details: "Sinharaja Rain Forest, 3* Hotel (FB)",
+      },
+      {
+        day: "14th Day - Dinner",
+        details: "Departure from Sri Lanka, 4* Hotel",
+      },
     ],
-    images: [
-      "/images/kumana.jpg",
-      "/images/kumana1.jpg",
-      "/images/yala1.jpg"
+    images: ["/images/kumana.jpg", "/images/kumana1.jpg", "/images/yala1.jpg"],
+    highlights: [
+      "Yala Leopards",
+      "Kumana Birdlife",
+      "Horton Plains Landscape",
+      "Sinharaja Rainforest",
     ],
-    highlights: ["Yala Leopards", "Kumana Birdlife", "Horton Plains Landscape", "Sinharaja Rainforest"],
-    included: ["Professional Guide", "Luxury Accommodation", "All Meals", "Park Fees", "Transportation"],
-    parks: ["Horton Plains", "Kumana", "Yala", "Sinharaja"]
+    included: [
+      "Professional Guide",
+      "Luxury Accommodation",
+      "All Meals",
+      "Park Fees",
+      "Transportation",
+    ],
+    parks: ["Horton Plains", "Kumana", "Yala", "Sinharaja"],
   },
 ];
 
@@ -69,13 +145,13 @@ const ImageCarousel = ({ images, name }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextImage = () => {
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const prevImage = () => {
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
   };
@@ -97,29 +173,38 @@ const ImageCarousel = ({ images, name }) => {
           />
         </div>
       ))}
-      
+
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-      
+
       {/* Navigation buttons */}
       <button
-        onClick={(e) => { e.stopPropagation(); prevImage(); }}
+        onClick={(e) => {
+          e.stopPropagation();
+          prevImage();
+        }}
         className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/40 p-2 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
       >
         <FaChevronLeft className="text-white text-sm" />
       </button>
       <button
-        onClick={(e) => { e.stopPropagation(); nextImage(); }}
+        onClick={(e) => {
+          e.stopPropagation();
+          nextImage();
+        }}
         className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/40 p-2 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
       >
         <FaChevronRight className="text-white text-sm" />
       </button>
-      
+
       {/* Dots indicator */}
       <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex space-x-1.5">
         {images.map((_, index) => (
           <button
             key={index}
-            onClick={(e) => { e.stopPropagation(); setCurrentIndex(index); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              setCurrentIndex(index);
+            }}
             className={`w-1.5 h-1.5 rounded-full transition-all ${
               index === currentIndex ? "bg-white" : "bg-white/50"
             }`}
@@ -143,7 +228,9 @@ const TourPage = () => {
   };
 
   return (
-    <div className={`${bebas.variable} ${lora.variable} ${montserrat.variable} min-h-screen bg-black text-white`}>
+    <div
+      className={`${bebas.variable} ${lora.variable} ${montserrat.variable} min-h-screen bg-black text-white`}
+    >
       {/* Custom CSS for premium effects */}
       <style jsx>{`
         .text-earth-green {
@@ -211,7 +298,7 @@ const TourPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span >PHOTO-SAFARI</span>
+            <span>PHOTO-SAFARI</span>
             <span className="text-earth-green"> TOURS</span>
           </motion.h1>
           <motion.p
@@ -220,7 +307,8 @@ const TourPage = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            Exclusive small-group photography expeditions through Sri Lanka's most spectacular wilderness areas
+            Exclusive small-group photography expeditions through Sri Lanka's
+            most spectacular wilderness areas
           </motion.p>
         </div>
       </div>
@@ -284,7 +372,10 @@ const TourPage = () => {
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {tour.parks.map((park, i) => (
-                        <span key={i} className="font-montserrat text-xs text-earth-green-light bg-gray-900/50 px-2 py-1 rounded">
+                        <span
+                          key={i}
+                          className="font-montserrat text-xs text-earth-green-light bg-gray-900/50 px-2 py-1 rounded"
+                        >
                           {park}
                         </span>
                       ))}
@@ -293,7 +384,7 @@ const TourPage = () => {
 
                   {/* Expandable Details */}
                   <div className="mb-4 border-t border-gray-800 pt-4">
-                    <button 
+                    <button
                       onClick={() => toggleExpand(tour.id)}
                       className="flex items-center justify-between w-full text-left"
                     >
@@ -307,7 +398,7 @@ const TourPage = () => {
                         <FaChevronRight className="text-earth-green" />
                       </motion.div>
                     </button>
-                    
+
                     <AnimatePresence>
                       {expandedTour === tour.id && (
                         <motion.div
@@ -320,36 +411,53 @@ const TourPage = () => {
                           {/* Tab Navigation */}
                           <div className="flex border-b border-gray-800 mb-4">
                             <button
-                              className={`font-montserrat text-xs px-3 py-1 ${activeTab === "itinerary" ? "text-earth-green border-b-2 border-earth-green" : "text-gray-400"}`}
+                              className={`font-montserrat text-xs px-3 py-1 ${
+                                activeTab === "itinerary"
+                                  ? "text-earth-green border-b-2 border-earth-green"
+                                  : "text-gray-400"
+                              }`}
                               onClick={() => setActiveTab("itinerary")}
                             >
                               Itinerary
                             </button>
                             <button
-                              className={`font-montserrat text-xs px-3 py-1 ${activeTab === "included" ? "text-earth-green border-b-2 border-earth-green" : "text-gray-400"}`}
+                              className={`font-montserrat text-xs px-3 py-1 ${
+                                activeTab === "included"
+                                  ? "text-earth-green border-b-2 border-earth-green"
+                                  : "text-gray-400"
+                              }`}
                               onClick={() => setActiveTab("included")}
                             >
                               What's Included
                             </button>
                           </div>
-                          
+
                           {/* Tab Content */}
                           {activeTab === "itinerary" && (
                             <div className="space-y-3 max-h-60 overflow-y-auto pr-2">
                               {tour.itinerary.map((item, i) => (
-                                <div key={i} className="flex items-start border-l-2 border-earth-green/50 pl-3 py-1">
+                                <div
+                                  key={i}
+                                  className="flex items-start border-l-2 border-earth-green/50 pl-3 py-1"
+                                >
                                   <div className="bg-earth-green/10 p-1 rounded-sm mr-2 mt-0.5 min-w-[20px] text-center">
-                                    <span className="font-bebas text-earth-green text-xs">{i + 1}</span>
+                                    <span className="font-bebas text-earth-green text-xs">
+                                      {i + 1}
+                                    </span>
                                   </div>
                                   <div>
-                                    <p className="font-montserrat text-white text-xs">{item.day}</p>
-                                    <p className="font-lora text-gray-400 text-xs">{item.details}</p>
+                                    <p className="font-montserrat text-white text-xs">
+                                      {item.day}
+                                    </p>
+                                    <p className="font-lora text-gray-400 text-xs">
+                                      {item.details}
+                                    </p>
                                   </div>
                                 </div>
                               ))}
                             </div>
                           )}
-                          
+
                           {activeTab === "included" && (
                             <div className="grid grid-cols-1 gap-2">
                               {tour.included.map((item, i) => (
@@ -357,7 +465,9 @@ const TourPage = () => {
                                   <div className="bg-earth-green/20 p-1 rounded mr-2">
                                     -
                                   </div>
-                                  <span className="font-lora text-gray-300 text-xs">{item}</span>
+                                  <span className="font-lora text-gray-300 text-xs">
+                                    {item}
+                                  </span>
                                 </div>
                               ))}
                             </div>
@@ -373,10 +483,16 @@ const TourPage = () => {
                     whileTap={{ scale: 0.95 }}
                     className="mt-4"
                   >
-                    <button className="flex items-center justify-center w-full bg-earth-green hover:bg-earth-green transition-colors text-white font-montserrat text-sm px-4 py-3 rounded-md uppercase tracking-wide">
+                    <Link
+                      href="/booking"
+                      style={{ backgroundColor: "#4a7c59" }}
+                      className="flex items-center justify-center w-full 
+             hover:opacity-90 text-white font-montserrat 
+             text-sm px-4 py-3 rounded-md uppercase tracking-wide"
+                    >
                       <FaSafari className="mr-2" />
                       Reserve This Tour
-                    </button>
+                    </Link>
                   </motion.div>
                 </div>
               </motion.div>
@@ -391,22 +507,26 @@ const TourPage = () => {
       {/* Premium Features Section */}
       <div className="relative bg-black py-10 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
           >
-            <p className="pb-3 text-earth-green font-montserrat text-xs uppercase tracking-[0.3em]">ONLY FROM US</p>
-            <h2 className="font-bebas text-4xl md:text-5xl text-white mb-4">PREMIUM <span className="text-earth-green">EXPERIENCE</span></h2>
+            <p className="pb-3 text-earth-green font-montserrat text-xs uppercase tracking-[0.3em]">
+              ONLY FROM US
+            </p>
+            <h2 className="font-bebas text-4xl md:text-5xl text-white mb-4">
+              PREMIUM <span className="text-earth-green">EXPERIENCE</span>
+            </h2>
             <p className="font-lora text-lg text-gray-400 max-w-3xl mx-auto">
               What sets our photography tours apart from the rest
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 pb-10 md:grid-cols-3 gap-8">
-            <motion.div 
+            <motion.div
               className="bg-[#0D0D0C] p-8 rounded-lg border border-gray-800 text-center premium-card"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -416,13 +536,16 @@ const TourPage = () => {
               <div className="bg-earth-green/20 p-4 rounded-full inline-flex mb-6">
                 <FaUsers className="text-earth-green text-3xl" />
               </div>
-              <h3 className="font-bebas text-2xl text-white mb-4">Small Group Size</h3>
+              <h3 className="font-bebas text-2xl text-white mb-4">
+                Small Group Size
+              </h3>
               <p className="font-lora text-gray-400">
-                Limited to just 6 participants to ensure personalized guidance and optimal photography opportunities
+                Limited to just 6 participants to ensure personalized guidance
+                and optimal photography opportunities
               </p>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               className="bg-[#0D0D0C] p-8 rounded-lg border border-gray-800 text-center premium-card"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -432,13 +555,16 @@ const TourPage = () => {
               <div className="bg-earth-green/20 p-4 rounded-full inline-flex mb-6">
                 <FaHotel className="text-earth-green text-3xl" />
               </div>
-              <h3 className="font-bebas text-2xl text-white mb-4">Luxury Accommodations</h3>
+              <h3 className="font-bebas text-2xl text-white mb-4">
+                Luxury Accommodations
+              </h3>
               <p className="font-lora text-gray-400">
-                Stay in premium lodges and luxury tented camps located within or near national parks for optimal access
+                Stay in premium lodges and luxury tented camps located within or
+                near national parks for optimal access
               </p>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               className="bg-[#0D0D0C] p-8 rounded-lg border border-gray-800 text-center premium-card"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -448,9 +574,12 @@ const TourPage = () => {
               <div className="bg-earth-green/20 p-4 rounded-full inline-flex mb-6">
                 <FaMapMarkerAlt className="text-earth-green text-3xl" />
               </div>
-              <h3 className="font-bebas text-2xl text-white mb-4">Expert Local Guides</h3>
+              <h3 className="font-bebas text-2xl text-white mb-4">
+                Expert Local Guides
+              </h3>
               <p className="font-lora text-gray-400">
-                Our professional guides have decades of experience tracking wildlife and understanding animal behavior
+                Our professional guides have decades of experience tracking
+                wildlife and understanding animal behavior
               </p>
             </motion.div>
           </div>

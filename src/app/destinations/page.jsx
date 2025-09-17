@@ -47,7 +47,7 @@ const destinations = [
     images: [
       "/images/wilpattu.jpg",
       "/images/wilpattu2.jpg",
-      "/images/wilpattu3.jpg"
+      "/images/wilpattu3.jpg",
     ],
     icon: <FaWater className="text-xl" />,
     stats: {
@@ -68,11 +68,7 @@ const destinations = [
       "Dramatic escarpments and cloud forests",
       "Home to endemic species and Sambar deer",
     ],
-    images: [
-      "/images/hp.jpg",
-      "/images/hp1.jpg",
-      "/images/heronew.jpg"
-    ],
+    images: ["/images/hp.jpg", "/images/hp1.jpg", "/images/heronew.jpg"],
     icon: <FaTree className="text-xl" />,
     stats: {
       area: "31.6 km²",
@@ -95,7 +91,7 @@ const destinations = [
     images: [
       "/images/sinharaja.webp",
       "/images/sinharaja2.webp",
-      "/images/sinharaja3.webp"
+      "/images/sinharaja3.webp",
     ],
     icon: <FaLeaf className="text-xl" />,
     stats: {
@@ -119,7 +115,7 @@ const destinations = [
     images: [
       "/images/kumana.jpg",
       "/images/kumana2.jpg",
-      "/images/kumana3.jpg"
+      "/images/kumana3.jpg",
     ],
     icon: <FaPaw className="text-xl" />,
     stats: {
@@ -140,11 +136,7 @@ const destinations = [
       "Over 200 bird species",
       "Golden savannah and ancient rock outcrops",
     ],
-    images: [
-      "/images/yala.jpg",
-      "/images/yala2.jpg",
-      "/images/yala3.jpg"
-    ],
+    images: ["/images/yala.jpg", "/images/yala2.jpg", "/images/yala3.jpg"],
     icon: <FaCamera className="text-xl" />,
     stats: {
       area: "979 km²",
@@ -167,7 +159,7 @@ const destinations = [
     images: [
       "/images/minneriya.jpg",
       "/images/minneriya2.jpg",
-      "/images/minneriya3.jpg"
+      "/images/minneriya3.jpg",
     ],
     icon: <FaPaw className="text-xl" />,
     stats: {
@@ -183,13 +175,13 @@ const ImageCarousel = ({ images, name }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextImage = () => {
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const prevImage = () => {
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
   };
@@ -211,39 +203,50 @@ const ImageCarousel = ({ images, name }) => {
           />
         </div>
       ))}
-      
+
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-      
+
       {/* Navigation buttons */}
       <button
-        onClick={(e) => { e.stopPropagation(); prevImage(); }}
+        onClick={(e) => {
+          e.stopPropagation();
+          prevImage();
+        }}
         className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/40 p-2 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
       >
         <FaChevronLeft className="text-white text-sm" />
       </button>
       <button
-        onClick={(e) => { e.stopPropagation(); nextImage(); }}
+        onClick={(e) => {
+          e.stopPropagation();
+          nextImage();
+        }}
         className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/40 p-2 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
       >
         <FaChevronRight className="text-white text-sm" />
       </button>
-      
+
       {/* Dots indicator */}
       <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex space-x-1.5">
         {images.map((_, index) => (
           <button
             key={index}
-            onClick={(e) => { e.stopPropagation(); setCurrentIndex(index); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              setCurrentIndex(index);
+            }}
             className={`w-1.5 h-1.5 rounded-full transition-all ${
               index === currentIndex ? "bg-white" : "bg-white/50"
             }`}
           />
         ))}
       </div>
-      
+
       {/* Icon overlay */}
       <div className="absolute top-4 right-4 bg-black/40 p-2 rounded-full backdrop-blur-sm">
-        <div className="text-earth-green">{destinations.find(d => d.name === name)?.icon}</div>
+        <div className="text-earth-green">
+          {destinations.find((d) => d.name === name)?.icon}
+        </div>
       </div>
     </div>
   );
@@ -301,6 +304,19 @@ const DestinationsPage = () => {
           transform: translateY(-8px);
           box-shadow: 0 20px 40px rgba(74, 124, 89, 0.15);
         }
+        @keyframes bounce-x {
+          0%,
+          100% {
+            transform: translateX(0);
+          }
+          50% {
+            transform: translateX(5px);
+          }
+        }
+
+        .animate-bounce-x {
+          animation: bounce-x 1s infinite;
+        }
       `}</style>
 
       {/* Hero Section - Unchanged */}
@@ -340,7 +356,7 @@ const DestinationsPage = () => {
 
       {/* Premium Destinations Grid - Updated with new layout */}
       <div className="relative bg-black py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="max-w-7xl mx-auto relative z-10">  
+        <div className="max-w-7xl mx-auto relative z-10">
           {/* Updated Destinations Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12">
             {destinations.map((destination, index) => (
@@ -353,14 +369,16 @@ const DestinationsPage = () => {
                 className="premium-card destination-card bg-[#0D0D0C] rounded-lg overflow-hidden group cursor-pointer"
               >
                 {/* Image Carousel */}
-                <ImageCarousel images={destination.images} name={destination.name} />
+                <ImageCarousel
+                  images={destination.images}
+                  name={destination.name}
+                />
 
                 {/* Content */}
                 <div className="p-6">
                   <h3 className="font-bebas text-2xl text-white mb-2 group-hover:text-earth-green transition-colors">
                     {destination.name}
                   </h3>
-                  
 
                   {/* Full Description */}
                   <p className="font-lora text-gray-300 text-sm mb-4 ">
@@ -401,19 +419,26 @@ const DestinationsPage = () => {
                       KEY FEATURES
                     </h4>
                     <div className="grid grid-cols-2 gap-2">
-                      {destination.highlights.slice(0, 4).map((highlight, i) => (
-                        <div key={i} className="flex items-start">
-                          <div className="w-1.5 h-1.5 bg-earth-green mt-1.5 mr-2 rounded-full flex-shrink-0"></div>
-                          <span className="font-lora text-gray-300 text-xs">
-                            {highlight}
-                          </span>
-                        </div>
-                      ))}
+                      {destination.highlights
+                        .slice(0, 4)
+                        .map((highlight, i) => (
+                          <div key={i} className="flex items-start">
+                            <div className="w-1.5 h-1.5 bg-earth-green mt-1.5 mr-2 rounded-full flex-shrink-0"></div>
+                            <span className="font-lora text-gray-300 text-xs">
+                              {highlight}
+                            </span>
+                          </div>
+                        ))}
                     </div>
                   </div>
-                  
+
                   {/* CTA Button */}
-                  
+                  <div className="mt-4">
+                    <button className="w-full flex items-center justify-center gap-2 py-2 bg-earth-green text-white rounded-lg hover:bg-earth-green/90 transition">
+                      View More
+                      <span className="inline-block animate-bounce-x">→</span>
+                    </button>
+                  </div>
                 </div>
               </motion.div>
             ))}
