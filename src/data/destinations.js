@@ -43,8 +43,11 @@ const destinations = [
     name: "HORTON PLAINS NATIONAL PARK",
     description:
       "Tucked away in the heart of Sri Lanka's central highlands, Horton Plains National Park is a nature lover's paradise and a dream destination for wildlife photography. A UNESCO World Heritage Site, this high-altitude plateau offers a unique mix of cloud forests and dramatic escarpments.",
-    longDescription:
-      "Horton Plains National Park, located 2,100 meters above sea level, is a high-altitude plateau famous for its breathtaking viewpoints like World’s End and Baker’s Falls. The park is home to a wealth of endemic flora and fauna, including the elusive leopard and the large herds of Sambar deer that roam the grasslands. Its unique climate and landscapes make it a must-visit destination for capturing misty, dramatic photographs.",
+    longDescription: [
+      "Wilpattu National Park is world-renowned for its unique ecological features, particularly its numerous 'villus' (natural lakes), which create a haven for aquatic birds and wildlife. Covering over 1,300 km², the park is a paradise for photographers, offering seasonal landscapes that shift from lush greenery to dry scrublands. It is especially famous for leopard sightings and the variety of large mammals, reptiles, and bird species it shelters.",
+      "Wilpattu National Park is world-renowned for its unique ecological features, particularly its numerous 'villus' (natural lakes), which create a haven for aquatic birds and wildlife. Covering over 1,300 km², the park is a paradise for photographers, offering seasonal landscapes that shift from lush greenery to dry scrublands. It is especially famous for leopard sightings and the variety of large mammals, reptiles, and bird species it shelters.",
+      "Wilpattu National Park is world-renowned for its unique ecological features, particularly its numerous 'villus' (natural lakes), which create a haven for aquatic birds and wildlife. Covering over 1,300 km², the park is a paradise for photographers, offering seasonal landscapes that shift from lush greenery to dry scrublands. It is especially famous for leopard sightings and the variety of large mammals, reptiles, and bird species it shelters.",
+    ],
     highlights: [
       "UNESCO World Heritage Site",
       "World’s End viewpoint & Baker’s Falls",

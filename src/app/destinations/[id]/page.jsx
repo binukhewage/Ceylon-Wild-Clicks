@@ -238,7 +238,7 @@ export default function DestinationPage() {
                   {destination.animals?.map((animal, i) => (
                     <div
                       key={i}
-                      className="flex items-center p-3 bg-gray-900/50 rounded-lg border border-earth-green/20"
+                      className="flex items-center p-3 bg-black rounded-lg "
                     >
                       <div className="bg-earth-green/20 p-2 rounded-full mr-3">
                         <FaPaw className="text-earth-green text-sm" />
