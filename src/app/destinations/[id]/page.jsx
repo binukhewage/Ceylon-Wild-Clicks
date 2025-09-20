@@ -144,7 +144,7 @@ export default function DestinationPage() {
           >
             <FaMapMarkerAlt className="mr-2" />
             <span className="font-montserrat">
-              {destination.location || "Location info not available"}
+              {destination.location}
             </span>
           </motion.div>
         </div>
