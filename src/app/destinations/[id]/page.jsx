@@ -1,18 +1,7 @@
 "use client";
 import { useParams } from "next/navigation";
 import { useState } from "react";
-import {
-  FaWater,
-  FaTree,
-  FaLeaf,
-  FaPaw,
-  FaCamera,
-  FaChevronLeft,
-  FaChevronRight,
-  FaMapMarkerAlt,
-  FaClock,
-  FaUsers,
-} from "react-icons/fa";
+import { FaPaw, FaMapMarkerAlt, FaClock, FaUsers } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { Bebas_Neue, Lora, Montserrat } from "next/font/google";
 import Image from "next/image";
@@ -28,15 +17,6 @@ const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
 });
-
-// Icon mapping for destinations
-const iconMap = {
-  FaWater: <FaWater />,
-  FaTree: <FaTree />,
-  FaLeaf: <FaLeaf />,
-  FaPaw: <FaPaw />,
-  FaCamera: <FaCamera />,
-};
 
 export default function DestinationPage() {
   const { id } = useParams();
@@ -58,23 +38,11 @@ export default function DestinationPage() {
     );
   }
 
-  const nextImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === destination.images.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? destination.images.length - 1 : prevIndex - 1
-    );
-  };
-
   return (
     <div
       className={`${bebas.variable} ${lora.variable} ${montserrat.variable} min-h-screen bg-black text-white`}
     >
-      {/* Custom CSS for premium effects */}
+      {/* Custom CSS */}
       <style jsx>{`
         .text-earth-green {
           color: #4a7c59;
@@ -116,7 +84,7 @@ export default function DestinationPage() {
         }
       `}</style>
 
-      {/* Hero Section */}
+      {/* Hero */}
       <div className="relative h-[60vh] w-full overflow-hidden">
         <div className="absolute inset-0 wildlife-texture"></div>
         <Image
@@ -129,7 +97,7 @@ export default function DestinationPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/90" />
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
           <motion.h1
-            className="font-bebas text-5xl md:text-6xl mb-4"
+            className="font-bebas text-5xl md:text-6xl mb-4 text-white"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -137,119 +105,79 @@ export default function DestinationPage() {
             {destination.name}
           </motion.h1>
           <motion.div
-            className="flex items-center text-earth-green text-lg mb-4"
+            className="flex items-center text-earth-green text-lg"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
             <FaMapMarkerAlt className="mr-2" />
-            <span className="font-montserrat">
-              {destination.location}
-            </span>
+            <span className="font-montserrat">{destination.location}</span>
           </motion.div>
         </div>
       </div>
 
-      {/* Content Section */}
+      {/* Content */}
       <div className="relative py-16 px-4 sm:px-6 lg:px-8 bg-black">
-        {/* Decorative Gradient Blobs */}
         <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-earth-green/10 blur-3xl"></div>
         <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-amber-500/5 blur-3xl"></div>
 
         <div className="max-w-6xl mx-auto relative z-10">
+          {/* Grid for main + sidebar */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Main Content */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 space-y-8">
+              {/* About */}
               <motion.div
-                className="premium-card bg-[#0D0D0C] rounded-lg p-8 mb-8"
+                className="premium-card bg-[#0D0D0C] rounded-lg p-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7 }}
               >
-                <div className="flex items-center mb-6">
-                  <h2 className="font-bebas text-3xl text-white">
-                    About {destination.slug}
-                  </h2>
-                </div>
-
-                <p className="font-lora text-gray-300 leading-relaxed mb-6">
-                  {destination.description}
-                </p>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                  <div className="text-center p-4 bg-gray-900/50 rounded-lg border border-earth-green/20">
-                    <div className="text-earth-green font-bebas text-lg mb-2">
-                      AREA
-                    </div>
-                    <div className="font-montserrat text-white">
-                      {destination.stats.area}
-                    </div>
-                  </div>
-                  <div className="text-center p-4 bg-gray-900/50 rounded-lg border border-earth-green/20">
-                    <div className="text-earth-green font-bebas text-lg mb-2">
-                      ESTABLISHED
-                    </div>
-                    <div className="font-montserrat text-white">
-                      {destination.stats.established}
-                    </div>
-                  </div>
-                  <div className="text-center p-4 bg-gray-900/50 rounded-lg border border-earth-green/20">
-                    <div className="text-earth-green font-bebas text-lg mb-2">
-                      WILDLIFE
-                    </div>
-                    <div className="font-montserrat text-white">
-                      30+ Species
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="font-bebas text-2xl text-white mb-4">
-                    Key Features
-                  </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {destination.highlights.map((highlight, i) => (
-                      <div key={i} className="flex items-start">
-                        <div className="w-2 h-2 bg-earth-green mt-2 mr-3 rounded-full flex-shrink-0"></div>
-                        <span className="font-lora text-gray-300">
-                          {highlight}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                <h2 className="font-bebas text-3xl text-white mb-6">
+                  ABOUT {destination.shortName}
+                </h2>
+                {destination.longDescription.map((para, index) => (
+                  <p
+                    key={index}
+                    className="font-lora text-gray-300 leading-relaxed mb-4 text-lg"
+                  >
+                    {para}
+                  </p>
+                ))}
               </motion.div>
             </div>
 
             {/* Sidebar */}
-            <div>
+            <div className="space-y-8">
+              {/* Location */}
               <motion.div
-                className="premium-card bg-[#0D0D0C] rounded-lg p-6 mb-6"
+                className="premium-card bg-[#0D0D0C] rounded-lg p-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
               >
                 <h3 className="font-bebas text-2xl text-white mb-4">
-                  Animals You May See
+                  LOCATION
                 </h3>
-                <div className="space-y-3">
-                  {destination.animals?.length ? (
-                    destination.animals.map((animal, i) => (
-                      <div key={i} className="flex items-center">
-                        <div className="bg-earth-green/20 p-1 rounded mr-3">
-                          <FaPaw className="text-earth-green text-sm" />
-                        </div>
-                        <span className="font-lora text-gray-300">
-                          {animal}
-                        </span>
-                      </div>
-                    ))
-                  ) : (
-                    <p className="text-gray-400">No wildlife info available.</p>
-                  )}
+                <div className="w-full h-64 rounded-lg overflow-hidden border border-earth-green/30 mb-4">
+                  <iframe
+                    src={destination.googleMapUrl}
+                    width="100%"
+                    height="100%"
+                    className="border-0"
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
+                <div className="flex items-center text-gray-300 mt-2">
+                  <FaMapMarkerAlt className="text-earth-green mr-2" />
+                  <span className="font-lora text-sm">
+                    {destination.location}
+                  </span>
                 </div>
               </motion.div>
 
+              {/* Tour Info */}
               <motion.div
                 className="premium-card bg-[#0D0D0C] rounded-lg p-6"
                 initial={{ opacity: 0, y: 20 }}
@@ -257,18 +185,18 @@ export default function DestinationPage() {
                 transition={{ duration: 0.7, delay: 0.4 }}
               >
                 <h3 className="font-bebas text-2xl text-white mb-4">
-                  Tour Information
+                  TOUR INFO
                 </h3>
-                <div className="space-y-4">
+                <div className="space-y-4 mb-6">
                   <div className="flex items-center">
                     <div className="bg-earth-green/20 p-2 rounded-full mr-4">
                       <FaClock className="text-earth-green" />
                     </div>
                     <div>
                       <div className="font-montserrat text-sm text-earth-green">
-                        Best Time to Visit
+                        BEST TIME TO VISIT
                       </div>
-                      <div className="font-lora text-gray-300">
+                      <div className="font-lora text-gray-300 text-sm">
                         Year-round destination
                       </div>
                     </div>
@@ -279,21 +207,72 @@ export default function DestinationPage() {
                     </div>
                     <div>
                       <div className="font-montserrat text-sm text-earth-green">
-                        Tour Availability
+                        GROUP SIZE
                       </div>
-                      <div className="font-lora text-gray-300">
+                      <div className="font-lora text-gray-300 text-sm">
                         Small groups (max 6)
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <button className="w-full bg-earth-green hover:bg-earth-green-accent text-white font-montserrat font-medium py-3 px-6 rounded-md transition-colors duration-300 uppercase tracking-wider mt-6">
+                <button className="w-full bg-earth-green hover:bg-earth-green-accent text-white font-montserrat font-medium py-3 px-6 rounded-md transition-colors duration-300 uppercase tracking-wider text-sm">
                   Book This Destination
                 </button>
               </motion.div>
             </div>
           </div>
+
+          {/* FULL-WIDTH GALLERY */}
+          {/* Wildlife */}
+              <motion.div
+                className="premium-card bg-[#0D0D0C] rounded-lg p-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+              >
+                <h3 className="font-bebas text-2xl text-white mb-6">
+                  WILDLIFE HIGHLIGHTS
+                </h3>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {destination.animals?.map((animal, i) => (
+                    <div
+                      key={i}
+                      className="flex items-center p-3 bg-gray-900/50 rounded-lg border border-earth-green/20"
+                    >
+                      <div className="bg-earth-green/20 p-2 rounded-full mr-3">
+                        <FaPaw className="text-earth-green text-sm" />
+                      </div>
+                      <span className="font-lora text-gray-300 text-sm">
+                        {animal}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+          <motion.div
+            className="w-full py-16"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+          >
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto">
+              {destination.images.map((img, i) => (
+                <div
+                  key={i}
+                  className="relative w-full h-64 rounded-lg overflow-hidden group"
+                >
+                  <Image
+                    src={img}
+                    alt={`${destination.name} - ${i + 1}`}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </div>
     </div>

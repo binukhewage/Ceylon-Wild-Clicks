@@ -5,8 +5,11 @@ const destinations = [
     name: "WILPATTU NATIONAL PARK",
     description:
       "As the largest national park in Sri Lanka, Wilpattu boasts a unique landscape of 'villus' (natural lakes) interspersed with dense scrub jungle. This diverse terrain supports a rich variety of wildlife, making it a prime destination for photographers around the year and changes character with the seasons.",
-    longDescription:
+    longDescription: [
       "Wilpattu National Park is world-renowned for its unique ecological features, particularly its numerous 'villus' (natural lakes), which create a haven for aquatic birds and wildlife. Covering over 1,300 km², the park is a paradise for photographers, offering seasonal landscapes that shift from lush greenery to dry scrublands. It is especially famous for leopard sightings and the variety of large mammals, reptiles, and bird species it shelters.",
+      "Wilpattu National Park is world-renowned for its unique ecological features, particularly its numerous 'villus' (natural lakes), which create a haven for aquatic birds and wildlife. Covering over 1,300 km², the park is a paradise for photographers, offering seasonal landscapes that shift from lush greenery to dry scrublands. It is especially famous for leopard sightings and the variety of large mammals, reptiles, and bird species it shelters.",
+      "Wilpattu National Park is world-renowned for its unique ecological features, particularly its numerous 'villus' (natural lakes), which create a haven for aquatic birds and wildlife. Covering over 1,300 km², the park is a paradise for photographers, offering seasonal landscapes that shift from lush greenery to dry scrublands. It is especially famous for leopard sightings and the variety of large mammals, reptiles, and bird species it shelters.",
+    ],
     highlights: [
       "Largest national park in Sri Lanka",
       "Unique 'villus' (natural lakes) landscape",
@@ -15,14 +18,16 @@ const destinations = [
     ],
     heroimage: "/images/wilpattu.jpg",
     images: [
-      "/images/wilpattu.jpg",
-      "/images/wilpattu2.jpg",
-      "/images/wilpattu3.jpg",
-      "/images/wilpattu4.jpg",
-      "/images/wilpattu5.jpg",
-      "/images/wilpattu6.jpg",
+      "/images/deer.jpg",
+      "/images/heronew.jpg",
+      "/images/elewater.jpg",
+      "/images/we.jpg",
+      "/images/yala.jpg",
+      "/images/uglep.jpg",
     ],
     location: "North West, Sri Lanka",
+    googleMapUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.987654321!2d79.894564!3d8.345678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37c1d9e0b12345%3A0x123456789abcdef!2sWilpattu%20National%20Park!5e0!3m2!1sen!2slk!4v1695212345678!5m2!1sen!2slk",
     animals: [
       "Leopards",
       "Elephants",
@@ -49,6 +54,8 @@ const destinations = [
     heroimage: "/images/hp.jpg",
     images: ["/images/hp.jpg", "/images/hp1.jpg", "/images/heronew.jpg"],
     location: "Central Highlands, Sri Lanka",
+    googleMapUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.987654321!2d79.894564!3d8.345678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37c1d9e0b12345%3A0x123456789abcdef!2sWilpattu%20National%20Park!5e0!3m2!1sen!2slk!4v1695212345678!5m2!1sen!2slk",
     animals: [
       "Sambar Deer",
       "Leopards",
@@ -78,6 +85,8 @@ const destinations = [
       "/images/sinharaja3.webp",
     ],
     location: "South West, Sri Lanka",
+    googleMapUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.987654321!2d79.894564!3d8.345678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37c1d9e0b12345%3A0x123456789abcdef!2sWilpattu%20National%20Park!5e0!3m2!1sen!2slk!4v1695212345678!5m2!1sen!2slk",
     animals: [
       "Endemic Birds",
       "Purple-faced Langur",
@@ -107,6 +116,8 @@ const destinations = [
       "/images/kumana3.jpg",
     ],
     location: "Eastern Province, Sri Lanka",
+    googleMapUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.987654321!2d79.894564!3d8.345678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37c1d9e0b12345%3A0x123456789abcdef!2sWilpattu%20National%20Park!5e0!3m2!1sen!2slk!4v1695212345678!5m2!1sen!2slk",
     animals: ["Birds", "Elephants", "Crocodiles", "Leopards"],
     stats: { area: "391 km²", established: "1970" },
   },
@@ -127,6 +138,8 @@ const destinations = [
     heroimage: "/images/yala.jpg",
     images: ["/images/yala.jpg", "/images/yala2.jpg", "/images/yala3.jpg"],
     location: "South East, Sri Lanka",
+    googleMapUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.987654321!2d79.894564!3d8.345678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37c1d9e0b12345%3A0x123456789abcdef!2sWilpattu%20National%20Park!5e0!3m2!1sen!2slk!4v1695212345678!5m2!1sen!2slk",
     animals: ["Leopards", "Elephants", "Sloth Bears", "Birds", "Crocodiles"],
     stats: { area: "979 km²", established: "1938" },
   },
@@ -151,6 +164,8 @@ const destinations = [
       "/images/minneriya3.jpg",
     ],
     location: "North Central Province, Sri Lanka",
+    googleMapUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.987654321!2d79.894564!3d8.345678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37c1d9e0b12345%3A0x123456789abcdef!2sWilpattu%20National%20Park!5e0!3m2!1sen!2slk!4v1695212345678!5m2!1sen!2slk",
     animals: ["Elephants", "Leopards", "Sloth Bears", "Birds"],
     stats: { area: "89 km²", established: "1997" },
     city: "Polonnaruwa",
