@@ -13,6 +13,8 @@ import {
 import { motion } from "framer-motion";
 import { Bebas_Neue, Lora, Montserrat } from "next/font/google";
 import Image from "next/image";
+import Link from "next/link";
+import destinations from "../../data/destinations.js";
 
 const bebas = Bebas_Neue({
   subsets: ["latin"],
@@ -29,146 +31,6 @@ const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
 });
-
-// Destinations data with multiple images
-const destinations = [
-  {
-    id: 1,
-    name: "WILPATTU NATIONAL PARK",
-    shortName: "WILPATTU",
-    description:
-      "As the largest national park in Sri Lanka, Wilpattu boasts a unique landscape of 'villus' (natural lakes) interspersed with dense scrub jungle. This diverse terrain supports a rich variety of wildlife, making it a prime destination for Photographer's around the year and changes character with the seasons.",
-    highlights: [
-      "Largest national park in Sri Lanka",
-      "Unique 'villus' (natural lakes) landscape",
-      "Prime leopard spotting opportunities",
-      "Rich visual textures throughout seasons",
-    ],
-    images: [
-      "/images/wilpattu.jpg",
-      "/images/wilpattu2.jpg",
-      "/images/wilpattu3.jpg",
-    ],
-    icon: <FaWater className="text-xl" />,
-    stats: {
-      area: "1,317 km²",
-      established: "1938",
-      animals: "Leopards, Elephants, Sloth Bears",
-    },
-  },
-  {
-    id: 2,
-    name: "HORTON PLAINS NATIONAL PARK",
-    shortName: "HORTON PLAINS",
-    description:
-      "Tucked away in the heart of Sri Lanka's central highlands, Horton Plains National Park is a nature lover's paradise and a dream destination for wildlife photography. A UNESCO World Heritage Site, this high-altitude plateau offers a unique mix of cloud forests and dramatic escarpments.",
-    highlights: [
-      "UNESCO World Heritage Site",
-      "High-altitude plateau (2,100+ meters)",
-      "Dramatic escarpments and cloud forests",
-      "Home to endemic species and Sambar deer",
-    ],
-    images: ["/images/hp.jpg", "/images/hp1.jpg", "/images/heronew.jpg"],
-    icon: <FaTree className="text-xl" />,
-    stats: {
-      area: "31.6 km²",
-      established: "1969",
-      animals: "Sambar Deer, Leopards, Endemic Birds",
-    },
-  },
-  {
-    id: 3,
-    name: "SINHARAJA RAIN FOREST RESERVE",
-    shortName: "SINHARAJA",
-    description:
-      "Nestled in the heart of Sri Lanka, Sinharaja Forest Reserve is a UNESCO World Heritage Site and a paradise for wildlife photographers seeking a truly immersive experience. This tropical rainforest offers unparalleled biodiversity and rare endemic species.",
-    highlights: [
-      "UNESCO World Heritage Site",
-      "One of last primary rainforests in Sri Lanka",
-      "Over 160 bird species (20 endemic)",
-      "Misty walking trails and dense canopy",
-    ],
-    images: [
-      "/images/sinharaja.webp",
-      "/images/sinharaja2.webp",
-      "/images/sinharaja3.webp",
-    ],
-    icon: <FaLeaf className="text-xl" />,
-    stats: {
-      area: "88.6 km²",
-      established: "1978",
-      animals: "Endemic Birds, Purple-faced Langur, Reptiles",
-    },
-  },
-  {
-    id: 4,
-    name: "KUMANA NATIONAL PARK",
-    shortName: "KUMANA",
-    description:
-      "Kumana National Park, located on Sri Lanka's southeastern coast, is a hidden gem for wildlife photographers seeking raw, untouched natural beauty and a rich variety of wildlife. Ideal for photographers who value patience and undisturbed animal behavior.",
-    highlights: [
-      "Over 200 bird species",
-      "Major migratory bird destination",
-      "Tranquil, less-crowded environment",
-      "Wetlands, lagoons, and mangrove swamps",
-    ],
-    images: [
-      "/images/kumana.jpg",
-      "/images/kumana2.jpg",
-      "/images/kumana3.jpg",
-    ],
-    icon: <FaPaw className="text-xl" />,
-    stats: {
-      area: "391 km²",
-      established: "1970",
-      animals: "Birds, Elephants, Crocodiles",
-    },
-  },
-  {
-    id: 5,
-    name: "YALA NATIONAL PARK",
-    shortName: "YALA",
-    description:
-      "Yala National Park, located in southeastern Sri Lanka, is one of the country's premier wildlife destinations. Spanning over 900 square kilometers, it is renowned for its diverse ecosystems and highest densities of leopards in the world.",
-    highlights: [
-      "Highest density of leopards in the world",
-      "Diverse ecosystems across 900 sq km",
-      "Over 200 bird species",
-      "Golden savannah and ancient rock outcrops",
-    ],
-    images: ["/images/yala.jpg", "/images/yala2.jpg", "/images/yala3.jpg"],
-    icon: <FaCamera className="text-xl" />,
-    stats: {
-      area: "979 km²",
-      established: "1938",
-      animals: "Leopards, Elephants, Crocodiles, Birds",
-    },
-  },
-  {
-    id: 6,
-    name: "MINNERIYA NATIONAL PARK",
-    shortName: "MINNERIYA",
-    description:
-      "Minneriya National Park is a magnet for wildlife photographers from around the world. The park's most famous attraction is 'The Gathering,' a natural phenomenon of hundreds of elephants migrating to the Minneriya Reservoir.",
-    highlights: [
-      "Famous for 'The Gathering' of elephants",
-      "One of largest wild elephant gatherings",
-      "Rich diversity including leopards and sloth bears",
-      "Grasslands, wetlands, and tropical forests",
-    ],
-    images: [
-      "/images/minneriya.jpg",
-      "/images/minneriya2.jpg",
-      "/images/minneriya3.jpg",
-    ],
-    icon: <FaPaw className="text-xl" />,
-    stats: {
-      area: "89 km²",
-      established: "1997",
-      animals: "Elephants, Leopards, Sloth Bears, Birds",
-    },
-  },
-];
 
 // Image Carousel Component
 const ImageCarousel = ({ images, name }) => {
@@ -240,13 +102,6 @@ const ImageCarousel = ({ images, name }) => {
             }`}
           />
         ))}
-      </div>
-
-      {/* Icon overlay */}
-      <div className="absolute top-4 right-4 bg-black/40 p-2 rounded-full backdrop-blur-sm">
-        <div className="text-earth-green">
-          {destinations.find((d) => d.name === name)?.icon}
-        </div>
       </div>
     </div>
   );
@@ -434,10 +289,12 @@ const DestinationsPage = () => {
 
                   {/* CTA Button */}
                   <div className="mt-4">
-                    <button className="w-full flex items-center justify-center gap-2 py-2 bg-earth-green text-white rounded-lg hover:bg-earth-green/90 transition">
-                      View More
-                      <span className="inline-block animate-bounce-x">→</span>
-                    </button>
+                    <Link href={`/destinations/${destination.id}`}>
+                      <button className="w-full flex items-center justify-center gap-2 py-2 bg-earth-green text-white rounded-lg hover:bg-earth-green/90 transition cursor-pointer">
+                        View More
+                        <span className="inline-block animate-bounce-x">→</span>
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </motion.div>
