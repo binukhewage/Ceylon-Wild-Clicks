@@ -110,7 +110,7 @@ export default function DestinationPage() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            <FaMapMarkerAlt className="mr-2" />
+            <FaMapMarkerAlt className="mr-2 text-red-600" />
             <span className="font-montserrat">{destination.location}</span>
           </motion.div>
         </div>
@@ -155,9 +155,13 @@ export default function DestinationPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
               >
+               
+                  
                 <h3 className="font-bebas text-2xl text-white mb-4">
                   LOCATION
                 </h3>
+                
+                
                 <div className="w-full h-64 rounded-lg overflow-hidden border border-earth-green/30 mb-4">
                   <iframe
                     src={destination.googleMapUrl}
@@ -168,12 +172,6 @@ export default function DestinationPage() {
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                   />
-                </div>
-                <div className="flex items-center text-gray-300 mt-2">
-                  <FaMapMarkerAlt className="text-earth-green mr-2" />
-                  <span className="font-lora text-sm">
-                    {destination.location}
-                  </span>
                 </div>
               </motion.div>
 

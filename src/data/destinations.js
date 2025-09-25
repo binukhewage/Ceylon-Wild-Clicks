@@ -27,7 +27,7 @@ const destinations = [
     ],
     location: "North West, Sri Lanka",
     googleMapUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.987654321!2d79.894564!3d8.345678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37c1d9e0b12345%3A0x123456789abcdef!2sWilpattu%20National%20Park!5e0!3m2!1sen!2slk!4v1695212345678!5m2!1sen!2slk",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d252576.31066816638!2d79.87193342478166!3d8.450184977627714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3afdac7787e4bc27%3A0xcdd9a0715dad187c!2sWilpattu%20National%20Park!5e0!3m2!1sen!2slk!4v1758363524504!5m2!1sen!2slk",
     animals: [
       "Leopards",
       "Elephants",
