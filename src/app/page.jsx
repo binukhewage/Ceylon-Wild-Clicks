@@ -92,7 +92,7 @@ const Home = () => {
       subtitle: "Intimate close-ups of nature's wonders",
       icon: <FaPaw className="text-xl" />,
       image: "/images/portrait.jpg",
-      link: "/conservation",
+      link: "/prints",
       stats: "15+ Projects",
       description:
         "Discover powerful portraits of wildlife,Support our work by owning a piece of high-quality prints.",
