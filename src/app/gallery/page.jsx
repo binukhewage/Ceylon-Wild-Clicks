@@ -123,7 +123,7 @@ const galleryData = [
     id: 5,
     name: "Birds",
     category: "birds",
-    featuredImage: "/images/kingfi.jpeg",
+    featuredImage: "/images/kingfi.jpg",
     description: "Vibrant displays of nature's artistry",
     images: [
       { id: 1, src: "/images/gallery/peacock-1.jpg", title: "Full display" },
