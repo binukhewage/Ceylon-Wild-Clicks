@@ -135,14 +135,21 @@ export default function DestinationPage() {
                 <h2 className="font-bebas text-3xl text-white mb-6">
                   ABOUT {destination.shortName}
                 </h2>
-                {destination.longDescription.map((para, index) => (
-                  <p
-                    key={index}
-                    className="font-lora text-gray-300 leading-relaxed mb-4 text-lg"
-                  >
-                    {para}
+
+                {Array.isArray(destination.longDescription) ? (
+                  destination.longDescription.map((para, index) => (
+                    <p
+                      key={index}
+                      className="font-lora text-gray-300 leading-relaxed mb-4 text-lg"
+                    >
+                      {para}
+                    </p>
+                  ))
+                ) : (
+                  <p className="font-lora text-gray-300 leading-relaxed mb-4 text-lg">
+                    {destination.longDescription}
                   </p>
-                ))}
+                )}
               </motion.div>
             </div>
 
@@ -155,13 +162,10 @@ export default function DestinationPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
               >
-               
-                  
                 <h3 className="font-bebas text-2xl text-white mb-4">
                   LOCATION
                 </h3>
-                
-                
+
                 <div className="w-full h-64 rounded-lg overflow-hidden border border-earth-green/30 mb-4">
                   <iframe
                     src={destination.googleMapUrl}
@@ -223,31 +227,31 @@ export default function DestinationPage() {
 
           {/* FULL-WIDTH GALLERY */}
           {/* Wildlife */}
-              <motion.div
-                className="premium-card bg-[#0D0D0C] rounded-lg p-8"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.2 }}
-              >
-                <h3 className="font-bebas text-2xl text-white mb-6">
-                  WILDLIFE HIGHLIGHTS
-                </h3>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {destination.animals?.map((animal, i) => (
-                    <div
-                      key={i}
-                      className="flex items-center p-3 bg-black rounded-lg "
-                    >
-                      <div className="bg-earth-green/20 p-2 rounded-full mr-3">
-                        <FaPaw className="text-earth-green text-sm" />
-                      </div>
-                      <span className="font-lora text-gray-300 text-sm">
-                        {animal}
-                      </span>
-                    </div>
-                  ))}
+          <motion.div
+            className="premium-card bg-[#0D0D0C] rounded-lg p-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
+            <h3 className="font-bebas text-2xl text-white mb-6">
+              WILDLIFE HIGHLIGHTS
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {destination.animals?.map((animal, i) => (
+                <div
+                  key={i}
+                  className="flex items-center p-3 bg-black rounded-lg "
+                >
+                  <div className="bg-earth-green/20 p-2 rounded-full mr-3">
+                    <FaPaw className="text-earth-green text-sm" />
+                  </div>
+                  <span className="font-lora text-gray-300 text-sm">
+                    {animal}
+                  </span>
                 </div>
-              </motion.div>
+              ))}
+            </div>
+          </motion.div>
           <motion.div
             className="w-full py-16"
             initial={{ opacity: 0, y: 20 }}
