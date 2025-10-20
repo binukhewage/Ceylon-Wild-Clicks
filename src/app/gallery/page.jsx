@@ -96,7 +96,7 @@ const galleryData = [
     id: 4,
     name: "Sri Lankan Deer",
     category: "mammals",
-    featuredImage: "/images/deersl.jpg",
+    featuredImage: "/images/deer.jpg",
     description: "Graceful Inhabitants of the Island’s Forests and Grasslands",
     images: [
       {
