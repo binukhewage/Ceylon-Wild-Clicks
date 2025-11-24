@@ -1,299 +1,222 @@
 "use client";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
-import { FaCamera, FaSafari } from "react-icons/fa";
+import React, { useState, useEffect, useRef } from "react";
+import { FaSafari, FaBars, FaTimes } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import logo from "/public/images/logocwc.png";
+import logo from "/public/images/cwc1.png"; // Assuming this path is correct
+import { Montserrat } from "next/font/google"; 
+
+// --- Font Setup for premium look ---
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+});
 
 const Navbar = () => {
-  const [activeTab, setActiveTab] = useState("");
+  const [activePath, setActivePath] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navRef = useRef(null); 
 
-  // Earthy green color palette
+  // Earthy premium color palette (using the same as the improved Home component)
   const colors = {
-    primary: "#4a7c59", // Forest green
-    light: "#8a9b68", // Olive green
-    accent: "#6b8e23", // Olive drab green
-    background: "#000000", // Black
-    textPrimary: "#ffffff", // White
-    textSecondary: "#d1d5db", // Light gray
-    border: "#1f2937", // Dark gray
+    primary: "#8c8c69", // Desaturated Gold/Olive
+    backgroundDark: "#0A0A0A", // Near black
+    backgroundTransparent: "rgba(10, 10, 10, 0.95)",
+    border: "#181818",
   };
 
   useEffect(() => {
+    // 1. Set active path based on window location (for initial load)
+    if (typeof window !== 'undefined') {
+        setActivePath(window.location.pathname);
+    }
+    
+    // 2. Handle scroll logic
     const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
+      setScrolled(window.scrollY > 20); // More aggressive scroll threshold
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navItems = [
-    { name: "Home", path: "/" },
-    { name: "Gallery", path: "/gallery" },
-    { name: "Tours", path: "/tours" },
-    { name: "Destinations", path: "/destinations" },
-    { name: "Prints", path: "/prints" },
-    { name: "Blog", path: "/blog" },
-    { name: "About", path: "/about" },
-    { name: "Contact", path: "/contact" },
+    { name: "HOME", path: "/" },
+    { name: "GALLERY", path: "/gallery" },
+    { name: "TOURS", path: "/tours" },
+    { name: "DESTINATIONS", path: "/destinations" },
+    { name: "PRINTS", path: "/prints" },
+    { name: "BLOG", path: "/blog" },
+    { name: "ABOUT", path: "/about" },
+    { name: "CONTACT", path: "/contact" },
   ];
+
+  const handleMobileLinkClick = (path) => {
+    setActivePath(path);
+    setMobileMenuOpen(false);
+  };
+  
+  // Mobile drawer variants
+  const mobileMenuVariants = {
+    hidden: { x: "100%" },
+    visible: { x: 0, transition: { type: "spring", stiffness: 100, damping: 20 } },
+    exit: { x: "100%", transition: { duration: 0.3 } },
+  };
+
+  // Mobile link stagger variants
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className={`fixed w-full z-50 ${
-        scrolled ? "bg-black/95 backdrop-blur-md shadow-lg" : "bg-transparent"
-      } transition-all duration-300 border-b ${
-        scrolled ? "border-gray-800" : "border-transparent"
+      className={`${montserrat.className} fixed w-full z-50 transition-all duration-300 ${
+        scrolled
+          ? `bg-[${colors.backgroundTransparent}] backdrop-blur-md shadow-2xl shadow-black/30 border-b border-[${colors.border}]`
+          : "bg-transparent border-b border-transparent"
       }`}
     >
+      {/* Tailwind CSS arbitrary value fix for static class detection */}
+      <div className="hidden bg-[#8c8c69] hover:bg-[#727253] text-[#8c8c69]"></div>
+
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex justify-between h-20 items-center">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 group">
+        {/* Navbar Height is h-24 (96px) */}
+        <div className="flex justify-between items-center h-24">
+          
+          {/* Logo Container (Left) - UPDATED FOR FULL HEIGHT */}
+          <Link href="/" className="flex items-center h-full"> {/* h-full on Link */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6 }}
-              className="flex items-center"
+              transition={{ duration: 0.8 }}
+              className="relative flex items-center h-full" // h-full on motion.div
             >
               <Image
                 src={logo}
                 alt="Ceylon Wild Clicks Logo"
-                width={280}
                 priority
-                className="object-contain w-[140px] sm:w-[180px] lg:w-[280px]"
+                // Updated Image classes: h-full makes it fill the container's height (96px).
+                // object-contain ensures it scales without cropping. Removed negative translate.
+                className="object-contain w-auto h-[140px] lg:h-[200px] transition-all duration-300"
               />
             </motion.div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-1">
-            {navItems.map((item) => (
-              <div
-                key={item.name}
-                className="relative h-full flex items-center"
-              >
-                {item.subItems ? (
-                  <div
-                    className="px-4 py-2 cursor-pointer relative group h-full flex items-center"
-                    onMouseEnter={() => setActiveTab(item.name)}
-                    onMouseLeave={() => setActiveTab("")}
+          {/* Desktop Navigation (Center) */}
+          <div ref={navRef} className="hidden lg:flex items-center space-x-1">
+            {navItems.map((item) => {
+              const isActive = activePath === item.path;
+              return (
+                <Link
+                  key={item.name}
+                  href={item.path}
+                  onClick={() => setActivePath(item.path)}
+                  className="px-4 py-2 relative h-full flex items-center transition-colors duration-300"
+                >
+                  <motion.span
+                    className={`text-xs tracking-widest font-medium relative uppercase ${
+                      isActive ? 'text-white' : 'text-white'
+                    }`}
+                    whileHover={{ color: colors.primary }}
                   >
-                    <span
-                      className={`flex items-center text-gray-300 transition-colors text-sm tracking-wide ${
-                        activeTab === item.name ? "font-semibold" : ""
-                      }`}
-                      style={{
-                        color:
-                          activeTab === item.name ? colors.primary : "#d1d5db",
-                      }}
-                    >
-                      {item.name}
-                      <motion.span
-                        animate={{ rotate: activeTab === item.name ? 180 : 0 }}
-                        className="ml-1 text-xs mt-0.5"
-                      >
-                        ▼
-                      </motion.span>
-                    </span>
-
-                    <AnimatePresence>
-                      {activeTab === item.name && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 15 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 15 }}
-                          transition={{
-                            type: "spring",
-                            damping: 25,
-                            stiffness: 300,
-                          }}
-                          className="absolute left-1/2 -translate-x-1/2 top-full mt-1 w-56 bg-gray-900 rounded-lg shadow-xl border border-gray-800 overflow-hidden"
-                        >
-                          {item.subItems.map((subItem) => (
-                            <Link
-                              key={subItem.name}
-                              href={subItem.path}
-                              className="block px-4 py-3 text-gray-300 hover:text-white transition-colors text-sm border-b border-gray-800 last:border-0 flex items-center group"
-                              style={{
-                                color: "#d1d5db",
-                              }}
-                            >
-                              <span
-                                className="w-2 h-2 rounded-full mr-3 group-hover:scale-110 transition-transform"
-                                style={{ backgroundColor: colors.primary }}
-                              ></span>
-                              {subItem.name}
-                            </Link>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                ) : (
-                  <Link
-                    href={item.path}
-                    className="px-4 py-2 relative h-full flex items-center"
-                  >
-                    <motion.span
-                      className="text-sm tracking-wide relative"
-                      style={{ color: "#d1d5db" }}
-                      whileHover={{ color: colors.primary }}
-                    >
-                      {item.name}
-                      <motion.span
-                        initial={{ scaleX: 0 }}
-                        whileHover={{ scaleX: 1 }}
-                        className="absolute bottom-0 left-0 w-full h-px origin-left"
-                        style={{ backgroundColor: colors.primary }}
-                        transition={{ duration: 0.3 }}
-                      />
-                    </motion.span>
-                  </Link>
-                )}
-              </div>
-            ))}
+                    {item.name}
+                    
+                    {/* Premium Active Pill Indicator */}
+                    {isActive && (
+                        <motion.span
+                            layoutId="activePill"
+                            className="absolute inset-0 bg-white/5 rounded-full -m-1 -z-10 mix-blend-lighten"
+                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        />
+                    )}
+                  </motion.span>
+                </Link>
+              );
+            })}
           </div>
 
-          {/* Book Now Button */}
+          {/* Book Now Button (Right) */}
           <motion.div
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            className="hidden lg:block"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="hidden lg:block ml-4"
           >
             <Link
               href="/booking"
-              className="flex items-center space-x-2 text-white px-5 py-2.5 rounded-sm shadow-lg transition-all text-sm tracking-wide"
+              className={`flex items-center space-x-2 text-white font-bold px-5 py-3 rounded-sm shadow-xl transition-all duration-300 text-sm tracking-widest uppercase `}
               style={{
-                background: `linear-gradient(to right, ${colors.primary}, ${colors.light})`,
+                background: "linear-gradient(to right, #4a7c59, #8a9b68)",
               }}
             >
-              <FaSafari className="text-xs" />
+              <FaSafari className="text-base" />
               <span>BOOK TOUR</span>
             </Link>
           </motion.div>
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden text-gray-300 focus:outline-none"
+            className="lg:hidden text-white focus:outline-none p-3 rounded-full hover:bg-white/10 transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            <div className="space-y-1.5 w-6">
-              <motion.span
-                animate={
-                  mobileMenuOpen
-                    ? { rotate: 45, y: 6, backgroundColor: colors.primary }
-                    : { rotate: 0, backgroundColor: "#f0fdf4" }
-                }
-                className="block h-0.5 w-full rounded-full"
-              ></motion.span>
-              <motion.span
-                animate={mobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-                className="block h-0.5 w-full rounded-full bg-gray-100"
-              ></motion.span>
-              <motion.span
-                animate={
-                  mobileMenuOpen
-                    ? { rotate: -45, y: -6, backgroundColor: colors.primary }
-                    : { rotate: 0, backgroundColor: "#f0fdf4" }
-                }
-                className="block h-0.5 w-full rounded-full"
-              ></motion.span>
-            </div>
+            {mobileMenuOpen ? (
+              <FaTimes className="w-5 h-5 text-white" />
+            ) : (
+              <FaBars className="w-5 h-5 text-white" />
+            )}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="lg:hidden fixed inset-0 bg-black pt-28 px-6 z-40"
+            variants={mobileMenuVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className={`lg:hidden fixed inset-0 w-full bg-[${colors.backgroundDark}] z-40 pt-24 shadow-2xl`}
           >
-            <div className="flex flex-col space-y-6">
+            <motion.div
+                className="flex flex-col space-y-2 p-6"
+                initial="hidden"
+                animate="visible"
+                variants={{
+                    visible: { transition: { staggerChildren: 0.07, delayChildren: 0.2 } },
+                }}
+            >
               {navItems.map((item) => (
-                <div key={item.name} className="border-b border-gray-800 pb-4">
-                  {item.subItems ? (
-                    <div>
-                      <button
-                        onClick={() =>
-                          setActiveTab(activeTab === item.name ? "" : item.name)
-                        }
-                        className="flex items-center justify-between w-full text-lg"
-                        style={{ color: "#d1d5db" }}
-                      >
-                        {item.name}
-                        <span
-                          className={`transition-transform ${
-                            activeTab === item.name ? "rotate-180" : ""
-                          }`}
-                        >
-                          ▼
-                        </span>
-                      </button>
-
-                      {activeTab === item.name && (
-                        <motion.div
-                          initial={{ height: 0 }}
-                          animate={{ height: "auto" }}
-                          exit={{ height: 0 }}
-                          className="pl-4 mt-3 space-y-3 overflow-hidden"
-                        >
-                          {item.subItems.map((subItem) => (
-                            <Link
-                              key={subItem.name}
-                              href={subItem.path}
-                              className="block py-1.5 text-sm flex items-center"
-                              style={{ color: "#9ca3af" }}
-                              onClick={() => setMobileMenuOpen(false)}
-                            >
-                              <span
-                                className="w-1.5 h-1.5 rounded-full mr-3"
-                                style={{ backgroundColor: colors.primary }}
-                              ></span>
-                              {subItem.name}
-                            </Link>
-                          ))}
-                        </motion.div>
-                      )}
-                    </div>
-                  ) : (
-                    <Link
-                      href={item.path}
-                      className="block text-lg"
-                      style={{ color: "#d1d5db" }}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  )}
-                </div>
+                <motion.div 
+                    key={item.name} 
+                    className={`border-b border-[${colors.border}]`}
+                    variants={itemVariants}
+                >
+                  <Link
+                    href={item.path}
+                    className={`block py-3 text-xl uppercase tracking-widest transition-colors ${
+                      activePath === item.path ? `text-[#8c8c69] font-bold` : 'text-gray-300 hover:text-white'
+                    }`}
+                    onClick={() => handleMobileLinkClick(item.path)}
+                  >
+                    {item.name}
+                  </Link>
+                </motion.div>
               ))}
 
-              <motion.div whileHover={{ scale: 1.02 }} className="mt-8">
+              {/* Mobile Book Tour Button */}
+              <motion.div whileHover={{ scale: 1.02 }} className="mt-8 pt-4" variants={itemVariants}>
                 <Link
                   href="/booking"
-                  className="flex items-center justify-center space-x-2 text-white px-6 py-3 rounded-sm text-sm tracking-wide"
-                  style={{
-                    background: `linear-gradient(to right, ${colors.primary}, ${colors.light})`,
-                  }}
+                  className={`flex items-center justify-center space-x-2 text-black font-bold px-6 py-3 rounded-sm text-sm tracking-wide uppercase bg-[#8c8c69] hover:bg-[#727253] transition-colors shadow-lg`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <FaSafari />
                   <span>BOOK WILDLIFE TOUR</span>
                 </Link>
               </motion.div>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

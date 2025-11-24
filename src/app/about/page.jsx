@@ -40,7 +40,7 @@ const About = () => {
       name: "Roshan Peiris",
       role: "Lead Photographer & Founder",
       bio: "I'm Roshan Peiris, a Sri Lankan wildlife and nature photographer. Since 2019, my passion for capturing Sri Lanka's untamed beauty has grown into a full-time pursuit. After dedicating myself entirely to wildlife photography in 2024, I now guide wildlife photo safaris to share the magical experience of nature with enthusiasts, offering an immersive journey through the island's incredible landscapes and biodiversity.",
-      image: "/images/roshan3.jpg",
+      image: "/images/roshan.jpg",
       social: {
         instagram: "https://instagram.com/roshan",
         facebook: "https://facebook.com/roshan",
@@ -284,14 +284,14 @@ const About = () => {
           </div>
 
           {/* Founder Card */}
-          <div className="grid lg:grid-cols-2 gap-8 items-center bg-gradient-to-br from-gray-900/70 to-black/80 rounded-xl  border-earth-green/20 shadow-lg shadow-earth-green/10 overflow-hidden">
+          <div className="grid lg:grid-cols-2 gap-8 items-center bg-black rounded-xl  border-earth-green/20 shadow-lg shadow-earth-green/10 overflow-hidden">
             {/* Image Side */}
             <div className="relative h-96 lg:h-[550px]">
               <Image
                 src={teamMembers[0].image}
                 alt={teamMembers[0].name}
                 fill
-                className="object-cover"
+                className="object-cover rounded-2xl"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/70"></div>
               <div className="absolute inset-0 bg-[url('/images/noise-texture.png')] mix-blend-soft-light opacity-15"></div>

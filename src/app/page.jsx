@@ -54,7 +54,7 @@ const Home = () => {
       name: "Roshan Peiris",
       role: "Lead Photographer & Founder",
       bio: "I'm Roshan Peiris, a Sri Lankan wildlife and nature photographer. Since 2019, my passion for capturing Sri Lanka's untamed beauty has grown into a full-time pursuit. After dedicating myself entirely to wildlife photography in 2024, I now guide wildlife photo safaris to share the magical experience of nature with enthusiasts, offering an immersive journey through the island's incredible landscapes and biodiversity.",
-      image: "/images/roshan3.jpg",
+      image: "/images/roshan.JPG",
       social: {
         instagram: "https://instagram.com/roshan",
         facebook: "https://facebook.com/roshan",
@@ -278,7 +278,8 @@ const Home = () => {
                 playsInline
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-black/40" />
+              {/* Premium Multi-layer Overlay */}
+                <div className="absolute inset-0 bg-black/40" />  
             </div>
           ))}
         </div>

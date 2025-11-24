@@ -27,7 +27,7 @@ const galleryData = [
     id: 1,
     name: "Sri Lankan Leopard",
     category: "mammals",
-    featuredImage: "/images/lep1.jpg",
+    featuredImage: "/images/willep.jpg",
     description: "The majestic apex predator of Sri Lanka's national parks",
     images: [
       {
@@ -123,7 +123,7 @@ const galleryData = [
     id: 5,
     name: "Birds",
     category: "birds",
-    featuredImage: "/images/kingfi.jpg",
+    featuredImage: "/images/bird.jpg",
     description: "Vibrant displays of nature's artistry",
     images: [
       { id: 1, src: "/images/gallery/peacock-1.jpg", title: "Full display" },
@@ -396,7 +396,7 @@ const GalleryPage = () => {
               className="relative max-w-4xl w-full max-h-[90vh]"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative aspect-[4/3] rounded-sm overflow-hidden bg-gray-900">
+              <div className="relative aspect-4/3 rounded-sm overflow-hidden bg-gray-900">
                 <Image
                   src={selectedImage.src}
                   alt={selectedImage.title}
