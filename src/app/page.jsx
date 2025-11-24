@@ -80,7 +80,7 @@ const Home = () => {
       title: "Gallery",
       subtitle: "Stunning wildlife photography",
       icon: <FaCamera className="text-xl" />,
-      image: "/images/gallery.jpg",
+      image: "/images/bird.jpg",
       link: "/gallery",
       stats: "10,000+ Images",
       description:
