@@ -1,3 +1,5 @@
 {
-  "regions": ["sfo1"]
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api/:path*" }
+  ]
 }
