@@ -2,21 +2,22 @@
 import React, { useState } from "react";
 import {
   FaMapMarkerAlt,
-  FaCamera,
   FaUsers,
-  FaLeaf,
   FaChevronRight,
-  FaStar,
   FaClock,
   FaHotel,
   FaChevronLeft,
   FaSafari,
+  FaStar, // Added FaStar for luxury tours
 } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bebas_Neue, Lora, Montserrat } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+// Import the full tours array from the provided path
+import { tours } from "../../data/tours.js";
 
+// --- Font Setup (Keep as is) ---
 const bebas = Bebas_Neue({
   subsets: ["latin"],
   weight: "400",
@@ -28,119 +29,7 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
 });
 
-const tours = [
-  {
-    id: 1,
-    title: "NORTHERN WILD TRAIL",
-    shortTitle: "TOUR 01",
-    duration: "14 Days / 13 Nights",
-    difficulty: "Moderate",
-    groupSize: "Max 6 Photographers",
-    price: "$5,999",
-    itinerary: [
-      {
-        day: "1st Day (01 night)",
-        details: "Arrival to Sri Lanka - Negambo, 5* Hotel (BB)",
-      },
-      {
-        day: "2nd - 5th Day (4 nights)",
-        details: "Wilpattu National Park, Luxury Glamping (FB)",
-      },
-      {
-        day: "6th - 7th Day (2 nights)",
-        details: "Minneriya National Park, 5* Hotel (FB)",
-      },
-      {
-        day: "8th - 10th Day (3 nights)",
-        details: "Horton Plains National Park, Holiday Bungalow (FB)",
-      },
-      {
-        day: "11th Day (01 night)",
-        details: "Rest Day in Pelmadulla, 3* Hotel (FB)",
-      },
-      {
-        day: "12th - 13th Day (02 nights)",
-        details: "Sinharaja Rain Forest, 3* Hotel (FB)",
-      },
-      {
-        day: "14th Day - Dinner",
-        details: "Departure from Sri Lanka, 4* Hotel",
-      },
-    ],
-    images: [
-      "/images/minneriya.jpg",
-      "/images/minneriya1.jpg",
-      "/images/horton1.jpg",
-    ],
-    highlights: [
-      "Wilpattu Leopards",
-      "Minneriya Elephants",
-      "Horton Plains Biodiversity",
-      "Sinharaja Endemics",
-    ],
-    included: [
-      "Professional Guide",
-      "Luxury Accommodation",
-      "All Meals",
-      "Park Fees",
-      "Transportation",
-    ],
-    parks: ["Wilpattu", "Minneriya", "Horton Plains", "Sinharaja"],
-  },
-  {
-    id: 2,
-    title: "SOUTHERN WILD TRAIL",
-    shortTitle: "TOUR 02",
-    duration: "14 Days / 13 Nights",
-    difficulty: "Moderate",
-    groupSize: "Max 6 Photographers",
-    price: "$5,999",
-    itinerary: [
-      {
-        day: "1st Day (01 night)",
-        details: "Arrival to Sri Lanka - Negambo, 5* Hotel (BB)",
-      },
-      {
-        day: "2nd - 4th Day (3 nights)",
-        details: "Horton Plains National Park, Holiday Bungalow (FB)",
-      },
-      { day: "5th Day (1 night)", details: "Arugambay, 5* Hotel (HB)" },
-      {
-        day: "6th - 8th Day (3 nights)",
-        details: "Kumana National Park, Luxury Tented Camp (FB)",
-      },
-      {
-        day: "9th - 11th Day (3 nights)",
-        details: "Yala National Park, Luxury Chalets (FB)",
-      },
-      {
-        day: "12th - 13th Day (02 nights)",
-        details: "Sinharaja Rain Forest, 3* Hotel (FB)",
-      },
-      {
-        day: "14th Day - Dinner",
-        details: "Departure from Sri Lanka, 4* Hotel",
-      },
-    ],
-    images: ["/images/kumana.jpg", "/images/kumana1.jpg", "/images/yala1.jpg"],
-    highlights: [
-      "Yala Leopards",
-      "Kumana Birdlife",
-      "Horton Plains Landscape",
-      "Sinharaja Rainforest",
-    ],
-    included: [
-      "Professional Guide",
-      "Luxury Accommodation",
-      "All Meals",
-      "Park Fees",
-      "Transportation",
-    ],
-    parks: ["Horton Plains", "Kumana", "Yala", "Sinharaja"],
-  },
-];
-
-// Image Carousel Component
+// --- Image Carousel Component (Keep as is) ---
 const ImageCarousel = ({ images, name }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -215,23 +104,251 @@ const ImageCarousel = ({ images, name }) => {
   );
 };
 
+// --- Single Tour Card Component (Refactored for clarity) ---
+const TourCard = ({
+  tour,
+  expandedTour,
+  toggleExpand,
+  activeTab,
+  setActiveTab,
+}) => {
+  // Helper to get a flat list of itinerary days, regardless of 'parts' structure
+  const flatItinerary = tour.parts.flatMap((part) => part.days);
+
+  return (
+    <motion.div
+      key={tour.id}
+      initial={{ opacity: 0, y: 40, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true, margin: "-50px" }}
+      className={`premium-card destination-card bg-[#0D0D0C] rounded-lg overflow-hidden group cursor-pointer ${
+        tour.type === "luxury" ? "" : ""
+      }`}
+    >
+      {/* Type Tag for Luxury Tours */}
+
+      {/* Image Carousel */}
+      <div className="relative h-60 w-full overflow-hidden">
+        <Image
+          src={tour.images[0]}
+          alt={tour.title}
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+      </div>
+
+      {/* Content */}
+      <div className="p-6">
+        <div className="flex justify-between items-start mb-4">
+          <h3
+            className={`font-bebas text-2xl text-white group-hover:text-earth-green transition-colors ${
+              tour.type === "luxury" ? "text-earth-green" : ""
+            }`}
+          >
+            {tour.title}
+          </h3>
+        </div>
+
+        <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center text-earth-green-light text-sm">
+            <FaClock className="mr-1" />
+            <span className="font-montserrat">{tour.duration}</span>
+          </div>
+        </div>
+
+        {/* Highlights */}
+        <div className="mb-4">
+          <h4 className="font-montserrat text-xs uppercase tracking-wider text-earth-green mb-2">
+            HIGHLIGHTS
+          </h4>
+          <div className="grid grid-cols-2 gap-2">
+            {tour.highlights.map((highlight, i) => (
+              <div key={i} className="flex items-start">
+                <div className="w-1.5 h-1.5 bg-earth-green mt-1.5 mr-2 rounded-full flex-shrink-0"></div>
+                <span className="font-lora text-gray-300 text-xs">
+                  {highlight}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Parks/Destinations (Since you didn't provide a 'parks' array, I'll use the 'intro' or the first few highlights as a placeholder in the original component, or simplify this section if 'parks' is not always available) */}
+        {/* Re-using National Parks as in original design, but since it's not in the data structure, I'll omit it or use a default: */}
+        {/* <div className="mb-4">
+                    <h4 className="font-montserrat text-xs uppercase tracking-wider text-earth-green mb-2">
+                        NATIONAL PARKS
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                        <span className="font-montserrat text-xs text-earth-green-light bg-gray-900/50 px-2 py-1 rounded">
+                            Wilpattu
+                        </span>
+                    </div>
+                </div> */}
+
+        {/* Expandable Details */}
+        <div className="mb-4 border-t border-gray-800 pt-4">
+          <button
+            onClick={() => toggleExpand(tour.id)}
+            className="flex items-center justify-between w-full text-left"
+          >
+            <span className="font-montserrat text-sm text-white">
+              TOUR DETAILS
+            </span>
+            <motion.div
+              animate={{ rotate: expandedTour === tour.id ? 90 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <FaChevronRight className="text-earth-green" />
+            </motion.div>
+          </button>
+
+          <AnimatePresence>
+            {expandedTour === tour.id && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3 }}
+                className="overflow-hidden mt-4"
+              >
+                {/* Tab Navigation */}
+                <div className="flex border-b border-gray-800 mb-4">
+                  <button
+                    className={`font-montserrat text-xs px-3 py-1 ${
+                      activeTab === "itinerary"
+                        ? "text-earth-green border-b-2 border-earth-green"
+                        : "text-gray-400"
+                    }`}
+                    onClick={() => setActiveTab("itinerary")}
+                  >
+                    Itinerary
+                  </button>
+                  <button
+                    className={`font-montserrat text-xs px-3 py-1 ${
+                      activeTab === "included"
+                        ? "text-earth-green border-b-2 border-earth-green"
+                        : "text-gray-400"
+                    }`}
+                    onClick={() => setActiveTab("included")}
+                  >
+                    What's Included
+                  </button>
+                </div>
+
+                {/* Tab Content */}
+                {activeTab === "itinerary" && (
+                  <div className="space-y-3 max-h-60 overflow-y-auto pr-2">
+                    {flatItinerary.map((item, i) => (
+                      <div
+                        key={i}
+                        className="flex items-start border-l-2 border-earth-green/50 pl-3 py-1"
+                      >
+                        <div className="bg-earth-green/10 p-1 rounded-sm mr-2 mt-0.5 min-w-[20px] text-center">
+                          <span className="font-bebas text-earth-green text-xs">
+                            {item.day.replace("Day ", "")}
+                          </span>
+                        </div>
+                        <div>
+                          <p className="font-montserrat text-white text-xs">
+                            {item.destination}
+                          </p>
+                          <p className="font-lora text-gray-400 text-xs">
+                            {item.activities || item.details}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {activeTab === "included" && (
+                  <div className="grid grid-cols-1 gap-2">
+                    {tour.inclusions.map((item, i) => (
+                      <div key={i} className="flex items-center">
+                        <div className="bg-earth-green/20 p-1 rounded mr-2">
+                          <FaChevronRight className="text-earth-green text-[8px]" />
+                        </div>
+                        <span className="font-lora text-gray-300 text-xs">
+                          {item}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* CTA Button */}
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="mt-4"
+        >
+          <Link
+            href={`/tours/${tour.id}`}
+            style={{
+              backgroundColor: "#4a7c59",
+            }}
+            className="flex items-center justify-center w-full 
+             hover:opacity-90 text-white font-montserrat 
+             text-sm px-4 py-3 rounded-md uppercase tracking-wide"
+          >
+            <button className="w-full flex items-center justify-center gap-2  bg-earth-green text-white rounded-lg hover:bg-earth-green/90 transition cursor-pointer">
+              Details
+              <span className="inline-block animate-bounce-x">→</span>
+            </button>
+          </Link>
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+};
+
+// --- Main TourPage Component (Modified) ---
 const TourPage = () => {
   const [expandedTour, setExpandedTour] = useState(null);
+  // NOTE: activeTab will be the same for all cards, which is a minor UX issue but matches the original code's state structure.
   const [activeTab, setActiveTab] = useState("itinerary");
 
   const toggleExpand = (tourId) => {
-    if (expandedTour === tourId) {
-      setExpandedTour(null);
-    } else {
-      setExpandedTour(tourId);
+    // Only set activeTab to 'itinerary' when a new card expands
+    if (expandedTour !== tourId) {
+      setActiveTab("itinerary");
     }
+    setExpandedTour((prevId) => (prevId === tourId ? null : tourId));
   };
+
+  // 1. Filter the tours into two groups
+  // Get the first 3 tours for the initial section
+  const premiumTours = tours.slice(0, 3);
+  // Get the remaining tours (Luxury)
+  const luxuryTours = tours.slice(3).filter((tour) => tour.type === "luxury");
+
+  const renderTours = (tourList) => (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-16">
+      {tourList.map((tour, index) => (
+        <TourCard
+          key={tour.id}
+          tour={tour}
+          expandedTour={expandedTour}
+          toggleExpand={toggleExpand}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />
+      ))}
+    </div>
+  );
 
   return (
     <div
       className={`${bebas.variable} ${lora.variable} ${montserrat.variable} min-h-screen bg-black text-white`}
     >
-      {/* Custom CSS for premium effects */}
+      {/* Custom CSS (Keep as is) */}
       <style jsx>{`
         .text-earth-green {
           color: #4a7c59;
@@ -280,7 +397,7 @@ const TourPage = () => {
         }
       `}</style>
 
-      {/* Hero Section */}
+      {/* Hero Section (Keep as is) */}
       <div className="relative h-[50vh] w-full overflow-hidden bg-black">
         <div className="absolute inset-0 wildlife-texture"></div>
         <Image
@@ -298,11 +415,11 @@ const TourPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span>PHOTO-SAFARI</span>
-            <span className="text-earth-green"> TOURS</span>
+            <span>TRAVEL</span>
+            <span className="text-earth-green"> ITENARIES</span>
           </motion.h1>
           <motion.p
-            className="font-lora text-lg max-w-2xl text-gray-200 mt-6"
+            className="font-lora text-lg max-w-2xl text-gray-200 mt-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
@@ -313,198 +430,55 @@ const TourPage = () => {
         </div>
       </div>
 
-      {/* Tours Section */}
-      <div className="relative bg-black pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="max-w-7xl mx-auto relative z-10">
-          {/* Tours Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-16">
-            {tours.map((tour, index) => (
-              <motion.div
-                key={tour.id}
-                initial={{ opacity: 0, y: 40, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                className="premium-card destination-card bg-[#0D0D0C] rounded-lg overflow-hidden group cursor-pointer"
-              >
-                {/* Image Carousel */}
-                <ImageCarousel images={tour.images} name={tour.title} />
-
-                {/* Content */}
-                <div className="p-6">
-                  <div className="flex justify-between items-start mb-4">
-                    <h3 className="font-bebas text-2xl text-white group-hover:text-earth-green transition-colors">
-                      {tour.title}
-                    </h3>
-                    <span className="font-bebas text-earth-green text-xl">
-                      {tour.price}
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="flex items-center text-earth-green-light text-sm">
-                      <FaClock className="mr-1" />
-                      <span className="font-montserrat">{tour.duration}</span>
-                    </div>
-                  </div>
-
-                  {/* Highlights */}
-                  <div className="mb-4">
-                    <h4 className="font-montserrat text-xs uppercase tracking-wider text-earth-green mb-2">
-                      HIGHLIGHTS
-                    </h4>
-                    <div className="grid grid-cols-2 gap-2">
-                      {tour.highlights.map((highlight, i) => (
-                        <div key={i} className="flex items-start">
-                          <div className="w-1.5 h-1.5 bg-earth-green mt-1.5 mr-2 rounded-full flex-shrink-0"></div>
-                          <span className="font-lora text-gray-300 text-xs">
-                            {highlight}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* National Parks */}
-                  <div className="mb-4">
-                    <h4 className="font-montserrat text-xs uppercase tracking-wider text-earth-green mb-2">
-                      NATIONAL PARKS
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {tour.parks.map((park, i) => (
-                        <span
-                          key={i}
-                          className="font-montserrat text-xs text-earth-green-light bg-gray-900/50 px-2 py-1 rounded"
-                        >
-                          {park}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Expandable Details */}
-                  <div className="mb-4 border-t border-gray-800 pt-4">
-                    <button
-                      onClick={() => toggleExpand(tour.id)}
-                      className="flex items-center justify-between w-full text-left"
-                    >
-                      <span className="font-montserrat text-sm text-white">
-                        TOUR DETAILS
-                      </span>
-                      <motion.div
-                        animate={{ rotate: expandedTour === tour.id ? 90 : 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <FaChevronRight className="text-earth-green" />
-                      </motion.div>
-                    </button>
-
-                    <AnimatePresence>
-                      {expandedTour === tour.id && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="overflow-hidden mt-4"
-                        >
-                          {/* Tab Navigation */}
-                          <div className="flex border-b border-gray-800 mb-4">
-                            <button
-                              className={`font-montserrat text-xs px-3 py-1 ${
-                                activeTab === "itinerary"
-                                  ? "text-earth-green border-b-2 border-earth-green"
-                                  : "text-gray-400"
-                              }`}
-                              onClick={() => setActiveTab("itinerary")}
-                            >
-                              Itinerary
-                            </button>
-                            <button
-                              className={`font-montserrat text-xs px-3 py-1 ${
-                                activeTab === "included"
-                                  ? "text-earth-green border-b-2 border-earth-green"
-                                  : "text-gray-400"
-                              }`}
-                              onClick={() => setActiveTab("included")}
-                            >
-                              What's Included
-                            </button>
-                          </div>
-
-                          {/* Tab Content */}
-                          {activeTab === "itinerary" && (
-                            <div className="space-y-3 max-h-60 overflow-y-auto pr-2">
-                              {tour.itinerary.map((item, i) => (
-                                <div
-                                  key={i}
-                                  className="flex items-start border-l-2 border-earth-green/50 pl-3 py-1"
-                                >
-                                  <div className="bg-earth-green/10 p-1 rounded-sm mr-2 mt-0.5 min-w-[20px] text-center">
-                                    <span className="font-bebas text-earth-green text-xs">
-                                      {i + 1}
-                                    </span>
-                                  </div>
-                                  <div>
-                                    <p className="font-montserrat text-white text-xs">
-                                      {item.day}
-                                    </p>
-                                    <p className="font-lora text-gray-400 text-xs">
-                                      {item.details}
-                                    </p>
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          )}
-
-                          {activeTab === "included" && (
-                            <div className="grid grid-cols-1 gap-2">
-                              {tour.included.map((item, i) => (
-                                <div key={i} className="flex items-center">
-                                  <div className="bg-earth-green/20 p-1 rounded mr-2">
-                                    -
-                                  </div>
-                                  <span className="font-lora text-gray-300 text-xs">
-                                    {item}
-                                  </span>
-                                </div>
-                              ))}
-                            </div>
-                          )}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-
-                  {/* CTA Button */}
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="mt-4"
-                  >
-                    <Link
-                      href="/booking"
-                      style={{ backgroundColor: "#4a7c59" }}
-                      className="flex items-center justify-center w-full 
-             hover:opacity-90 text-white font-montserrat 
-             text-sm px-4 py-3 rounded-md uppercase tracking-wide"
-                    >
-                      <FaSafari className="mr-2" />
-                      Reserve This Tour
-                    </Link>
-                  </motion.div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+      {/* --- PREMIUM TOURS SECTION --- */}
+      <div className="relative bg-black px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-16">
+          {premiumTours.map((tour, index) => (
+            <TourCard
+              key={tour.id}
+              tour={tour}
+              expandedTour={expandedTour}
+              toggleExpand={toggleExpand}
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+            />
+          ))}
         </div>
         {/* Decorative Gradient Blobs */}
         <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-earth-green/10 blur-3xl"></div>
+      </div>
+
+      {/* --- LUXURY TOURS SECTION --- */}
+      <div className="relative bg-black py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Section Header for Luxury Tours (New matching design) */}
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+          >
+            <p className="pb-3 text-earth-green font-montserrat text-xs uppercase tracking-[0.3em]">
+              FOR THE DISCERNING TRAVELER
+            </p>
+            <h2 className="font-bebas text-4xl md:text-5xl text-white mb-4">
+              LUXURY <span className="text-earth-green">TOURS</span>
+            </h2>
+            <p className="font-lora text-lg text-gray-400 max-w-3xl mx-auto">
+              Unmatched comfort, exclusive camps, and personalized itineraries
+              for a truly bespoke safari experience.
+            </p>
+          </motion.div>
+
+          {/* Render Luxury Tours */}
+          {renderTours(luxuryTours)}
+        </div>
+        {/* Decorative Gradient Blobs */}
         <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-amber-500/5 blur-3xl"></div>
       </div>
 
-      {/* Premium Features Section */}
+      {/* Premium Features Section (Keep as is) */}
       <div className="relative bg-black py-10 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
