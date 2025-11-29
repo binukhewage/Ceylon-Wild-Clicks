@@ -8,7 +8,7 @@ export const tours = [
     id: 1,
     type: "premium",
     title: "Kurulu Trail –Avian Jewels of Ceylon",
-    heroImage: "/images/we.jpg",
+    heroImage: "/images/hero12.jpg",
     duration: "15 Days / 14 Nights",
     price: "$5,499",
     intro:

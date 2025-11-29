@@ -17,7 +17,7 @@ import {
   FaFacebook,
   FaTwitter,
 } from "react-icons/fa";
-import { Bebas_Neue, Lora, Montserrat } from "next/font/google";
+import { Bebas_Neue, Lora, Montserrat, Kolker_Brush } from "next/font/google";
 
 const bebas = Bebas_Neue({
   subsets: ["latin"],
@@ -35,6 +35,12 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
 });
 
+const kolker = Kolker_Brush({
+  subsets: ["latin"],
+  weight: "400",          
+  variable: "--font-kolker",
+});
+
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHoveringCard, setIsHoveringCard] = useState(null);
@@ -45,7 +51,7 @@ const Home = () => {
   const [isSubscribed, setIsSubscribed] = useState(false);
 
   const slides = [
-    { id: 1, src: "/videos/homevideo.mp4", alt: "Sri Lankan leopard in the wild" },
+    { id: 1, src: "/videos/ANIMAL VIDEO.mp4", alt: "Sri Lankan leopard in the wild" },
   ];
 
   const teamMembers = [
@@ -104,21 +110,21 @@ const Home = () => {
       {
         id: 1,
         name: "Wilpattu National Park",
-        image: "/images/wilpattu.jpg",
+        image: "/images/wilpattu-dd.jpg",
         description: "Sri Lanka's largest national park with natural lakes",
         link: "/destinations/wilpattu",
       },
       {
         id: 2,
         name: "Horton Plains",
-        image: "/images/hpdeer.jpeg",
+        image: "/images/hp-d.jpeg",
         description: "Famous for World's End and rich biodiversity",
         link: "/destinations/horton-plains",
       },
       {
         id: 3,
         name: "Sinharaja Rain Forest",
-        image: "/images/sinharaja.webp",
+        image: "/images/sinharaja-d.webp",
         description: "UNESCO World Heritage Site with endemic species",
         link: "/destinations/sinharaja",
       },
@@ -127,7 +133,7 @@ const Home = () => {
       {
         id: 4,
         name: "Kumana National Park",
-        image: "/images/kumana.jpg",
+        image: "/images/kumana-d.jpg",
         description: "Known for birdwatching and diverse wildlife",
         link: "/destinations/kumana",
       },
@@ -218,7 +224,7 @@ const Home = () => {
 
   return (
     <div
-      className={`${bebas.variable} ${lora.variable} ${montserrat.variable}`}
+      className={`${bebas.variable} ${lora.variable} ${montserrat.variable} ${kolker.variable}`}
     >
       {/* Custom CSS for the earthy green colors */}
       <style jsx>{`
@@ -293,11 +299,13 @@ const Home = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="mb-6">
-              <span className="font-montserrat text-xs uppercase tracking-[0.3em] text-earth-green">
+              <span className="font-bebas text-xs uppercase tracking-[0.3em] text-earth-green">
                 Wildlife Photography & Tours
               </span>
             </div>
-            <h1 className="font-bebas text-5xl md:text-6xl lg:text-7xl text-white tracking-tight leading-tight mb-4">
+            <h1 
+            
+            className="font-kolker text-5xl md:text-6xl lg:text-7xl text-white tracking-tight leading-tight mb-4">
               CEYLON{" "}
               <span className="font-extrabold text-earth-green">
                 WILD ESCAPES
@@ -433,7 +441,7 @@ const Home = () => {
                     10+
                   </span>
                   <span className="font-montserrat text-xs text-gray-400 uppercase tracking-wide">
-                    Coutries covered
+                    Countries covered
                   </span>
                 </div>
               </div>

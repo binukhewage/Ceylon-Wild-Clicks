@@ -195,7 +195,7 @@ const DestinationsPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            SRI LANKA'S <span className="text-earth-green">WILDLIFE PARKS</span>
+            TOUR <span className="text-earth-green">DESTINATIONS</span>
           </motion.h1>
           <motion.p
             className="font-lora text-lg max-w-2xl text-gray-200"
@@ -224,10 +224,15 @@ const DestinationsPage = () => {
                 className="premium-card destination-card bg-[#0D0D0C] rounded-lg overflow-hidden group cursor-pointer"
               >
                 {/* Image Carousel */}
-                <ImageCarousel
-                  images={destination.images}
-                  name={destination.name}
-                />
+                <div className="relative h-80 w-full overflow-hidden">
+                  <Image
+                    src={destination.images[0]} // first image only
+                    alt={destination.name}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                </div>
 
                 {/* Content */}
                 <div className="p-6">

@@ -1,11 +1,12 @@
 "use client";
 import { useParams } from "next/navigation";
 import { useState } from "react";
-import { FaPaw, FaMapMarkerAlt, FaClock, FaUsers } from "react-icons/fa";
+import { FaPaw, FaMapMarkerAlt, FaClock, FaUsers, FaChevronLeft } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { Bebas_Neue, Lora, Montserrat } from "next/font/google";
 import Image from "next/image";
 import destinations from "../../../data/destinations.js";
+import Link from "next/link.js";
 
 const bebas = Bebas_Neue({
   subsets: ["latin"],
@@ -125,6 +126,15 @@ export default function DestinationPage() {
           {/* Grid for main + sidebar */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2 space-y-8">
+
+              {/* Back Button */}
+  <Link
+    href="/destinations"
+    className="inline-flex items-center text-earth-green font-montserrat text-sm hover:text-earth-green-light transition-colors mb-2"
+  >
+    <FaChevronLeft className="mr-2 text-xs" />
+    Destinations
+  </Link>
               {/* About */}
               <motion.div
                 className="premium-card bg-[#0D0D0C] rounded-lg p-8"

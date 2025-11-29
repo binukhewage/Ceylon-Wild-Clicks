@@ -117,7 +117,7 @@ const Footer = () => {
       {/* Footer bottom */}
       <div className="relative border-t border-gray-800 mt-14 pt-8 text-center">
         <p className="font-montserrat text-xs text-gray-500 uppercase tracking-wider">
-          © {new Date().getFullYear()} CEYLON WILD SHOTS. ALL RIGHTS RESERVED.
+          © {new Date().getFullYear()} CEYLON WILD ESCAPES. ALL RIGHTS RESERVED.
         </p>
       </div>
     </footer>
