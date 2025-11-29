@@ -51,7 +51,7 @@ const Home = () => {
   const [isSubscribed, setIsSubscribed] = useState(false);
 
   const slides = [
-    { id: 1, src: "/videos/ANIMAL VIDEO.mp4", alt: "Sri Lankan leopard in the wild" },
+    { id: 1, src: "/videos/homevideo.mp4", alt: "Sri Lankan leopard in the wild" },
   ];
 
   const teamMembers = [
