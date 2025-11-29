@@ -55,7 +55,7 @@ const destinations = [
       "Habitat for endemic species",
     ],
     heroimage: "/images/hp.jpg",
-    images: ["/images/hp.jpg", "/images/hp1.jpg", "/images/heronew.jpg"],
+    images: ["/images/hpdeer.jpeg", "/images/hp1.jpg", "/images/heronew.jpg"],
     location: "Central Highlands, Sri Lanka",
     googleMapUrl:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.987654321!2d79.894564!3d8.345678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37c1d9e0b12345%3A0x123456789abcdef!2sWilpattu%20National%20Park!5e0!3m2!1sen!2slk!4v1695212345678!5m2!1sen!2slk",

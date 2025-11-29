@@ -112,17 +112,13 @@ export default function TourDetails(props) {
     );
   }
 
-  
   const themeColorClass = getThemeColor(tour.type, true);
   const themeColorHex = getThemeColor(tour.type, false);
   const bgColor = "bg-earth-green";
 
   // Placeholder gallery images if not in tour data. Replace with actual data: tour.galleryImages
   // For demonstration, using existing tour images and some generic ones.
-  const galleryImages = tour.galleryImages || [
-    tour.images[0],
-    tour.images[1],
-  ];
+  const galleryImages = tour.galleryImages || [tour.images[0], tour.images[1]];
 
   const openGalleryModal = (imgSrc) => {
     setCurrentGalleryImage(imgSrc);
@@ -158,12 +154,7 @@ export default function TourDetails(props) {
           inset: 0;
           border-radius: 0.5rem;
           padding: 1px;
-          background: linear-gradient(
-            45deg,
-             "#4a7c59",
-            #8a9b68,
-             "#4a7c59"}
-          );
+          background: linear-gradient(45deg, "#4a7c59", #8a9b68, "#4a7c59"});
           -webkit-mask: linear-gradient(#fff 0 0) content-box,
             linear-gradient(#fff 0 0);
           -webkit-mask-composite: xor;
@@ -203,14 +194,12 @@ export default function TourDetails(props) {
 
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 pt-10">
           <motion.h1
-            className="font-bebas text-4xl md:text-5xl mb-4 tracking-wide"
+            className="font-bebas text-4xl md:text-5xl mt-8 tracking-wide"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className={"text-white"}>
-              {tour.title.split("–")[0]}
-            </span>
+            <span className={"text-white"}>{tour.title.split("–")[0]}</span>
             {tour.title.includes("–") && (
               <span className="text-earth-green">
                 {" "}
@@ -271,8 +260,7 @@ export default function TourDetails(props) {
                 {/* Type Badge */}
                 <div
                   className={`absolute top-4 left-4 px-3 py-1 rounded-full backdrop-blur-sm bg-earth-green/20 text-earth-green font-montserrat text-xs uppercase tracking-wider`}
-                >
-                </div>
+                ></div>
               </div>
 
               <div className="p-6">
@@ -297,7 +285,7 @@ export default function TourDetails(props) {
                 {/* Highlights */}
                 <div className="mb-4">
                   <h4 className="font-montserrat text-md uppercase tracking-wider text-earth-green mb-2">
-                    Tour Highlights
+                    Package Includes
                   </h4>
                   <div className="grid grid-cols-2 gap-2">
                     {tour.inclusions.map((inclusion, i) => (
@@ -316,49 +304,53 @@ export default function TourDetails(props) {
             </motion.div>
 
             {/* 2. Sri Lanka Map Card (Tall, Matching Tour Overview Height) */}
-<motion.div
-  initial={{ opacity: 0, y: 40, scale: 0.95 }}
-  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-  transition={{ duration: 0.6, delay: 0.2 }}
-  viewport={{ once: true, margin: "-50px" }}
-  className={`premium-card bg-[#0D0D0C] rounded-lg overflow-hidden p-6 text-center h-full flex flex-col`}
->
-  {/* Title */}
-  <h3 className="font-bebas text-2xl mb-4 ">
-    Expected Route
-  </h3>
+            <motion.div
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true, margin: "-50px" }}
+              className={`premium-card bg-[#0D0D0C] rounded-lg overflow-hidden p-6 text-center h-full flex flex-col`}
+            >
+              {/* Title */}
+              <h3 className="font-bebas text-2xl mb-4 ">Expected Route</h3>
 
-  {/* Clickable Map (Fills available height) */}
-  <button
-    onClick={() => setIsMapModalOpen(true)}
-    className="relative w-full flex-1 rounded-lg overflow-hidden bg-gray-900/50 flex items-center justify-center group cursor-pointer border-2 border-transparent hover:border-earth-green transition-colors"
-  >
-    <Image
-      src="/images/route.png"
-      alt="Sri Lanka Tour Route Map"
-      fill
-      className="object-contain transition-transform duration-300 group-hover:scale-[1.02]"
-    />
+              {/* Clickable Map (Fills available height) */}
+              <button
+                onClick={() => setIsMapModalOpen(true)}
+                className={`
+                  relative w-full 
+                  h-48 sm:h-64 lg:flex-1
+                  rounded-lg overflow-hidden 
+                  bg-gray-900/50 flex items-center justify-center 
+                  group cursor-pointer 
+                  border-2 border-transparent hover:border-earth-green 
+                  transition-colors
+                `}
+              >
+                <Image
+                  src="/images/route.png"
+                  alt="Sri Lanka Tour Route Map"
+                  fill
+                  className="object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                />
 
-    {/* View Fullscreen Overlay */}
-    <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-      <span className="font-bebas text-white text-xl tracking-wider px-4 py-2 rounded bg-black/50">
-        VIEW FULL MAP
-      </span>
-    </div>
-  </button>
+                {/* View Fullscreen Overlay */}
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="font-bebas text-white text-xl tracking-wider px-4 py-2 rounded bg-black/50">
+                    VIEW FULL MAP
+                  </span>
+                </div>
+              </button>
 
-  {/* Description */}
-  <p className="font-lora text-gray-400 text-sm mt-4">
-    A Visual Outline of Kurulu Trail.
-  </p>
-</motion.div>
-
+              {/* Description */}
+              <p className="font-lora text-gray-400 text-sm mt-4">
+                A Visual Outline of Kurulu Trail.
+              </p>
+            </motion.div>
           </div>
 
           {/* --- INCLUSIONS / EXCLUSIONS SECTION (MOVED) --- */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16 mb-10"></div>
-          
 
           {/* Detailed Itinerary Header */}
           <motion.div
@@ -485,7 +477,6 @@ export default function TourDetails(props) {
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-110"
                   />
-                  
                 </motion.button>
               ))}
             </div>
@@ -531,8 +522,6 @@ export default function TourDetails(props) {
         imgSrc="/images/route.png"
         altText={`Full Route Map for ${tour.title}`}
       />
-
-      
     </div>
   );
 }

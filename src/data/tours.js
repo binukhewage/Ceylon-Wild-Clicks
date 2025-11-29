@@ -182,7 +182,7 @@ export const tours = [
     intro:
       "Track Sri Lanka’s apex predator across its four major habitats: Wilpattu, Horton Plains, Kumana, and Yala. Includes 10 safari opportunities with expert leopard trackers.",
     images: [
-      "/images/leps.jpg",
+      "/images/willep.jpg",
       "/images/kumana1.jpg",
       "/images/minneriya1.jpg",
     ],

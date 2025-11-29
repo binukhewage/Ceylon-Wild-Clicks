@@ -111,7 +111,7 @@ const Home = () => {
       {
         id: 2,
         name: "Horton Plains",
-        image: "/images/hp.jpg",
+        image: "/images/hpdeer.jpeg",
         description: "Famous for World's End and rich biodiversity",
         link: "/destinations/horton-plains",
       },
@@ -300,7 +300,7 @@ const Home = () => {
             <h1 className="font-bebas text-5xl md:text-6xl lg:text-7xl text-white tracking-tight leading-tight mb-4">
               CEYLON{" "}
               <span className="font-extrabold text-earth-green">
-                WILD CLICKS
+                WILD ESCAPES
               </span>
             </h1>
             <motion.p

@@ -299,7 +299,7 @@ const TourCard = ({
              text-sm px-4 py-3 rounded-md uppercase tracking-wide"
           >
             <button className="w-full flex items-center justify-center gap-2  bg-earth-green text-white rounded-lg hover:bg-earth-green/90 transition cursor-pointer">
-              Details
+              View
               <span className="inline-block animate-bounce-x">→</span>
             </button>
           </Link>

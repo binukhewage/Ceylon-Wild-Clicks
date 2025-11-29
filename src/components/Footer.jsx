@@ -80,7 +80,7 @@ const Footer = () => {
         <div className="space-y-5">
           <h3 className="text-white font-bebas text-2xl tracking-tight">Our Tours</h3>
           <ul className="space-y-3 font-lora">
-            {["Northern Trail", "Southern Trail", "Custom Tours"].map((tour) => (
+            {[ "Kurulu Trail", "Pulli Trail", "Urumaya Trail", "Northern Trail", "Southern Trail"].map((tour) => (
               <li key={tour}>
                 <a href="#" className="text-gray-400 hover:text-emerald-400 transition-colors duration-300 text-sm flex items-center gap-2 group">
                   <span className="w-1 h-1 bg-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity"></span>
