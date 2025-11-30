@@ -296,7 +296,7 @@ const Home = () => {
         </div>
 
         {/* 2. Main Content (Left Aligned) */}
-        <div className="absolute inset-0 flex flex-col justify-center px-6 md:px-16 lg:px-24 z-10 pb-32">
+        <div className="absolute inset-0 flex flex-col justify-center px-6 md:px-16 lg:px-24 z-10 py-32 ">
           <motion.div
             className="max-w-3xl"
             initial={{ opacity: 0, x: -50 }}
@@ -346,55 +346,7 @@ const Home = () => {
               </Link>
             </div>
           </motion.div>
-        </div>
-
-        {/* 3. Bottom Information Bar (Floating Cards) */}
-        <div className="absolute bottom-0 left-0 right-0 z-20 flex flex-col md:flex-row items-stretch">
-          
-          {/* Card 1: Hours (Dark Green BG) */}
-          <div className="bg-[#1c2e22] text-white p-6 md:w-1/3 flex items-center relative overflow-hidden border-r border-white/5">
-            <div className="flex items-center gap-6 px-4 md:px-12 w-full">
-              <div className="p-3 rounded-full border-2 border-[#4a7c59] text-[#4a7c59]">
-                <FaClock size={24} />
-              </div>
-              <div>
-                <h3 className="font-bebas text-2xl mb-1 tracking-wide">Tour Hours</h3>
-                <p className="text-gray-400 text-sm font-montserrat">05:30 AM - 06:30 PM</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Card 2: What's On (White BG) */}
-          <div className="bg-white text-gray-900 p-6 md:w-1/3 flex items-center gap-4 group cursor-pointer transition-colors hover:bg-gray-50">
-            <div className="flex items-center gap-6 px-4 md:px-12 w-full">
-              <div className="p-3 rounded-full border-2 border-[#4a7c59] text-[#4a7c59]">
-                <FaCalendarAlt size={24} />
-              </div>
-              <div>
-                <h3 className="font-bebas text-2xl font-bold mb-1 tracking-wide">Upcoming Tours</h3>
-                <div className="flex items-center text-[#4a7c59] text-xs font-bold uppercase tracking-widest font-montserrat">
-                  See Schedule <FaArrowRight size={14} className="ml-2 group-hover:translate-x-1 transition-transform"/>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Card 3: Donate/Act (White BG) */}
-          <div className="bg-white text-gray-900 p-6 md:w-1/3 flex items-center gap-4 border-l border-gray-100 group cursor-pointer transition-colors hover:bg-gray-50">
-            <div className="flex items-center gap-6 px-4 md:px-12 w-full">
-              <div className="p-3 rounded-full border-2 border-[#4a7c59] text-[#4a7c59]">
-                <FaHeart size={24} />
-              </div>
-              <div>
-                <h3 className="font-bebas text-2xl font-bold mb-1 tracking-wide">Conservation</h3>
-                <div className="flex items-center text-[#4a7c59] text-xs font-bold uppercase tracking-widest font-montserrat">
-                  Act For The Wild <FaArrowRight size={14} className="ml-2 group-hover:translate-x-1 transition-transform"/>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
+        </div> 
       </div>
       {/* --- END HERO SECTION --- */}
 
