@@ -16,6 +16,10 @@ import {
   FaInstagram,
   FaFacebook,
   FaTwitter,
+  FaClock,       // Added for Hero
+  FaCalendarAlt, // Added for Hero
+  FaHeart,       // Added for Hero
+  FaArrowRight,  // Added for Hero
 } from "react-icons/fa";
 import { Bebas_Neue, Lora, Montserrat, Kolker_Brush } from "next/font/google";
 
@@ -37,7 +41,7 @@ const montserrat = Montserrat({
 
 const kolker = Kolker_Brush({
   subsets: ["latin"],
-  weight: "400",          
+  weight: "400",
   variable: "--font-kolker",
 });
 
@@ -265,9 +269,10 @@ const Home = () => {
         }
       `}</style>
 
-      {/* Hero Carousel Section */}
-      <div className="relative h-screen  w-full overflow-hidden bg-black">
-        {/* Slides */}
+      {/* --- NEW HERO SECTION (ZOOSFERA STYLE) --- */}
+      <div className="relative h-screen w-full overflow-hidden bg-[#131f14]">
+        
+        {/* 1. Video Background */}
         <div className="relative h-full w-full">
           {slides.map((slide, index) => (
             <div
@@ -284,84 +289,114 @@ const Home = () => {
                 playsInline
                 className="w-full h-full object-cover"
               />
-              {/* Premium Multi-layer Overlay */}
-                <div className="absolute inset-0 bg-black/40" />  
+              {/* Gradient: Dark on left, transparent on right to let video show */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/40 to-transparent" />
             </div>
           ))}
         </div>
 
-        {/* Content */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 z-10">
+        {/* 2. Main Content (Left Aligned) */}
+        <div className="absolute inset-0 flex flex-col justify-center px-6 md:px-16 lg:px-24 z-10 pb-32">
           <motion.div
-            className="max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            className="max-w-3xl"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="mb-6">
-              <span className="font-bebas text-xs uppercase tracking-[0.3em] text-earth-green">
-                Wildlife Photography & Tours
+             <div className="mb-4">
+              <span className="font-montserrat text-xs uppercase tracking-[0.3em] text-earth-green">
+                Journey Beyond The Map
               </span>
             </div>
-            <h1 
-            
-            className="font-kolker text-5xl md:text-6xl lg:text-7xl text-white tracking-tight leading-tight mb-4">
-              CEYLON{" "}
-              <span className="font-extrabold text-earth-green">
-                WILD ESCAPES
+
+            {/* Title with Hollow Effect */}
+            <h1 className="font-bebas text-7xl md:text-8xl lg:text-9xl tracking-wide mb-2 leading-none">
+              <span 
+                className="text-transparent"
+                style={{ WebkitTextStroke: '2px white' }} 
+              >
+                CEYLON
               </span>
             </h1>
-            <motion.p
-              className="font-lora text-lg md:text-xl text-gray-300 mt-6 max-w-2xl mx-auto leading-relaxed"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-            >
-              Immersive wildlife experiences in Sri Lanka's most breathtaking
-              natural habitats
-            </motion.p>
-          </motion.div>
 
-          <motion.div
-            className="flex gap-4 mt-10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-          >
-            <Link
-              href="/tours"
-              className="text-white font-medium py-3 px-8 rounded-sm shadow-lg transition-all text-sm tracking-wide uppercase"
-              style={{
-                background: "linear-gradient(to right, #4a7c59, #8a9b68)",
-              }}
-            >
-              Explore Tours
-            </Link>
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight font-bebas">
+              WILD <span className="text-earth-green">ESCAPES</span>
+            </h2>
 
-            <Link
-              href="/gallery"
-              className="border border-white/30 hover:border-earth-green text-white hover:text-earth-green py-3 px-8 rounded-sm transition-all text-sm tracking-wide uppercase"
-            >
-              View Gallery
-            </Link>
+            {/* Description */}
+            <p className="font-lora text-gray-300 text-base md:text-lg max-w-xl mb-10 leading-relaxed border-l-2 border-[#4a7c59] pl-6">
+              Discover immersive wildlife experiences in Sri Lanka's most breathtaking natural habitats. 
+              Join us for a journey through the untouched wilderness.
+            </p>
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/contact"
+                className="bg-[#4a7c59] hover:bg-[ #6b8e23] text-white font-montserrat font-bold py-4 px-10 rounded-sm shadow-lg transition-all uppercase tracking-widest text-xs"
+              >
+                Contact Me
+              </Link>
+              
+              <Link
+                 href="/gallery"
+                className="border border-white/30 hover:border-[ #6b8e23] text-white hover:text-[ #6b8e23] font-montserrat font-bold py-4 px-10 rounded-sm transition-all uppercase tracking-widest text-xs"
+              >
+                View Gallery
+              </Link>
+            </div>
           </motion.div>
         </div>
 
-        {/* Navigation dots */}
-        <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-2 z-10">
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === currentSlide
-                  ? "bg-earth-green w-6"
-                  : "bg-white/30 w-2"
-              }`}
-            />
-          ))}
+        {/* 3. Bottom Information Bar (Floating Cards) */}
+        <div className="absolute bottom-0 left-0 right-0 z-20 flex flex-col md:flex-row items-stretch">
+          
+          {/* Card 1: Hours (Dark Green BG) */}
+          <div className="bg-[#1c2e22] text-white p-6 md:w-1/3 flex items-center relative overflow-hidden border-r border-white/5">
+            <div className="flex items-center gap-6 px-4 md:px-12 w-full">
+              <div className="p-3 rounded-full border-2 border-[#4a7c59] text-[#4a7c59]">
+                <FaClock size={24} />
+              </div>
+              <div>
+                <h3 className="font-bebas text-2xl mb-1 tracking-wide">Tour Hours</h3>
+                <p className="text-gray-400 text-sm font-montserrat">05:30 AM - 06:30 PM</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2: What's On (White BG) */}
+          <div className="bg-white text-gray-900 p-6 md:w-1/3 flex items-center gap-4 group cursor-pointer transition-colors hover:bg-gray-50">
+            <div className="flex items-center gap-6 px-4 md:px-12 w-full">
+              <div className="p-3 rounded-full border-2 border-[#4a7c59] text-[#4a7c59]">
+                <FaCalendarAlt size={24} />
+              </div>
+              <div>
+                <h3 className="font-bebas text-2xl font-bold mb-1 tracking-wide">Upcoming Tours</h3>
+                <div className="flex items-center text-[#4a7c59] text-xs font-bold uppercase tracking-widest font-montserrat">
+                  See Schedule <FaArrowRight size={14} className="ml-2 group-hover:translate-x-1 transition-transform"/>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 3: Donate/Act (White BG) */}
+          <div className="bg-white text-gray-900 p-6 md:w-1/3 flex items-center gap-4 border-l border-gray-100 group cursor-pointer transition-colors hover:bg-gray-50">
+            <div className="flex items-center gap-6 px-4 md:px-12 w-full">
+              <div className="p-3 rounded-full border-2 border-[#4a7c59] text-[#4a7c59]">
+                <FaHeart size={24} />
+              </div>
+              <div>
+                <h3 className="font-bebas text-2xl font-bold mb-1 tracking-wide">Conservation</h3>
+                <div className="flex items-center text-[#4a7c59] text-xs font-bold uppercase tracking-widest font-montserrat">
+                  Act For The Wild <FaArrowRight size={14} className="ml-2 group-hover:translate-x-1 transition-transform"/>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
+      {/* --- END HERO SECTION --- */}
 
       {/* Meet the Team Section */}
       <div className="relative bg-black py-24 px-6 lg:px-8 overflow-hidden">
