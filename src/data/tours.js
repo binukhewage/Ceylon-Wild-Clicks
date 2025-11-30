@@ -15,16 +15,16 @@ export const tours = [
       "A deep dive into Sri Lanka’s richest biodiversity hotspots including Sinharaja, Kumana, Gal Oya, and Horton Plains. A perfect expedition for endemic bird watchers and nature photographers.",
     images: [
       "/images/kumana.jpg",
-      "/images/kumanalep.jpg",
+      "/images/sinharaja-d.webp",
       "/images/kumana.jpg",
     ],
     galleryImages: [
       "/images/kumana.jpg",
-      "/images/kumanalep.jpg",
-      "/images/kumana.jpg",
-      "/images/kumana.jpg",
-      "/images/kumanalep.jpg",
-      "/images/kumana.jpg",
+      "/images/hp-d.jpeg",
+      "/images/yala-d.jpg",
+      "/images/hp.jpg",
+      "/images/elewater.jpg",
+      "/images/we.jpg",
     ],
     highlights: [
       "Sinharaja Endemic Birds",
@@ -167,6 +167,12 @@ export const tours = [
       "Exclusive Gal Oya boat safari",
       "All transportation & transfers",
     ],
+    destinations: [
+      "Sinharaja Rain Forest Reserve ",
+      "Kumana National Park",
+      "Nilgala Forest Reserve",
+      "Horton Plains",
+    ],
   },
 
   // ======================================================
@@ -196,7 +202,7 @@ export const tours = [
     ],
     highlights: [
       "10 Leopard Safaris",
-      "Wilpattu Dry Forest Ecosystems",
+      "Wilpattu Dry Forest ",
       "Kumana Coastal Wetlands",
       "Yala Leopard Territories",
       "Horton Plains Cloud Forests",
@@ -298,6 +304,12 @@ export const tours = [
       "All park entrance fees and jeep fees",
       "Expert leopard trackers & licensed guides",
       "All transportation & transfers",
+    ],
+    destinations: [
+      "Sinharaja Rain Forest Reserve ",
+      "Kumana National Park",
+      "Nilgala Forest Reserve",
+      "Horton Plains",
     ],
 
     exclusions: ["Extra beverages", "Tips", "Personal items not listed"],
@@ -447,6 +459,12 @@ export const tours = [
       "City Tours (Kandy, Colombo, Galle)",
       "All transportation & transfers",
     ],
+    destinations: [
+      "Sinharaja Rain Forest Reserve ",
+      "Kumana National Park",
+      "Nilgala Forest Reserve",
+      "Horton Plains",
+    ],
   },
 
   // ======================================================
@@ -516,6 +534,12 @@ export const tours = [
       "Park Fees",
       "Transportation",
     ],
+    destinations: [
+      "Sinharaja Rain Forest Reserve ",
+      "Kumana National Park",
+      "Nilgala Forest Reserve",
+      "Horton Plains",
+    ],
   },
 
   // ======================================================
@@ -584,6 +608,12 @@ export const tours = [
       "All Meals",
       "Park Fees",
       "Transportation",
+    ],
+    destinations: [
+      "Sinharaja Rain Forest Reserve ",
+      "Kumana National Park",
+      "Nilgala Forest Reserve",
+      "Horton Plains",
     ],
   },
 ];

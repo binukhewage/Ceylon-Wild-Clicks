@@ -15,6 +15,8 @@ import {
   FaTimes,
   FaUsers,
   FaChevronRight,
+  FaExpand,
+  FaHotel
 } from "react-icons/fa"; // Added FaTimes
 import { Bebas_Neue, Lora, Montserrat } from "next/font/google";
 
@@ -299,6 +301,21 @@ export default function TourDetails(props) {
                       </div>
                     ))}
                   </div>
+                  <h4 className="font-montserrat text-md uppercase tracking-wider text-earth-green mt-5 mb-2">
+                    wildlife destinations
+                  </h4>
+                  <div className="grid grid-cols-2 gap-2">
+                    {tour.destinations.map((destination, i) => (
+                      <div key={i} className="flex items-start">
+                        <div
+                          className={`w-1.5 h-1.5 mt-1.5 mr-2 rounded-full flex-shrink-0  bg-earth-green`}
+                        ></div>
+                        <span className="font-lora text-gray-300 text-sm">
+                          {destination}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -374,66 +391,53 @@ export default function TourDetails(props) {
             </p>
           </motion.div>
 
-          {/* Itinerary Parts */}
-          {tour.parts?.map((part, partIndex) => (
-            <motion.div
-              key={partIndex}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: partIndex * 0.1 }}
-              viewport={{ once: true }}
-              className="mb-12"
-            >
-              <div
-                className={`premium-card bg-[#0D0D0C] rounded-lg overflow-hidden p-8`}
-              >
-                <h3 className={`font-bebas text-3xl mb-6 ${themeColorClass}`}>
-                  {part.name}
-                </h3>
+          {/* Itinerary Column */}
+                <div className="lg:col-span-8 ">
+                    <div className="space-y-6">
+                        {tour.parts?.map((part, partIndex) => (
+                        <div key={partIndex} className="relative">
+                            {part.name && (
+                            <h4 className="font-bebas text-2xl text-white/60 py-8 pl-6 tracking-wider">{part.name}</h4>
+                            )}
 
-                <div className="space-y-4">
-                  {part.days.map((day, dayIndex) => (
-                    <motion.div
-                      key={dayIndex}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4, delay: dayIndex * 0.05 }}
-                      viewport={{ once: true }}
-                      className="flex items-start border-l-2 border-earth-green/50 pl-4 py-3 hover:bg-gray-900/30 rounded-r-lg transition-colors"
-                    >
-                      <div
-                        className={`p-2 rounded-sm mr-4 mt-0.5 min-w-[50px] text-center bg-earth-green/10`}
-                      >
-                        <span
-                          className={`font-bebas text-sm ${themeColorClass}`}
-                        >
-                          {day.day.replace("Day ", "D")}
-                        </span>
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex items-center mb-1">
-                          <FaMapMarkerAlt
-                            className={`mr-2 text-xs ${themeColorClass}`}
-                          />
-                          <p className="font-montserrat text-white text-md font-semibold">
-                            {day.destination}
-                          </p>
+                            <div className="space-y-4 relative before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[2px] before:bg-gradient-to-b before:from-[#4a7c59] before:to-transparent before:opacity-30">
+                                {part.days.map((day, dayIndex) => (
+                                <motion.div
+                                    key={dayIndex}
+                                    initial={{ opacity: 0, x: -20 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    className="group relative pl-8"
+                                >
+                                    {/* Timeline Node */}
+                                    <div className="absolute left-[-4px] top-5 w-3 h-3 rounded-full bg-[#111] border-2 border-[#4a7c59] group-hover:bg-[#4a7c59] group-hover:shadow-[0_0_10px_#4a7c59] transition-all z-10"></div>
+                                    
+                                    <div className="bg-[#111]/80 backdrop-blur-md border border-white/5 rounded-xl p-5 hover:border-[#4a7c59]/30 transition-all hover:translate-x-2">
+                                        <div className="flex flex-col sm:flex-row sm:items-baseline gap-3 mb-2">
+                                            <span className="font-montserrat text-[#4a7c59] text-[10px] font-bold uppercase tracking-widest border border-[#4a7c59]/20 px-2 py-0.5 rounded-full bg-[#4a7c59]/5">
+                                            {day.day}
+                                            </span>
+                                            <span className="font-bebas text-xl text-white">
+                                            {day.destination}
+                                            </span>
+                                        </div>
+                                        <p className="font-lora text-gray-400 text-sm leading-relaxed pl-1">
+                                            {day.activities}
+                                        </p>
+                                        {day.accommodation && (
+                                            <div className="mt-3 flex items-center gap-2 text-[10px] font-montserrat text-white/50 uppercase tracking-wider pl-1">
+                                            <FaHotel className="text-[#4a7c59] text-[9px]" />
+                                            {day.accommodation}
+                                            </div>
+                                        )}
+                                    </div>
+                                </motion.div>
+                                ))}
+                            </div>
                         </div>
-                        {day.accommodation && (
-                          <p className="font-montserrat text-earth-green-light text-xs mb-4">
-                            {day.accommodation}
-                          </p>
-                        )}
-                        <p className="font-lora text-gray-400 text-sm">
-                          {day.activities}
-                        </p>
-                      </div>
-                    </motion.div>
-                  ))}
+                        ))}
+                    </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
 
           {/* --- WHAT TO SEE GALLERY (NEW SECTION) --- */}
           <div className="mt-20 mb-16 text-center">
