@@ -176,7 +176,7 @@ const DestinationsPage = () => {
       `}</style>
 
       {/* Hero Section - Unchanged */}
-      <div className="relative h-96 w-full overflow-hidden bg-black">
+      <div className="relative h-[50vh] w-full overflow-hidden bg-black">
         <div className="absolute inset-0 wildlife-texture"></div>
         <div className="absolute inset-0">
           <Image
@@ -191,12 +191,16 @@ const DestinationsPage = () => {
 
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
           <motion.h1
-            className="font-bebas text-5xl md:text-6xl mb-4"
+            style={{ fontFamily: "var(--font-bebas)" }}
+            className="font-bebas text-5xl md:text-7xl mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            TOUR <span className="text-earth-green">DESTINATIONS</span>
+            TOUR{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4a7c59] to-[#8fbc9d]">
+              DESTINATIONS
+            </span>
           </motion.h1>
           <motion.p
             className="font-lora text-lg max-w-2xl text-gray-200"
@@ -211,99 +215,114 @@ const DestinationsPage = () => {
       </div>
 
       {/* Premium Destinations Grid - Updated with Futuristic Luxury Layout */}
-<div className="relative bg-black py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
-  
-  {/* Ambient Background Glow (Right) */}
-  <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-[#4a7c59] rounded-md mix-blend-screen filter blur-[200px] opacity-10 pointer-events-none translate-x-1/2"></div>
+      <div className="relative bg-black pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        {/* Ambient Background Glow (Right) */}
+        <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-[#4a7c59] rounded-md mix-blend-screen filter blur-[200px] opacity-10 pointer-events-none translate-x-1/2"></div>
 
-  <div className="max-w-7xl mx-auto relative z-10">
-    
-    {/* Destinations Grid */}
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-      {destinations.map((destination, index) => (
-        <motion.div
-          key={destination.id}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: index * 0.1 }}
-          viewport={{ once: true, margin: "-50px" }}
-          className="group relative bg-[#111]/80 backdrop-blur-xl border border-white/10 rounded-md overflow-hidden hover:border-[#4a7c59]/50 transition-all duration-500 hover:shadow-2xl hover:shadow-[#4a7c59]/10"
-        >
-          {/* 1. Image Section */}
-          <div className="relative h-[350px] w-full overflow-hidden">
-            <Image
-              src={destination.images[0]}
-              alt={destination.name}
-              fill
-              className="object-cover transition-transform duration-1000 group-hover:scale-110"
-            />
-            {/* Gradient Overlay for Text Readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D0C] via-transparent to-transparent opacity-90" />
-            
-            
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Destinations Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            {destinations.map((destination, index) => (
+              <motion.div
+                key={destination.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                className="group relative bg-[#111]/80 backdrop-blur-xl border border-white/10 rounded-md overflow-hidden hover:border-[#4a7c59]/50 transition-all duration-500 hover:shadow-2xl hover:shadow-[#4a7c59]/10"
+              >
+                {/* 1. Image Section */}
+                <div className="relative h-[350px] w-full overflow-hidden">
+                  <Image
+                    src={destination.images[0]}
+                    alt={destination.name}
+                    fill
+                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                  />
+                  {/* Gradient Overlay for Text Readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D0C] via-transparent to-transparent opacity-90" />
+                </div>
+
+                {/* 2. Content Section (Overlapping Image) */}
+                <div className="relative p-8 -mt-20 z-10">
+                  {/* Title Header */}
+                  <div className="flex justify-between items-end mb-6">
+                    <h3 className="font-bold text-2xl md:text-3xl text-white leading-none transition-colors duration-300">
+                      {destination.name}
+                    </h3>
+                  </div>
+
+                  {/* Description */}
+                  <p className="font-lora text-gray-300 text-sm leading-relaxed mb-8">
+                    {destination.description}
+                  </p>
+
+                  {/* HUD Stats Grid (Replaced old gray boxes with Glass) */}
+                  <div className="grid grid-cols-3 gap-3 mb-8">
+                    <div className="bg-white/5 border border-white/5 rounded-md p-3 text-center group-hover:bg-white/10 transition-colors">
+                      <span className="block font-montserrat text-md text-[#4a7c59] uppercase tracking-widest mb-1">
+                        Area
+                      </span>
+                      <span className="block font-bebas text-lg text-white tracking-wide">
+                        {destination.stats.area}
+                      </span>
+                    </div>
+                    <div className="bg-white/5 border border-white/5 rounded-md p-3 text-center group-hover:bg-white/10 transition-colors">
+                      <span className="block font-montserrat text-md text-[#4a7c59] uppercase tracking-widest mb-1">
+                        Year
+                      </span>
+                      <span className="block font-bebas text-lg text-white tracking-wide">
+                        {destination.stats.established}
+                      </span>
+                    </div>
+                    <div className="bg-white/5 border border-white/5 rounded-md p-3 text-center group-hover:bg-white/10 transition-colors">
+                      <span className="block font-montserrat text-md text-[#4a7c59] uppercase tracking-widest mb-1">
+                        Wildlife
+                      </span>
+                      <span className="block font-bebas text-lg text-white tracking-wide">
+                        30+ Species
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Highlights (Compact Pills) */}
+                  <div className="mb-8">
+                    <div className="flex items-center gap-2 mb-3">
+                      <FaLayerGroup className="text-[#4a7c59] text-xs" />
+                      <span className="font-montserrat text-[10px] uppercase tracking-[0.2em] text-white/60">
+                        Key Features
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2">
+                      {destination.highlights
+                        .slice(0, 4)
+                        .map((highlight, i) => (
+                          <span
+                            key={i}
+                            className="px-3 py-1 text-[11px] font-lora text-gray-400"
+                          >
+                            <span>- </span>
+                            {highlight}
+                          </span>
+                        ))}
+                    </div>
+                  </div>
+
+                  {/* CTA Button (Sleek Glass Outline) */}
+                  <Link href={`/destinations/${destination.id}`}>
+                    <button className="w-full py-4 rounded-md border border-white/10 hover:border-[#4a7c59] bg-[#4a7c59] hover:bg-[#4a7c59]/10 text-center transition-all duration-300 group/btn">
+                      <span className="font-montserrat text-[10px] uppercase tracking-[0.25em] text-white group-hover/btn:text-[#4a7c59] flex items-center justify-center gap-2">
+                        Explore Reserve{" "}
+                        <FaChevronRight className="text-[8px]" />
+                      </span>
+                    </button>
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
           </div>
-
-          {/* 2. Content Section (Overlapping Image) */}
-          <div className="relative p-8 -mt-20 z-10">
-            
-            {/* Title Header */}
-            <div className="flex justify-between items-end mb-6">
-              <h3 className="font-kolker text-3xl md:text-4xl text-white leading-none transition-colors duration-300">
-                {destination.name}
-              </h3>
-            </div>
-
-            {/* Description */}
-            <p className="font-lora text-gray-300 text-sm leading-relaxed mb-8">
-              {destination.description}
-            </p>
-
-            {/* HUD Stats Grid (Replaced old gray boxes with Glass) */}
-            <div className="grid grid-cols-3 gap-3 mb-8">
-               <div className="bg-white/5 border border-white/5 rounded-md p-3 text-center group-hover:bg-white/10 transition-colors">
-                  <span className="block font-montserrat text-md text-[#4a7c59] uppercase tracking-widest mb-1">Area</span>
-                  <span className="block font-bebas text-lg text-white tracking-wide">{destination.stats.area}</span>
-               </div>
-               <div className="bg-white/5 border border-white/5 rounded-md p-3 text-center group-hover:bg-white/10 transition-colors">
-                  <span className="block font-montserrat text-md text-[#4a7c59] uppercase tracking-widest mb-1">Year</span>
-                  <span className="block font-bebas text-lg text-white tracking-wide">{destination.stats.established}</span>
-               </div>
-               <div className="bg-white/5 border border-white/5 rounded-md p-3 text-center group-hover:bg-white/10 transition-colors">
-                  <span className="block font-montserrat text-md text-[#4a7c59] uppercase tracking-widest mb-1">Wildlife</span>
-                  <span className="block font-bebas text-lg text-white tracking-wide">30+ Species</span>
-               </div>
-            </div>
-
-            {/* Highlights (Compact Pills) */}
-            <div className="mb-8">
-              <div className="flex items-center gap-2 mb-3">
-                 <FaLayerGroup className="text-[#4a7c59] text-xs" />
-                 <span className="font-montserrat text-[10px] uppercase tracking-[0.2em] text-white/60">Key Features</span>
-              </div>
-              <div className="grid grid-cols-2 gap-2">
-                 {destination.highlights.slice(0,4).map((highlight, i) => (
-                   <span key={i} className="px-3 py-1 text-[11px] font-lora text-gray-400">
-                     <span>- </span>{highlight}
-                   </span>
-                 ))}
-              </div>
-            </div>
-
-            {/* CTA Button (Sleek Glass Outline) */}
-            <Link href={`/destinations/${destination.id}`}>
-              <button className="w-full py-4 rounded-md border border-white/10 hover:border-[#4a7c59] bg-[#4a7c59] hover:bg-[#4a7c59]/10 text-center transition-all duration-300 group/btn">
-                <span className="font-montserrat text-[10px] uppercase tracking-[0.25em] text-white group-hover/btn:text-[#4a7c59] flex items-center justify-center gap-2">
-                   Explore Reserve <FaChevronRight className="text-[8px]" />
-                </span>
-              </button>
-            </Link>
-
-          </div>
-        </motion.div>
-      ))}
-    </div>
-  </div>
-</div>
+        </div>
+      </div>
     </div>
   );
 };

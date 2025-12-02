@@ -31,12 +31,6 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navRef = useRef(null);
 
-  // Colors
-  const colors = {
-    primary: "#8c8c69",
-    border: "#181818",
-  };
-
   useEffect(() => {
     if (typeof window !== "undefined") {
       setActivePath(window.location.pathname);
@@ -85,8 +79,6 @@ const Navbar = () => {
           : "bg-transparent border-b border-transparent"
       }`}
     >
-      <div className="hidden bg-[#8c8c69] hover:bg-[#727253] text-[#8c8c69] bg-white/5 font-montserrat font-bebas font-lora"></div>
-
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex justify-between items-center h-24">
           {/* Logo */}
@@ -115,18 +107,20 @@ const Navbar = () => {
                   key={item.name}
                   href={item.path}
                   onClick={() => setActivePath(item.path)}
-                  className="px-4 py-2 relative h-full flex items-center transition-colors duration-300"
+                  className="px-4 py-2 relative h-full flex items-center group"
                 >
-                  <motion.span
-                    className={`font-montserrat text-xs tracking-widest font-medium relative uppercase ${
-                      isActive ? "text-white" : "text-white"
-                    } hover:text-[#4a7c59]`}
+                  <span
+                    className={`font-montserrat text-[11px] tracking-[0.2em] font-bold relative uppercase transition-colors duration-300 ${
+                      isActive ? "text-[#4a7c59]" : "text-white/80 group-hover:text-white"
+                    }`}
                   >
                     {item.name}
+                    
+                    {/* Updated Active State: Glowing Underline */}
                     {isActive && (
                       <motion.span
-                        layoutId="activePill"
-                        className="absolute inset-0 bg-white/5 rounded-full -m-1 -z-10 mix-blend-lighten"
+                        layoutId="activeIndicator"
+                        className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#4a7c59] shadow-[0_0_10px_#4a7c59]"
                         transition={{
                           type: "spring",
                           stiffness: 300,
@@ -134,7 +128,7 @@ const Navbar = () => {
                         }}
                       />
                     )}
-                  </motion.span>
+                  </span>
                 </Link>
               );
             })}
@@ -148,12 +142,13 @@ const Navbar = () => {
           >
             <Link
               href="/booking"
-              className="font-montserrat flex items-center space-x-2 text-white px-5 py-3 rounded-sm shadow-xl transition-all duration-300 text-sm tracking-widest uppercase"
+              className="font-montserrat flex items-center space-x-2 text-white px-5 py-3 rounded-md shadow-xl transition-all duration-300 text-[12px] tracking-widest uppercase border border-white/10 hover:border-[#4a7c59]"
               style={{
-                background: "linear-gradient(to right, #4a7c59, #8a9b68)",
+                background: "linear-gradient(135deg, rgba(74,124,89,0.8) 0%, rgba(74,124,89,0.4) 100%)",
+                backdropFilter: "blur(10px)"
               }}
             >
-              <FaSafari className="text-base" />
+              <FaSafari className="text-md" />
               <span>BOOK TOUR</span>
             </Link>
           </motion.div>
@@ -209,9 +204,9 @@ const Navbar = () => {
                 >
                   <Link
                     href={item.path}
-                    className={`font-montserrat block py-3 text-xl uppercase tracking-widest transition-colors ${
+                    className={`font-montserrat block py-3 text-xl uppercase tracking-widest transition-colors flex justify-between items-center ${
                       activePath === item.path
-                        ? "text-[#8c8c69] font-bold"
+                        ? "text-[#4a7c59] font-bold"
                         : "text-gray-300 hover:text-white"
                     }`}
                     onClick={() => {
@@ -220,6 +215,9 @@ const Navbar = () => {
                     }}
                   >
                     {item.name}
+                    {activePath === item.path && (
+                       <span className="w-2 h-2 rounded-full bg-[#4a7c59] shadow-[0_0_10px_#4a7c59]"></span>
+                    )}
                   </Link>
                 </motion.div>
               ))}
@@ -232,7 +230,7 @@ const Navbar = () => {
               >
                 <Link
                   href="/booking"
-                  className="font-montserrat flex items-center justify-center space-x-2 text-black font-bold px-6 py-3 rounded-sm text-sm tracking-wide uppercase bg-[#8c8c69] hover:bg-[#727253] transition-colors shadow-lg"
+                  className="font-montserrat flex items-center justify-center space-x-2 text-white font-bold px-6 py-4 rounded-full text-sm tracking-wide uppercase bg-[#4a7c59] hover:bg-[#5d8c6d] transition-colors shadow-lg"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <FaSafari />

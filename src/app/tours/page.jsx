@@ -6,14 +6,10 @@ import {
   FaChevronRight,
   FaClock,
   FaHotel,
-  FaChevronLeft,
   FaSafari,
   FaStar,
-  FaFilter,
   FaSlidersH,
   FaCheck,
-  FaLeaf,
-  FaCamera
 } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bebas_Neue, Lora, Montserrat, Kolker_Brush } from "next/font/google";
@@ -38,7 +34,7 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
 });
 
-// --- 1. NEW STYLE: Badge Component ---
+// --- 1. Badge Component ---
 const TourTypeBadge = ({ type }) => {
   const styles =
     type === "luxury"
@@ -57,7 +53,7 @@ const TourTypeBadge = ({ type }) => {
   );
 };
 
-// --- 2. NEW STYLE: Tour Card Component ---
+// --- 2. UPDATED: Tour Card Component ---
 const TourCard = ({
   tour,
   expandedTour,
@@ -67,6 +63,11 @@ const TourCard = ({
 }) => {
   const flatItinerary = tour.parts?.flatMap((part) => part.days) || [];
 
+  // Helper to split title safely
+  const [mainTitle, subTitle] = tour.title.includes("–") 
+    ? tour.title.split("–") 
+    : [tour.title, null];
+
   return (
     <motion.div
       layout
@@ -74,72 +75,84 @@ const TourCard = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5 }}
-      className="group relative bg-[#111]/60 backdrop-blur-sm border border-white/5 rounded-md overflow-hidden hover:border-[#4a7c59]/40 transition-all duration-500 hover:shadow-2xl hover:shadow-[#4a7c59]/10"
+      className="group relative bg-[#0a0a0a] border border-white/10 rounded-xl overflow-hidden hover:border-[#4a7c59]/50 transition-all duration-500 hover:shadow-2xl hover:shadow-[#4a7c59]/5"
     >
-      {/* Image Section */}
-      <div className="relative h-[300px] w-full overflow-hidden">
+      {/* 1. Image Section with Overlapping Title */}
+      <div className="relative h-72 w-full overflow-hidden">
         <Image
           src={tour.images[0]}
           alt={tour.title}
           fill
-          className="object-cover transition-transform duration-700 group-hover:scale-110"
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent opacity-90" />
         
-        {/* Floating Title on Image */}
-        <div className="absolute bottom-6 left-6 right-6">
-          <h3 className="font-kolker text-2xl text-white leading-none transition-colors duration-300">
-            {tour.title}
+        {/* Gradient Overlay - Darker at bottom for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 transition-opacity duration-500" />
+        
+
+        {/* --- UPDATED: SPLIT TITLE DESIGN --- */}
+        <div className="absolute bottom-0 left-0 w-full p-6 z-10">
+          <h3 className="text-white drop-shadow-lg">
+            {/* Part 1: Main Title (Bebas, Large) */}
+            <span className="block font-bold text-4xl leading-[0.85] group-hover:text-[#4a7c59] transition-colors duration-300">
+              {mainTitle}
+            </span>
+            
+            {/* Part 2: Subtitle (Montserrat, Green, Tracking) */}
+            {subTitle && (
+              <span className="block font-montserrat text-[11px] uppercase tracking-[0.25em] text-[#4a7c59] mt-2 group-hover:text-white transition-colors duration-300 font-bold">
+                {subTitle}
+              </span>
+            )}
           </h3>
-          <div className="flex items-center gap-4 mt-2 text-gray-300">
-            <div className="flex items-center gap-2">
-              <FaClock className="text-[#4a7c59] text-xs" />
-              <span className="font-montserrat text-[10px] uppercase tracking-wider">
-                {tour.duration}
-              </span>
-            </div>
-            <div className="w-[1px] h-3 bg-white/20"></div>
-            <div className="flex items-center gap-2">
-              <FaMapMarkerAlt className="text-[#4a7c59] text-xs" />
-              <span className="font-montserrat text-[10px] uppercase tracking-wider">
-                Sri Lanka
-              </span>
-            </div>
-          </div>
         </div>
       </div>
 
-      {/* Content Section */}
-      <div className="p-8">
-        <p className="text-xs uppercase mb-5">Highlights</p>
-        {/* Highlights Grid */}
-        <div className="grid grid-cols-2 gap-y-3 gap-x-4 mb-6">
+      {/* 2. Content Section */}
+      <div className="px-6 pb-6 pt-2">
+        
+        {/* Meta Data Row */}
+        <div className="flex items-center gap-4 text-gray-400 mb-5">
+          <div className="flex items-center gap-2">
+            <FaClock className="text-[#4a7c59] text-xs" />
+            <span className="font-montserrat text-[10px] uppercase tracking-wider">
+              {tour.duration}
+            </span>
+          </div>
+          <div className="w-[1px] h-3 bg-white/10"></div>
+          <div className="flex items-center gap-2">
+            <FaMapMarkerAlt className="text-[#4a7c59] text-xs" />
+            <span className="font-montserrat text-[10px] uppercase tracking-wider">
+              Sri Lanka
+            </span>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="h-[1px] w-full bg-white/5 mb-5"></div>
+
+        {/* Highlights (Clean List) */}
+        <div className="grid grid-cols-2 gap-y-2 gap-x-4 mb-6">
           {tour.highlights.slice(0, 4).map((highlight, i) => (
-            <div key={i} className="flex items-start gap-2">
-              <div className="w-1 h-1 bg-[#4a7c59] rounded-full mt-2 flex-shrink-0" />
-              <span className="font-lora text-gray-400 text-xs leading-relaxed">
+            <div key={i} className="flex items-center gap-2">
+              <div className="w-1 h-1 bg-[#4a7c59] rounded-full flex-shrink-0" />
+              <span className="font-lora text-gray-400 text-xs truncate">
                 {highlight}
               </span>
             </div>
           ))}
         </div>
 
-        {/* Expandable Drawer */}
-        <div className="border-t border-white/5 pt-4">
+        {/* Expandable Details (Minimalist Button) */}
+        <div className="mb-6">
           <button
             onClick={() => toggleExpand(tour.id)}
-            className="flex items-center justify-between w-full group/btn"
+            className="flex items-center justify-between w-full group/btn py-2 border-y border-white/5 hover:border-white/10 transition-colors"
           >
-            <span className="font-montserrat text-[10px] uppercase tracking-[0.2em] text-white group-hover/btn:text-[#4a7c59] transition-colors">
-              Tour Summary
+            <span className="font-montserrat text-[10px] uppercase tracking-[0.2em] text-gray-400 group-hover/btn:text-white transition-colors">
+              View Summary
             </span>
-            <motion.div
-              animate={{ rotate: expandedTour === tour.id ? 90 : 0 }}
-              transition={{ duration: 0.3 }}
-              className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover/btn:bg-[#4a7c59] group-hover/btn:border-[#4a7c59] transition-all"
-            >
-              <FaChevronRight className="text-white text-xs" />
-            </motion.div>
+            <FaChevronRight className={`text-xs text-[#4a7c59] transition-transform duration-300 ${expandedTour === tour.id ? 'rotate-90' : ''}`} />
           </button>
 
           <AnimatePresence>
@@ -151,39 +164,36 @@ const TourCard = ({
                 transition={{ duration: 0.4, ease: "easeInOut" }}
                 className="overflow-hidden"
               >
-                <div className="pt-6 pb-2">
-                  {/* Tabs */}
-                  <div className="flex gap-6 border-b border-white/5 mb-4">
+                <div className="pt-4 pb-2 bg-white/[0.02] rounded-b-lg -mx-6 px-6 mb-[-1rem]">
+                  {/* Minimal Tabs */}
+                  <div className="ml-4 flex gap-4 border-b border-white/5 mb-4">
                     {['itinerary', 'included'].map((tab) => (
                       <button
                         key={tab}
-                        className={`pb-2 font-montserrat text-[10px] uppercase tracking-widest transition-all relative ${
-                          activeTab === tab ? "text-[#4a7c59]" : "text-gray-500 hover:text-white"
+                        className={`pb-2 font-montserrat text-[9px] uppercase tracking-widest transition-all ${
+                          activeTab === tab ? "text-[#4a7c59] border-b border-[#4a7c59]" : "text-gray-500 hover:text-white"
                         }`}
                         onClick={() => setActiveTab(tab)}
                       >
                         {tab}
-                        {activeTab === tab && (
-                          <motion.div layoutId={`activeTab-${tour.id}`} className="absolute bottom-0 left-0 w-full h-[1px] bg-[#4a7c59]" />
-                        )}
                       </button>
                     ))}
                   </div>
 
-                  {/* Content */}
-                  <div className="bg-white/5 rounded-xl p-4 max-h-60 overflow-y-auto custom-scrollbar">
+                  {/* Tab Content */}
+                  <div className="ml-2 max-h-48 overflow-y-auto custom-scrollbar pr-2">
                     {activeTab === "itinerary" ? (
-                      <div className="space-y-4">
+                      <div className="space-y-3">
                         {flatItinerary.map((item, i) => (
-                          <div key={i} className="flex gap-4">
-                            <span className="font-montserrat text-[#4a7c59] text-xs font-bold w-12 shrink-0">
+                          <div key={i} className="flex gap-3">
+                            <span className="ml-2 font-montserrat text-[#4a7c59] text-[10px] font-bold w-8 shrink-0 pt-0.5">
                               {item.day.replace("Day ", "D")}
                             </span>
                             <div>
-                              <p className="font-montserrat text-white text-[11px] uppercase tracking-wide mb-1">
+                              <p className="font-montserrat text-white text-[10px] uppercase mb-0.5">
                                 {item.destination}
                               </p>
-                              <p className="font-lora text-gray-400 text-xs leading-relaxed">
+                              <p className="font-lora text-gray-500 text-[10px] leading-relaxed">
                                 {item.activities || item.details}
                               </p>
                             </div>
@@ -191,11 +201,11 @@ const TourCard = ({
                         ))}
                       </div>
                     ) : (
-                      <div className="space-y-2">
+                      <div className="space-y-1.5">
                         {tour.inclusions.map((item, i) => (
-                          <div key={i} className="flex items-start gap-3">
-                            <FaCheck className="text-[#4a7c59] text-[10px] mt-1" />
-                            <span className="font-lora text-gray-300 text-xs">{item}</span>
+                          <div key={i} className="flex items-center gap-2">
+                            <FaCheck className="text-[#4a7c59] text-[8px]" />
+                            <span className="font-lora text-gray-400 text-[10px]">{item}</span>
                           </div>
                         ))}
                       </div>
@@ -207,14 +217,14 @@ const TourCard = ({
           </AnimatePresence>
         </div>
 
-        {/* Action Button */}
-        <div className="mt-6">
+        {/* Action Button (Outline Style - Lighter Feel) */}
+        <div className="mt-auto">
           <Link
             href={`/tours/${tour.id}`}
-            className="block w-full py-4 rounded-md border border-white/10 hover:border-[#4a7c59] bg-[#4a7c59] hover:bg-[#4a7c59]/10 text-center transition-all duration-300 group/link"
+            className="block w-full py-3.5 rounded-sm border border-white/10 hover:border-[#4a7c59] bg-[#4a7c59] hover:bg-[#4a7c59]/5 text-center transition-all duration-300 group/link"
           >
             <span className="font-montserrat text-[10px] uppercase tracking-[0.25em] text-white group-hover/link:text-[#4a7c59]">
-              Full Tour Details
+              Full Details
             </span>
           </Link>
         </div>
@@ -283,16 +293,17 @@ const TourPage = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/90" />
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
           <motion.h1
-            className="font-bebas text-4xl md:text-6xl mb-4 tracking-wide"
+            style={{ fontFamily: "var(--font-bebas)" }}
+            className="font-bebas text-4xl md:text-7xl mb-4 tracking-wide"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="text-white">TRAVEL</span>
-            <span className="text-earth-green "> ITENARIES</span>
+            <span className=" text-white">TRAVEL</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4a7c59] to-[#8fbc9d]"> ITENARIES</span>
           </motion.h1>
           <motion.p
-            className="font-lora text-xl max-w-3xl text-gray-200 leading-relaxed"
+            className="font text-lg max-w-3xl text-gray-200 leading-relaxed"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}

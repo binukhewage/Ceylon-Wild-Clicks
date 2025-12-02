@@ -116,21 +116,21 @@ const Home = () => {
         name: "Wilpattu National Park",
         image: "/images/wilpattu-dd.jpg",
         description: "Sri Lanka's largest national park with natural lakes",
-        link: "/destinations/wilpattu",
+        link: "/destinations/1",
       },
       {
         id: 2,
         name: "Horton Plains",
         image: "/images/hp-d.jpeg",
         description: "Famous for World's End and rich biodiversity",
-        link: "/destinations/horton-plains",
+        link: "/destinations/2",
       },
       {
         id: 3,
         name: "Sinharaja Rain Forest",
         image: "/images/sinharaja-d.webp",
         description: "UNESCO World Heritage Site with endemic species",
-        link: "/destinations/sinharaja",
+        link: "/destinations/3",
       },
     ],
     [
@@ -139,21 +139,21 @@ const Home = () => {
         name: "Kumana National Park",
         image: "/images/kumana-d.jpg",
         description: "Known for birdwatching and diverse wildlife",
-        link: "/destinations/kumana",
+        link: "/destinations/4",
       },
       {
         id: 5,
         name: "Yala National Park",
         image: "/images/yala.jpg",
         description: "Home to the highest density of leopards in the world",
-        link: "/destinations/yala",
+        link: "/destinations/5",
       },
       {
         id: 6,
         name: "Minneriya National Park",
         image: "/images/minneriya.jpg",
         description: "Famous for the elephant gathering during dry season",
-        link: "/destinations/minneriya",
+        link: "/destinations/6",
       },
     ],
   ];
@@ -293,14 +293,16 @@ const Home = () => {
             {/* Title */}
             <h1 className="font-bebas text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-wide mb-2 leading-none">
               <span
+                
                 className="text-transparent"
-                style={{ WebkitTextStroke: "2px white" }}
+                style={{ WebkitTextStroke: "2px white" , fontFamily: "var(--font-bebas)" }}
               >
                 CEYLON
               </span>
             </h1>
 
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight font-bebas">
+            <h2 
+            className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight font-bebas">
               WILD <span className="text-earth-green">ESCAPES</span>
             </h2>
 
@@ -314,10 +316,10 @@ const Home = () => {
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                href="/contact"
+                href="/toours"
                 className="bg-[#4a7c59] hover:bg-[#6b8e23] text-white font-montserrat font-bold py-3 md:py-4 px-8 md:px-10 rounded-sm shadow-lg transition-all uppercase tracking-widest text-[10px] md:text-xs text-center"
               >
-                Contact Me
+                Tours
               </Link>
 
               <Link
@@ -388,6 +390,7 @@ const Home = () => {
               </span>
             </motion.div>
             <motion.h2
+              
               className="font-kolker text-4xl sm:text-5xl text-white leading-[0.85] my-4"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -659,7 +662,7 @@ const Home = () => {
                           <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D0C] via-transparent to-transparent opacity-90" />
                         </div>
                         <div className="relative p-6 md:p-8 -mt-16 md:-mt-20">
-                          <h3 className="font-kolker text-3xl md:text-4xl text-white mb-2 leading-none group-hover:text-earth-green transition-colors">
+                          <h3 className="font-bold text-3xl md:text-3xl text-white mb-2 leading-none group-hover:text-earth-green transition-colors">
                             {destination.name}
                           </h3>
                           <p className="font-lora text-sm text-gray-400 mb-6 leading-relaxed line-clamp-3">

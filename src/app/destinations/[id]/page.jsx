@@ -104,6 +104,7 @@ export default function DestinationPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/90" />
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
           <motion.h1
+            style={{ fontFamily: "var(--font-bebas)" }}
             className="font-bebas text-5xl md:text-6xl mb-4 text-white"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -142,12 +143,12 @@ export default function DestinationPage() {
               </Link>
               {/* About */}
               <motion.div
-                className="premium-card bg-[#0D0D0C] rounded-lg p-8"
+                className="premium-card bg-[#111]/80 border border-white/10 rounded-lg p-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7 }}
               >
-                <h2 className="font-bebas text-3xl text-white mb-6">
+                <h2 className="font-bebas text-3xl text-white/80 mb-6">
                   ABOUT {destination.shortName}
                 </h2>
 
@@ -170,10 +171,10 @@ export default function DestinationPage() {
             </div>
 
             {/* Sidebar */}
-            <div className="space-y-8">
+            <div className="space-y-8 mt-8">
               {/* Location */}
               <motion.div
-                className="premium-card bg-[#0D0D0C] rounded-lg p-6"
+                className="premium-card bg-[#111]/80 border border-white/10 rounded-lg p-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
@@ -197,7 +198,7 @@ export default function DestinationPage() {
 
               {/* Tour Info */}
               <motion.div
-                className="premium-card bg-[#0D0D0C] rounded-lg p-6"
+                className="premium-card bg-[#111]/80 border border-white/10 rounded-lg p-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.4 }}
@@ -244,7 +245,7 @@ export default function DestinationPage() {
           {/* FULL-WIDTH GALLERY */}
           {/* Wildlife */}
           <motion.div
-            className="premium-card bg-[#0D0D0C] rounded-lg p-8"
+            className="mt-5 premium-card bg-[#111]/80 border border-white/10 rounded-lg p-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}

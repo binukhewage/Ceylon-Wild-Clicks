@@ -1,21 +1,22 @@
 "use client";
 import React from 'react';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaPaperPlane, FaInstagram, FaFacebook, FaTwitter, FaSafari, FaUsers } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaPaperPlane, FaInstagram, FaFacebook, FaTwitter, FaUsers, FaArrowRight } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import { Bebas_Neue, Lora, Montserrat } from "next/font/google";
+import { Bebas_Neue, Lora, Montserrat, Kolker_Brush } from "next/font/google";
 import Image from "next/image";
 
+// --- Font Setup ---
 const bebas = Bebas_Neue({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-bebas",
 });
-
-const lora = Lora({
+const kolker = Kolker_Brush({
+  weight: "400",
   subsets: ["latin"],
-  variable: "--font-lora",
+  variable: "--font-kolker",
 });
-
+const lora = Lora({ subsets: ["latin"], variable: "--font-lora" });
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
@@ -40,238 +41,233 @@ const ContactPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: '',
-    });
+    // Add your submission logic here
   };
 
   return (
-    <div className={`${bebas.variable} ${lora.variable} ${montserrat.variable} min-h-screen bg-black text-white`}>
-      {/* Custom CSS for the earthy green colors */}
-      <style jsx>{`
-        .text-earth-green { color: #4a7c59; }
-        .text-earth-green-light { color: #8a9b68; }
-        .text-earth-green-accent { color: #6b8e23; }
-        .bg-earth-green { background-color: #4a7c59; }
-        .bg-earth-green-light { background-color: #8a9b68; }
-        .bg-earth-green-accent { background-color: #6b8e23; }
-        .hover\\:bg-earth-green:hover { background-color: #4a7c59; }
-        .hover\\:text-earth-green:hover { color: #4a7c59; }
-        .border-earth-green { border-color: #4a7c59; }
-        .from-earth-green { --tw-gradient-from: #4a7c59; --tw-gradient-to: rgba(74, 124, 89, 0); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
-        .to-earth-green-light { --tw-gradient-to: #8a9b68; }
-        .wildlife-texture { background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%234a7c59' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E"); }
-      `}</style>
-
-      {/* Hero Section */}
-      <div className="relative h-96 w-full overflow-hidden bg-black">
-        <div className="absolute inset-0 wildlife-texture"></div>
+    <div className={`${bebas.variable} ${lora.variable} ${montserrat.variable} ${kolker.variable} min-h-screen bg-black text-white selection:bg-[#4a7c59] selection:text-white`}>
+      
+      {/* =========================================
+          1. CINEMATIC HERO (The Blend)
+         ========================================= */}
+      <div className="relative h-[50vh] w-full overflow-hidden">
+        
+        {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/images/hero1.jpg"
-            alt="Contact us for wildlife adventures"
+            src="/images/hero1.jpg" // High quality hero image
+            alt="Contact us"
             fill
-            className="object-cover opacity-70 object-center"
+            className="object-cover opacity-70"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/90" />
+          {/* THE BLEND: Gradient to solid black */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/60 to-black"></div>
         </div>
 
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
-          <motion.h1
-            className="font-bebas text-5xl md:text-6xl mb-4"
-            initial={{ opacity: 0, y: 20 }}
+        {/* Ambient Glow */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#4a7c59] rounded-full mix-blend-screen filter blur-[200px] opacity-20 pointer-events-none translate-x-1/2 -translate-y-1/2"></div>
+
+        {/* Hero Content */}
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 pb-20 mt-10 md:mt-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            CONNECT WITH <span className="text-earth-green">US</span>
-          </motion.h1>
-          <motion.p
-            className="font-lora text-lg max-w-2xl text-gray-200"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            Connect with us to plan your unforgettable wildlife adventure
-          </motion.p>
+            <h1 
+            style={{ fontFamily: "var(--font-bebas)" }}
+            className="text-5xl md:text-7xl leading-[1.2] text-white mb-6 drop-shadow-2xl">
+              CONNECT WITH <br className="md:hidden" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4a7c59] to-[#8fbc9d]">
+                THE WILD
+              </span>
+            </h1>
+            <p className="font-lora text-gray-300 text-sm md:text-lg max-w-xl mx-auto leading-relaxed drop-shadow-md">
+              Plan your unforgettable expedition. Our team is ready to craft your perfect itinerary.
+            </p>
+          </motion.div>
         </div>
       </div>
 
-      {/* Contact Content */}
-      <div className="relative bg-black pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden wildlife-texture">
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      {/* =========================================
+          2. FLOATING CONTENT SECTION
+         ========================================= */}
+      <div className="relative z-20 px-4 sm:px-6 lg:px-8 pb-32 ">
+        
+        {/* Ambient Glow (Left) */}
+        <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-[#4a7c59] rounded-full mix-blend-screen filter blur-[200px] opacity-10 pointer-events-none -translate-x-1/2"></div>
 
-            {/* Contact Form */}
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+
+            {/* --- CONTACT FORM (Span 7) --- */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7 }}
-              style={{ backgroundColor: '#0D0D0C' }}
-              className=" backdrop-blur-sm rounded-sm p-8 border border-gray-800"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="lg:col-span-7 bg-[#111]/80 backdrop-blur-xl border border-white/10 rounded-md p-8 md:p-12 shadow-2xl relative overflow-hidden"
             >
-              <div className="flex items-center mb-8">
-                <div className="bg-earth-green/10 p-3 rounded-sm mr-4">
-                  <FaPaperPlane className="text-earth-green text-xl" />
+              {/* Internal Glow */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-[#4a7c59] rounded-full mix-blend-screen filter blur-[100px] opacity-10 pointer-events-none"></div>
+
+              <div className="flex items-center gap-4 mb-10 border-b border-white/10 pb-6">
+                <div className="w-10 h-10 rounded-full bg-[#4a7c59]/10 flex items-center justify-center border border-[#4a7c59]/20">
+                  <FaPaperPlane className="text-[#4a7c59] text-sm" />
                 </div>
-                <h3 className="font-bebas text-2xl text-white">SEND US A MESSAGE</h3>
+                <h3 className="font-bebas text-3xl text-white tracking-wide">Send a Message</h3>
               </div>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="name" className="font-montserrat text-xs uppercase tracking-wider block mb-2 text-gray-400">Full Name</label>
+
+              <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {/* Name Input */}
+                  <div className="group">
+                    <label className="font-montserrat text-[10px] uppercase tracking-[0.2em] text-[#4a7c59] mb-2 block group-focus-within:text-white transition-colors">Full Name</label>
                     <input
                       type="text"
-                      id="name"
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-black/50 border border-gray-800 rounded-sm text-white text-sm font-lora focus:outline-none focus:border-earth-green/50 transition-colors"
-                      placeholder="Your name"
+                      className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white font-lora focus:outline-none focus:border-[#4a7c59] focus:bg-white/10 transition-all placeholder:text-gray-600"
+                      placeholder="John Doe"
                     />
                   </div>
-                  <div>
-                    <label htmlFor="email" className="font-montserrat text-xs uppercase tracking-wider block mb-2 text-gray-400">Email</label>
+                  {/* Email Input */}
+                  <div className="group">
+                    <label className="font-montserrat text-[10px] uppercase tracking-[0.2em] text-[#4a7c59] mb-2 block group-focus-within:text-white transition-colors">Email Address</label>
                     <input
                       type="email"
-                      id="email"
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-black/50 border border-gray-800 rounded-sm text-white text-sm font-lora focus:outline-none focus:border-earth-green/50 transition-colors"
-                      placeholder="your@email.com"
+                      className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white font-lora focus:outline-none focus:border-[#4a7c59] focus:bg-white/10 transition-all placeholder:text-gray-600"
+                      placeholder="john@example.com"
                     />
                   </div>
                 </div>
-                <div>
-                  <label htmlFor="subject" className="font-montserrat text-xs uppercase tracking-wider block mb-2 text-gray-400">Subject</label>
+
+                {/* Subject Input */}
+                <div className="group">
+                  <label className="font-montserrat text-[10px] uppercase tracking-[0.2em] text-[#4a7c59] mb-2 block group-focus-within:text-white transition-colors">Subject</label>
                   <input
                     type="text"
-                    id="subject"
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-black/50 border border-gray-800 rounded-sm text-white text-sm font-lora focus:outline-none focus:border-earth-green/50 transition-colors"
-                    placeholder="Tour inquiry"
+                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white font-lora focus:outline-none focus:border-[#4a7c59] focus:bg-white/10 transition-all placeholder:text-gray-600"
+                    placeholder="Tour Inquiry / Custom Package"
                   />
                 </div>
-                <div>
-                  <label htmlFor="message" className="font-montserrat text-xs uppercase tracking-wider block mb-2 text-gray-400">Message</label>
+
+                {/* Message Input */}
+                <div className="group">
+                  <label className="font-montserrat text-[10px] uppercase tracking-[0.2em] text-[#4a7c59] mb-2 block group-focus-within:text-white transition-colors">Your Message</label>
                   <textarea
-                    id="message"
                     name="message"
-                    rows="4"
+                    rows="5"
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-black/50 border border-gray-800 rounded-sm text-white text-sm font-lora focus:outline-none focus:border-earth-green/50 transition-colors"
-                    placeholder="Tell us about your wildlife adventure plans..."
+                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white font-lora focus:outline-none focus:border-[#4a7c59] focus:bg-white/10 transition-all placeholder:text-gray-600 resize-none"
+                    placeholder="Tell us about your dream expedition..."
                   ></textarea>
                 </div>
+
+                {/* Submit Button */}
                 <button
                   type="submit"
-                  className="font-montserrat text-sm text-white bg-earth-green hover:bg-earth-green-accent px-6 py-3 rounded-sm transition-colors uppercase tracking-wider w-full flex items-center justify-center gap-2"
+                  className="group w-full md:w-auto flex items-center justify-center gap-3 bg-[#4a7c59] hover:bg-[#5d8c6d] text-white font-montserrat text-[11px] uppercase tracking-[0.2em] font-bold px-8 py-4 rounded-md transition-all shadow-lg hover:shadow-[#4a7c59]/40 hover:-translate-y-1"
                 >
-                  <FaPaperPlane className="text-xs" />
-                  SEND MESSAGE
+                  Send Message
+                  <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform" />
                 </button>
               </form>
             </motion.div>
 
-            {/* Contact Info */}
+            {/* --- INFO COLUMN (Span 5) --- */}
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7 }}
-              className="space-y-8"
-              style={{ backgroundColor: '#0D0D0C' }}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="lg:col-span-5 space-y-6"
             >
-              {/* Contact Details */}
-              <div className=" backdrop-blur-sm rounded-sm p-8 border border-gray-800">
-                <div className="flex items-center mb-8">
-                  <div className="bg-earth-green/10 p-3 rounded-sm mr-4">
-                    <FaMapMarkerAlt className="text-earth-green text-xl" />
+              
+              {/* Info Card */}
+              <div className="bg-[#111]/80 backdrop-blur-xl border border-white/10 rounded-md p-8 shadow-xl">
+                <div className="flex items-center gap-4 mb-8 border-b border-white/10 pb-6">
+                  <div className="w-10 h-10 rounded-full bg-[#4a7c59]/10 flex items-center justify-center border border-[#4a7c59]/20">
+                    <FaMapMarkerAlt className="text-[#4a7c59] text-sm" />
                   </div>
-                  <h3 className="font-bebas text-2xl text-white">CONTACT DETAILS</h3>
+                  <h3 className="font-bebas text-3xl text-white tracking-wide">Headquarters</h3>
                 </div>
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <div className="bg-earth-green/10 p-3 rounded-sm mt-0.5">
-                      <FaPhone className="text-earth-green text-sm" />
+
+                <div className="space-y-8">
+                  {/* Location */}
+                  <div className="group">
+                    <span className="block font-montserrat text-[10px] uppercase tracking-[0.2em] text-[#4a7c59] mb-1">Office Location</span>
+                    <p className="font-lora text-gray-300 text-sm leading-relaxed group-hover:text-white transition-colors">
+                      123 Wildlife Lane, <br />Colombo 05, Sri Lanka
+                    </p>
+                  </div>
+
+                  {/* Contacts */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="group">
+                      <span className="block font-montserrat text-[10px] uppercase tracking-[0.2em] text-[#4a7c59] mb-1 flex items-center gap-2"><FaPhone className="text-[10px]"/> Phone</span>
+                      <p className="font-lora text-gray-300 text-sm group-hover:text-white transition-colors">+94 76 123 4567</p>
                     </div>
-                    <div>
-                      <h4 className="font-bebas text-lg text-white mb-1">Phone</h4>
-                      <p className="font-lora text-gray-300 text-sm">+94 76 123 4567</p>
-                      <p className="font-lora text-gray-300 text-sm">+94 11 234 1234</p>
+                    <div className="group">
+                      <span className="block font-montserrat text-[10px] uppercase tracking-[0.2em] text-[#4a7c59] mb-1 flex items-center gap-2"><FaEnvelope className="text-[10px]"/> Email</span>
+                      <p className="font-lora text-gray-300 text-sm group-hover:text-white transition-colors">hello@ceylonwild.com</p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-4">
-                    <div className="bg-earth-green/10 p-3 rounded-sm mt-0.5">
-                      <FaEnvelope className="text-earth-green text-sm" />
+
+                  {/* Hours */}
+                  <div className="group border-t border-white/5 pt-6">
+                    <span className="block font-montserrat text-[10px] uppercase tracking-[0.2em] text-[#4a7c59] mb-1 flex items-center gap-2"><FaClock className="text-[10px]"/> Operation Hours</span>
+                    <div className="flex justify-between font-lora text-gray-300 text-sm">
+                      <span>Mon - Fri</span>
+                      <span>9:00 AM - 6:00 PM</span>
                     </div>
-                    <div>
-                      <h4 className="font-bebas text-lg text-white mb-1">Email</h4>
-                      <p className="font-lora text-gray-300 text-sm">contact@ceylonwildclicks.com</p>
-                      <p className="font-lora text-gray-300 text-sm">bookings@ceylonwildclicks.com</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="bg-earth-green/10 p-3 rounded-sm mt-0.5">
-                      <FaMapMarkerAlt className="text-earth-green text-sm" />
-                    </div>
-                    <div>
-                      <h4 className="font-bebas text-lg text-white mb-1">Office</h4>
-                      <p className="font-lora text-gray-300 text-sm">123 Wildlife Lane, Colombo 05, Sri Lanka</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="bg-earth-green/10 p-3 rounded-sm mt-0.5">
-                      <FaClock className="text-earth-green text-sm" />
-                    </div>
-                    <div>
-                      <h4 className="font-bebas text-lg text-white mb-1">Hours</h4>
-                      <p className="font-lora text-gray-300 text-sm">Mon-Fri: 9AM - 6PM</p>
-                      <p className="font-lora text-gray-300 text-sm">Sat: 9AM - 1PM</p>
+                    <div className="flex justify-between font-lora text-gray-300 text-sm">
+                      <span>Weekend</span>
+                      <span>9:00 AM - 1:00 PM</span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Social Media */}
-              <div className="bg-[#0D0D0C] backdrop-blur-sm rounded-sm p-8 border border-gray-800">
-                <div className="flex items-center mb-6">
-                  <div className="bg-earth-green/10 p-3 rounded-sm mr-4">
-                    <FaUsers className="text-earth-green text-xl" />
+              {/* Socials Card */}
+              <div className="bg-[#111]/80 backdrop-blur-xl border border-white/10 rounded-md p-8 shadow-xl">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <FaUsers className="text-[#4a7c59] text-xl" />
+                    <h3 className="font-bebas text-2xl text-white tracking-wide">Follow Us</h3>
                   </div>
-                  <h3 className="font-bebas text-2xl text-white">FOLLOW US</h3>
-                </div>
-                <div className="flex space-x-4">
-                  <a href="#" className="w-12 h-12 rounded-full bg-earth-green/10 hover:bg-earth-green/20 border border-earth-green/20 flex items-center justify-center transition-all duration-300 group">
-                    <FaInstagram className="text-earth-green group-hover:scale-110 transition-transform" />
-                  </a>
-                  <a href="#" className="w-12 h-12 rounded-full bg-earth-green/10 hover:bg-earth-green/20 border border-earth-green/20 flex items-center justify-center transition-all duration-300 group">
-                    <FaFacebook className="text-earth-green group-hover:scale-110 transition-transform" />
-                  </a>
-                  <a href="#" className="w-12 h-12 rounded-full bg-earth-green/10 hover:bg-earth-green/20 border border-earth-green/20 flex items-center justify-center transition-all duration-300 group">
-                    <FaTwitter className="text-earth-green group-hover:scale-110 transition-transform" />
-                  </a>
+                  
+                  <div className="flex gap-3">
+                    {[FaInstagram, FaFacebook, FaTwitter].map((Icon, i) => (
+                      <a 
+                        key={i} 
+                        href="#" 
+                        className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-[#4a7c59] hover:border-[#4a7c59] transition-all duration-300"
+                      >
+                        <Icon className="text-sm" />
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
+
             </motion.div>
 
           </div>
         </div>
-
-        {/* Decorative elements */}
-        <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-earth-green/5 blur-3xl"></div>
-        <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-amber-500/5 blur-3xl"></div>
       </div>
+
     </div>
   );
 };

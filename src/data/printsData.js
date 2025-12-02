@@ -31,7 +31,7 @@ const printsData = [
     size: "18x24 inches",
     medium: "Premium Glossy Paper",
     category: "birds",
-    image: "/images/kingfisher.webp",
+    image: "/images/bird.jpg",
   },
 ];
 

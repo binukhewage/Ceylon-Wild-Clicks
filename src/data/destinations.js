@@ -1,6 +1,7 @@
 const destinations = [
   {
     id: 1,
+    shortName: "WILPATTU",
     slug: "Wilpattu National Park",
     name: "WILPATTU NATIONAL PARK",
     description:
